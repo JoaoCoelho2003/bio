@@ -1,19 +1,23 @@
 <template>
   <div>
-    <section
-      v-for="(section, index) in sections"
-      :key="index"
-      :id="'section-' + index"
-      class="section"
-    >
-      <component :is="sectionViewMap[index]" />
-    </section>
+    <Header />
+    <div class="sections-wrapper">
+      <section
+        v-for="(section, index) in sections"
+        :key="index"
+        :id="'section-' + index"
+        class="section"
+      >
+        <component :is="sectionViewMap[index]" />
+      </section>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
+import Header from '@/components/header.vue'
 import HomeView from '@/views/HomeView.vue'
 import AboutView from '@/views/AboutView.vue'
 import SkillsView from '@/views/SkillsView.vue'
@@ -81,7 +85,7 @@ const handleKeyDown = (event) => {
 
 const smoothScrollTo = (element, duration) => {
   isTransitioning = true
-  const targetPosition = element.offsetTop
+  const targetPosition = element.offsetTop - document.querySelector('header').offsetHeight
   const startPosition = window.pageYOffset
   const distance = targetPosition - startPosition
   let startTime = null
@@ -126,6 +130,14 @@ const updateRoute = (index) => {
   scroll-snap-stop: always;
   overflow-y: scroll;
   transition: transform 1s;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it's above other content */
 }
 
 ::-webkit-scrollbar {

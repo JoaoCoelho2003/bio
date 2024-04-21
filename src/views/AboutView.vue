@@ -1,21 +1,10 @@
 <template>
   <div id="app" style="background-color: black;">
-    <Header />
     <div class="home text-cyan-400">
       <h1>About</h1>
     </div>
   </div>
 </template>
-
-<script>
-import Header from '@/components/header.vue'
-
-export default {
-  components: {
-    Header
-  }
-};
-</script>
 
 
 <style scoped>
