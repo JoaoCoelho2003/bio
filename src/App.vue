@@ -53,18 +53,24 @@ onUnmounted(() => {
   window.removeEventListener('wheel', handleScroll)
 })
 
+let scrollTimeout = null;
+
 const handleScroll = (event) => {
-  if (isTransitioning) return
-  const delta = Math.sign(event.deltaY)
-  if (
-    (delta === 1 && currentSectionIndex.value < sections.value.length - 1) ||
-    (delta === -1 && currentSectionIndex.value > 0)
-  ) {
-    event.preventDefault()
-    currentSectionIndex.value += delta
-    scrollToSection(currentSectionIndex.value)
-  }
+  if (isTransitioning) return;
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(() => {
+    const delta = Math.sign(event.deltaY);
+    if (
+      (delta === 1 && currentSectionIndex.value < sections.value.length - 1) ||
+      (delta === -1 && currentSectionIndex.value > 0)
+    ) {
+      event.preventDefault();
+      currentSectionIndex.value += delta;
+      scrollToSection(currentSectionIndex.value);
+    }
+  }, 100);
 }
+
 
 const handleKeyDown = (event) => {
   if (isTransitioning) return
