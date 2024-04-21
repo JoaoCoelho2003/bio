@@ -1,8 +1,8 @@
 <template>
-  <div class="relative" :style="{ fontSize: size }">
+  <div class="relative" :style="{ fontSize: size, zIndex: zIndex}">
     <span class="inline-block text-white font-bold">I'm a&nbsp;</span>
-    <span class="inline-block font-bold" :style="{ color: '#00FFFF' }">{{ typedText }}</span>
-    <span class="absolute top-0 right-0 mt-1 mr-1 w-1 h-5 bg-black rounded-sm" :class="{ 'animate-blink': showCursor }"></span>
+    <span class="inline-block font-bold" :style="{ color: '#d62f6a' }">{{ typedText }}</span>
+    <span class="absolute top-0 right-0 mt-1 mr-1 w-1 h-5 bg-[#d62f6a] rounded-sm" :class="{ 'animate-blink': showCursor }"></span>
   </div>
 </template>
 
@@ -23,7 +23,12 @@ export default {
       type: String,
       required: false,
       default: '1em'
-    }
+    },
+    zIndex: {
+      type: Number,
+      required: false,
+      default: 20
+    },
   },
   data() {
     return {

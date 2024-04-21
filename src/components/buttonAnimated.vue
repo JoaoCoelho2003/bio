@@ -1,6 +1,7 @@
 <template>
-    <button class="text-cyan-400 border border-cyan-400 hover:bg-cyan-400 hover:text-black hover:border-black transition duration-300 ease-in-out py-2 px-4 rounded-lg" @click="scrollToSection" :disabled="isAnimating">{{ buttonText }}</button>
+    <button class="text-[#d62f6a] border border-[#d62f6a] hover:bg-[#d62f6a] hover:text-black hover:border-black transition duration-300 ease-in-out py-2 px-4 rounded-lg" @click="scrollToSection" :disabled="isAnimating">{{ buttonText }}</button>
   </template>
+  
   
   <script>
   export default {
