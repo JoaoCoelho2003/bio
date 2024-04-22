@@ -30,9 +30,17 @@
         </a>
       </div>
 
-      <div class="mt-10">
-        <a href="../../public/joaoCoelhoResume.pdf" download class="text-xl text-[#d62f6a] border border-[#d62f6a] hover:bg-[#d62f6a] hover:text-black hover:border-black transition duration-300 ease-in-out py-4 px-8 rounded-2xl">Resume</a>
+      <div class="mt-10" @mouseover="isHovered = true" @mouseleave="isHovered = false">
+        <a href="../../joaoCoelhoResume.pdf" download class="text-xl border transition duration-300 ease-in-out py-4 px-8 rounded-2xl inline-flex items-center"
+          :style="{ borderColor: isHovered ? '#d62f6a' : '#d62f6a', backgroundColor: isHovered ? '#d62f6a' : '', color: isHovered ? 'black' : '#d62f6a' }">
+          <i class="bi bi-download text-xl font-bold mr-2"
+            :style="{ color: isHovered ? 'black' : '' }"></i>
+          <span>{{ 'Resume' }}</span>
+        </a>
       </div>
+
+
+
 
     </div>
     
@@ -44,12 +52,17 @@
   </div>
 </template>
 
-<style scoped>
 
+<script setup>
+import { ref } from 'vue'
+
+const isHovered = ref(false)
+</script>
+
+<style scoped>
 .underline-custom {
   border-bottom: 3px solid #d62f6a;
 }
-
 </style>
 
 
