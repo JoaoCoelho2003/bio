@@ -36,7 +36,7 @@ onMounted(() => {
     currentSectionIndex.value = sectionIndex
   }
 
-  window.addEventListener('wheel', handleScroll)
+  window.addEventListener('wheel', handleScrollThrottled)
   window.addEventListener('keydown', handleKeyDown)
 })
 
@@ -50,11 +50,16 @@ const sectionViewMap = {
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeyDown)
-  window.removeEventListener('wheel', handleScroll)
+  window.removeEventListener('wheel', handleScrollThrottled)
 })
+
+let lastScrollTime = performance.now();
+let requestId = null;
 
 const handleScroll = (event) => {
   if (isTransitioning) return;
+  const currentTime = performance.now();
+  if (currentTime - lastScrollTime < 1000 / 60) return;
 
   const delta = Math.sign(event.deltaY);
   if (
@@ -64,6 +69,17 @@ const handleScroll = (event) => {
     event.preventDefault();
     currentSectionIndex.value += delta;
     scrollToSection(currentSectionIndex.value);
+  }
+
+  lastScrollTime = currentTime;
+}
+
+const handleScrollThrottled = (event) => {
+  if (!requestId) {
+    requestId = requestAnimationFrame(() => {
+      handleScroll(event);
+      requestId = null;
+    });
   }
 }
 
@@ -91,11 +107,13 @@ const smoothScrollTo = (element, duration) => {
   const distance = targetPosition - startPosition;
   const startTime = performance.now();
 
-  const animation = (currentTime) => {
+  const animation = () => {
+    const currentTime = performance.now();
     const timeElapsed = currentTime - startTime;
     const scrollProgress = Math.min(timeElapsed / duration, 1);
-    const ease = easing(scrollProgress);
-    const newPosition = startPosition + distance * ease;
+    const easing = (scrollProgress) =>
+      scrollProgress < 0.5 ? 2 * scrollProgress ** 2 : 1 - 2 * (1 - scrollProgress) ** 2;
+    const newPosition = startPosition + distance * easing(scrollProgress);
     window.scrollTo(0, newPosition);
 
     if (timeElapsed < duration) {
@@ -105,10 +123,8 @@ const smoothScrollTo = (element, duration) => {
     }
   };
 
-  const easing = (t) => t < 0.5 ? 2 * t ** 2 : 1 - 2 * (1 - t) ** 2;
-
   requestAnimationFrame(animation);
-};
+}
 
 const scrollToSection = (index) => {
   const sectionElement = document.querySelector(`#section-${index}`)
