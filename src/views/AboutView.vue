@@ -33,9 +33,12 @@
       <div class="mt-10">
         <a href="../../public/joaoCoelhoResume.pdf" target="_blank" class="text-xl text-[#d62f6a] border border-[#d62f6a] hover:bg-[#d62f6a] hover:text-black hover:border-black transition duration-300 ease-in-out py-4 px-8 rounded-2xl">Resume</a>
       </div>
-
-
     </div>
+    
+    <div class="absolute w-1/3 h-2/3 right-20 flex items-center justify-center rounded-full">
+      <img src="../../profileHD.png" class="rounded-full w-full h-full">
+    </div>
+
     </div>
   </div>
 </template>
