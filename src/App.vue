@@ -53,24 +53,19 @@ onUnmounted(() => {
   window.removeEventListener('wheel', handleScroll)
 })
 
-let scrollTimeout = null;
-
 const handleScroll = (event) => {
   if (isTransitioning) return;
-  clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(() => {
-    const delta = Math.sign(event.deltaY);
-    if (
-      (delta === 1 && currentSectionIndex.value < sections.value.length - 1) ||
-      (delta === -1 && currentSectionIndex.value > 0)
-    ) {
-      event.preventDefault();
-      currentSectionIndex.value += delta;
-      scrollToSection(currentSectionIndex.value);
-    }
-  }, 100);
-}
 
+  const delta = Math.sign(event.deltaY);
+  if (
+    (delta === 1 && currentSectionIndex.value < sections.value.length - 1) ||
+    (delta === -1 && currentSectionIndex.value > 0)
+  ) {
+    event.preventDefault();
+    currentSectionIndex.value += delta;
+    scrollToSection(currentSectionIndex.value);
+  }
+}
 
 const handleKeyDown = (event) => {
   if (isTransitioning) return
@@ -90,29 +85,30 @@ const handleKeyDown = (event) => {
 }
 
 const smoothScrollTo = (element, duration) => {
-  isTransitioning = true
-  const targetPosition = element.offsetTop - document.querySelector('header').offsetHeight
-  const startPosition = window.pageYOffset
-  const distance = targetPosition - startPosition
-  let startTime = null
+  isTransitioning = true;
+  const targetPosition = element.offsetTop - document.querySelector('header').offsetHeight;
+  const startPosition = window.pageYOffset;
+  const distance = targetPosition - startPosition;
+  const startTime = performance.now();
 
   const animation = (currentTime) => {
-    if (startTime === null) startTime = currentTime
-    const timeElapsed = currentTime - startTime
-    const scrollProgress = Math.min(timeElapsed / duration, 1)
-    const easing = (scrollProgress) =>
-      scrollProgress < 0.5 ? 2 * scrollProgress ** 2 : 1 - 2 * (1 - scrollProgress) ** 2
-    window.scrollTo(0, startPosition + distance * easing(scrollProgress))
+    const timeElapsed = currentTime - startTime;
+    const scrollProgress = Math.min(timeElapsed / duration, 1);
+    const ease = easing(scrollProgress);
+    const newPosition = startPosition + distance * ease;
+    window.scrollTo(0, newPosition);
 
     if (timeElapsed < duration) {
-      requestAnimationFrame(animation)
+      requestAnimationFrame(animation);
     } else {
-      isTransitioning = false
+      isTransitioning = false;
     }
-  }
+  };
 
-  requestAnimationFrame(animation)
-}
+  const easing = (t) => t < 0.5 ? 2 * t ** 2 : 1 - 2 * (1 - t) ** 2;
+
+  requestAnimationFrame(animation);
+};
 
 const scrollToSection = (index) => {
   const sectionElement = document.querySelector(`#section-${index}`)
