@@ -13,11 +13,11 @@
       </div>
 
       <div class= "absolute z-10 top-1/4 left-1/2">
-        <HalfColorText fontSize="200px" color1="white" color2="#d62f6a" text1="Hel" text2="lo,"/>
+        <HalfColorText fontSize="12em" color1="white" color2="#d62f6a" text1="Hel" text2="lo,"/>
       </div>
 
       <div class="absolute z-10 top-1/2 left-1/2">
-        <HalfColorText fontSize="100px" color1="white" color2="#d62f6a" text1="I am " text2="João Coelho"/>
+        <HalfColorText fontSize="7em" color1="white" color2="#d62f6a" text1="I am " text2="João Coelho"/>
       </div>
     </div>
   </div>

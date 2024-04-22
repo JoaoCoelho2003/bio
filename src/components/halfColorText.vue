@@ -10,7 +10,8 @@ export default {
     props: {
         fontSize: {
             type: String,
-            required: true
+            required: true,
+            default: '1em'
         },
         color1: {
             type: String,
