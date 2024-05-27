@@ -31,7 +31,7 @@
       </div>
 
       <div class="mt-10" @mouseover="isHovered = true" @mouseleave="isHovered = false">
-        <a href="../../joaoCoelhoResume.pdf" download class="text-xl border transition duration-300 ease-in-out py-4 px-8 rounded-2xl inline-flex items-center"
+        <a href="/public/joaoCoelhoResume.pdf" download class="text-xl border transition duration-300 ease-in-out py-4 px-8 rounded-2xl inline-flex items-center"
           :style="{ borderColor: isHovered ? '#d62f6a' : '#d62f6a', backgroundColor: isHovered ? '#d62f6a' : '', color: isHovered ? 'black' : '#d62f6a' }">
           <i class="bi bi-download text-xl font-bold mr-2"
             :style="{ color: isHovered ? 'black' : '' }"></i>
@@ -45,9 +45,8 @@
     </div>
     
     <div class="absolute w-1/3 h-2/3 right-20 flex items-center justify-center rounded-full">
-      <img src="../../profileHD.png" class="rounded-full w-full h-full">
+      <img src="/public/profileHD.png" class="rounded-full w-full h-full">
     </div>
-
     </div>
   </div>
 </template>
