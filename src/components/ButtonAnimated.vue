@@ -1,6 +1,7 @@
 <template>
     <button
-      class="text-[#d62f6a] border border-[#d62f6a] hover:bg-[#d62f6a] hover:text-black hover:border-black transition duration-300 ease-in-out py-2 px-4 rounded-lg"
+    :class="[
+      size === 'w-full' ? 'w-full' : '', 'text-[#d62f6a] border border-[#d62f6a] hover:bg-[#d62f6a] hover:text-black hover:border-black transition duration-300 ease-in-out py-2 px-4 rounded-lg']"
       @click="handleClick"
       :disabled="isAnimating"
     >
@@ -18,6 +19,10 @@
       sectionIndex: {
         type: Number,
         required: true
+      },
+      size: {
+        type: String,
+        default: ''
       }
     },
     data() {

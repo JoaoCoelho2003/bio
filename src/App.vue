@@ -53,14 +53,13 @@ onUnmounted(() => {
   window.removeEventListener('wheel', handleScrollThrottled)
 })
 
-let lastScrollTime = performance.now()
-let requestId = null
+const handleScrollThrottled = (event) => {
+  if (!isTransitioning) {
+    handleScroll(event)
+  }
+}
 
 const handleScroll = (event) => {
-  if (isTransitioning) return
-  const currentTime = performance.now()
-  if (currentTime - lastScrollTime < 1000 / 60) return
-
   const delta = Math.sign(event.deltaY)
   if (
     (delta === 1 && currentSectionIndex.value < sections.value.length - 1) ||
@@ -69,17 +68,6 @@ const handleScroll = (event) => {
     event.preventDefault()
     currentSectionIndex.value += delta
     scrollToSection(currentSectionIndex.value)
-  }
-
-  lastScrollTime = currentTime
-}
-
-const handleScrollThrottled = (event) => {
-  if (!requestId) {
-    requestId = requestAnimationFrame(() => {
-      handleScroll(event)
-      requestId = null
-    })
   }
 }
 
@@ -141,8 +129,10 @@ const updateRoute = (index) => {
 }
 
 const handleScrollToSection = (index) => {
-  currentSectionIndex.value = index
-  scrollToSection(index)
+  if (!isTransitioning) {
+    currentSectionIndex.value = index
+    scrollToSection(index)
+  }
 }
 </script>
 
