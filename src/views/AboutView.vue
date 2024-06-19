@@ -38,10 +38,6 @@
           <span>{{ 'Resume' }}</span>
         </a>
       </div>
-
-
-
-
     </div>
     
     <div class="absolute w-1/3 h-2/3 right-20 flex items-center justify-center rounded-full">
@@ -63,5 +59,3 @@ const isHovered = ref(false)
   border-bottom: 3px solid #d62f6a;
 }
 </style>
-
-

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header />
+    <Header @scroll-to-section="handleScrollToSection" />
     <div class="sections-wrapper">
       <section
         v-for="(section, index) in sections"
@@ -17,7 +17,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
-import Header from '@/components/header.vue'
+import Header from '@/components/Header.vue'
 import HomeView from '@/views/HomeView.vue'
 import AboutView from '@/views/AboutView.vue'
 import SkillsView from '@/views/SkillsView.vue'
@@ -53,33 +53,33 @@ onUnmounted(() => {
   window.removeEventListener('wheel', handleScrollThrottled)
 })
 
-let lastScrollTime = performance.now();
-let requestId = null;
+let lastScrollTime = performance.now()
+let requestId = null
 
 const handleScroll = (event) => {
-  if (isTransitioning) return;
-  const currentTime = performance.now();
-  if (currentTime - lastScrollTime < 1000 / 60) return;
+  if (isTransitioning) return
+  const currentTime = performance.now()
+  if (currentTime - lastScrollTime < 1000 / 60) return
 
-  const delta = Math.sign(event.deltaY);
+  const delta = Math.sign(event.deltaY)
   if (
     (delta === 1 && currentSectionIndex.value < sections.value.length - 1) ||
     (delta === -1 && currentSectionIndex.value > 0)
   ) {
-    event.preventDefault();
-    currentSectionIndex.value += delta;
-    scrollToSection(currentSectionIndex.value);
+    event.preventDefault()
+    currentSectionIndex.value += delta
+    scrollToSection(currentSectionIndex.value)
   }
 
-  lastScrollTime = currentTime;
+  lastScrollTime = currentTime
 }
 
 const handleScrollThrottled = (event) => {
   if (!requestId) {
     requestId = requestAnimationFrame(() => {
-      handleScroll(event);
-      requestId = null;
-    });
+      handleScroll(event)
+      requestId = null
+    })
   }
 }
 
@@ -101,29 +101,29 @@ const handleKeyDown = (event) => {
 }
 
 const smoothScrollTo = (element, duration) => {
-  isTransitioning = true;
-  const targetPosition = element.offsetTop - document.querySelector('header').offsetHeight;
-  const startPosition = window.pageYOffset;
-  const distance = targetPosition - startPosition;
-  const startTime = performance.now();
+  isTransitioning = true
+  const targetPosition = element.offsetTop - document.querySelector('header').offsetHeight
+  const startPosition = window.pageYOffset
+  const distance = targetPosition - startPosition
+  const startTime = performance.now()
 
   const animation = () => {
-    const currentTime = performance.now();
-    const timeElapsed = currentTime - startTime;
-    const scrollProgress = Math.min(timeElapsed / duration, 1);
+    const currentTime = performance.now()
+    const timeElapsed = currentTime - startTime
+    const scrollProgress = Math.min(timeElapsed / duration, 1)
     const easing = (scrollProgress) =>
-      scrollProgress < 0.5 ? 2 * scrollProgress ** 2 : 1 - 2 * (1 - scrollProgress) ** 2;
-    const newPosition = startPosition + distance * easing(scrollProgress);
-    window.scrollTo(0, newPosition);
+      scrollProgress < 0.5 ? 2 * scrollProgress ** 2 : 1 - 2 * (1 - scrollProgress) ** 2
+    const newPosition = startPosition + distance * easing(scrollProgress)
+    window.scrollTo(0, newPosition)
 
     if (timeElapsed < duration) {
-      requestAnimationFrame(animation);
+      requestAnimationFrame(animation)
     } else {
-      isTransitioning = false;
+      isTransitioning = false
     }
-  };
+  }
 
-  requestAnimationFrame(animation);
+  requestAnimationFrame(animation)
 }
 
 const scrollToSection = (index) => {
@@ -138,6 +138,11 @@ const scrollToSection = (index) => {
 const updateRoute = (index) => {
   const sectionName = sections.value[index]
   window.history.replaceState({}, '', `/${sectionName}`)
+}
+
+const handleScrollToSection = (index) => {
+  currentSectionIndex.value = index
+  scrollToSection(index)
 }
 </script>
 
