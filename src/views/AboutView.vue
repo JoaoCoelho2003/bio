@@ -31,7 +31,7 @@
         </div>
 
         <div class="mt-5 lg:mt-10" @mouseover="isHovered = true" @mouseleave="isHovered = false">
-          <a href="/public/joaoCoelhoResume.pdf" download class="text-base lg:text-xl border transition duration-300 ease-in-out py-2 lg:py-4 px-4 lg:px-8 rounded-2xl inline-flex items-center"
+          <a href="/joaoCoelhoResume.pdf" download class="text-base lg:text-xl border transition duration-300 ease-in-out py-2 lg:py-4 px-4 lg:px-8 rounded-2xl inline-flex items-center"
             :style="{ borderColor: isHovered ? '#d62f6a' : '#d62f6a', backgroundColor: isHovered ? '#d62f6a' : '', color: isHovered ? 'black' : '#d62f6a' }">
             <i class="bi bi-download text-base lg:text-xl font-bold mr-2"
               :style="{ color: isHovered ? 'black' : '' }"></i>
@@ -40,9 +40,9 @@
         </div>
       </div>
       
-      <div class="absolute w-2/3 h-1/3 lg:w-1/3 lg:h-2/3 right-5 lg:right-20 flex items-center justify-center rounded-full mt-20 lg:mt-0">
-        <img src="/public/profileHD.png" class="rounded-full w-full h-full object-cover">
-      </div>
+      <div class="hidden lg:flex lg:flex-col lg:items-center lg:justify-center lg:w-1/3 lg:absolute lg:right-24 mb-48">
+        <img src="/profileHD.png" class="rounded-full h-auto lg:w-full lg:h-full object-cover">
+      </div>    
     </div>
   </div>
 </template>
