@@ -8,20 +8,11 @@
     </svg>
 
     <div id="app" class="bg-[#021d44] min-h-screen flex items-center z-10">
-      
     </div>
   </div>
 </template>
 
 
-<script>
-import TypingAnimation from '@/components/typingAnimation.vue'
-import HalfColorText from '@/components/halfColorText.vue' 
+<script setup>
 
-export default {
-  components: {
-    TypingAnimation,
-    HalfColorText
-  }
-}
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative" :style="{ fontSize: size, zIndex: zIndex}">
+  <div class="relative text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl" :style="{ zIndex: zIndex}">
     <span class="inline-block text-white font-bold">I'm a&nbsp;</span>
     <span class="inline-block font-bold" :style="{ color: '#d62f6a' }">{{ typedText }}</span>
     <span class="absolute top-0 right-0 mt-1 mr-1 w-1 h-5 bg-[#d62f6a] rounded-sm" :class="{ 'animate-blink': showCursor }"></span>
@@ -18,11 +18,6 @@ export default {
       type: Number,
       required: false,
       default: 100
-    },
-    size: {
-      type: String,
-      required: false,
-      default: '1em'
     },
     zIndex: {
       type: Number,
