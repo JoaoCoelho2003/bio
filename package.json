@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "bootstrap-icons": "^1.11.3",
+    "emailjs-com": "^3.2.0",
     "vue": "^3.4.22",
     "vue-router": "^4.3.0",
     "vue-screen": "^2.4.0"
