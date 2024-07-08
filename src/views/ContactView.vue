@@ -34,8 +34,11 @@
               class="mt-1 block w-full rounded-md shadow-sm border-[#d62f6a] border-2 focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-2 text-white"></textarea>
           </div>
           <div class="flex justify-end md:col-span-2 mt-2">
-            <button type="submit" class="w-1/4 h-12 bg-[#d62f6a] text-white rounded-md hover:bg-[#b81d50] focus:outline-none focus:bg-[#b81d50]">
+            <button type="submit" class="px-5 py-2 bg-[#d62f6a] text-white rounded-md flex items-center justify-center hover:bg-[#b81d50] focus:outline-none focus:bg-[#b81d50]">
               Send
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 ml-1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+              </svg>
             </button>
           </div>
         </form>
