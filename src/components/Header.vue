@@ -1,7 +1,7 @@
 <template>
   <header class="flex justify-between items-center p-4 shadow-md z-50 bg-[#051f46]">
     <div>
-      <span class="text-[#d62f6a] font-bold text-2xl lg:text-3xl">João Coelho</span>
+      <span class="text-[#d62f6a] font-bold text-2xl lg:text-3xl">&lt;João Coelho /&gt;</span>
     </div>
     <div class="lg:hidden relative">
       <button @click="isMenuOpen = !isMenuOpen" class="text-[#d62f6a] focus:outline-none">
