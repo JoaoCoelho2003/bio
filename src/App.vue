@@ -11,6 +11,7 @@
         <component :is="sectionViewMap[index]" />
       </section>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -18,6 +19,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 import HomeView from '@/views/HomeView.vue'
 import SkillsView from '@/views/SkillsView.vue'
 import ProjectsView from '@/views/ProjectsView.vue'
