@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="flex justify-center items-center w-full z-10 px-4 md:px-20">
-        <form @submit.prevent="submitForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl">
+        <form @submit.prevent="submitForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl mt-[20vh] md:mt-[5vh]">
           <div>
             <label for="name" class="block text-md font-light text-white">Name</label>
             <input type="text" id="name" v-model="formData.name" placeholder="Enter your name" required
