@@ -7,36 +7,35 @@
       ></path>
     </svg>
 
-    <div id="app" class="bg-[#021d44] min-h-screen flex flex-col lg:flex-row items-center justify-center z-10">
-      <div class="absolute top-0 left-0 p-10 lg:p-40 lg:w-2/3">
-        <div class="text-white font-bold text-4xl lg:text-8xl">
-          <span class="underline-custom">Contact Me</span>
+    <div id="app" class="bg-[#021d44] min-h-screen flex flex-col items-center justify-center z-10">
+      <div class="absolute top-0 text-center p-10 space-y-8 md:space-y-24">
+        <div class="flex justify-center text-white font-bold text-4xl lg:text-8xl">
+          <span class="underline-custom">Get In Touch</span>
+        </div>
+        <div class="text-white/90 text-lg lg:text-2xl font-light">
+          <p>Whether you have a question or just want to say hello, my inbox is always open. I'll try my best to get back to you!</p>
         </div>
       </div>
-      <div class="flex justify-center items-center z-10 mt-64">
-        <form @submit.prevent="submitForm" class="grid grid-rows-3 gap-4 mt-8 w-full">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-12">
-            <div>
-              <label for="name" class="block text-md font-medium text-white "></label>
-              <input type="text" id="name" v-model="formData.name" placeholder="Your Name" required
-                class="mt-1 block w-full border-[#d62f6a] border-2 rounded-md shadow-sm focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-3 text-white">
-            </div>
-            <div>
-              <label for="email" class="block text-md font-medium text-white"></label>
-              <input type="email" id="email" v-model="formData.email" placeholder="Your Email" required
-                class="mt-1 block w-full border-[#d62f6a] border-2 rounded-md shadow-sm focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-3 text-white">
-            </div>
-          </div>
-
+      <div class="flex justify-center items-center w-full z-10 px-4 md:px-20">
+        <form @submit.prevent="submitForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl">
           <div>
-            <label for="message" class="block text-md font-medium text-gray-700"></label>
-            <textarea id="message" v-model="formData.message" rows="6" placeholder="Your Message" required
+            <label for="name" class="block text-md font-light text-white">Name</label>
+            <input type="text" id="name" v-model="formData.name" placeholder="Enter your name" required
+              class="mt-1 block w-full border-[#d62f6a] border-2 rounded-md shadow-sm focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-3 text-white">
+          </div>
+          <div>
+            <label for="email" class="block text-md font-light text-white">Email</label>
+            <input type="email" id="email" v-model="formData.email" placeholder="email@example.com" required
+              class="mt-1 block w-full border-[#d62f6a] border-2 rounded-md shadow-sm focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-3 text-white">
+          </div>
+          <div class="md:col-span-2">
+            <label for="message" class="block text-md font-light text-white">Message</label>
+            <textarea id="message" v-model="formData.message" rows="6" placeholder="Write your Message" required
               class="mt-1 block w-full rounded-md shadow-sm border-[#d62f6a] border-2 focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-2 text-white"></textarea>
           </div>
-
-          <div class="flex justify-center">
-            <button type="submit" class="w-1/2 h-1/4 bg-[#d62f6a] text-white rounded-md hover:bg-[#b81d50] focus:outline-none focus:bg-[#b81d50]">
-              Submit
+          <div class="flex justify-end md:col-span-2 mt-2">
+            <button type="submit" class="w-1/4 h-12 bg-[#d62f6a] text-white rounded-md hover:bg-[#b81d50] focus:outline-none focus:bg-[#b81d50]">
+              Send
             </button>
           </div>
         </form>

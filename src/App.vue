@@ -19,12 +19,11 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import Header from '@/components/Header.vue'
 import HomeView from '@/views/HomeView.vue'
-import AboutView from '@/views/AboutView.vue'
 import SkillsView from '@/views/SkillsView.vue'
 import ProjectsView from '@/views/ProjectsView.vue'
 import ContactView from '@/views/ContactView.vue'
 
-const sections = ref(['', 'about', 'skills', 'projects', 'contact'])
+const sections = ref(['', 'skills', 'projects', 'contact'])
 const route = useRoute()
 
 const currentSectionIndex = ref(0)
@@ -42,10 +41,9 @@ onMounted(() => {
 
 const sectionViewMap = {
   0: HomeView,
-  1: AboutView,
-  2: SkillsView,
-  3: ProjectsView,
-  4: ContactView
+  1: SkillsView,
+  2: ProjectsView,
+  3: ContactView
 }
 
 onUnmounted(() => {

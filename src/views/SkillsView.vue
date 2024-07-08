@@ -9,21 +9,21 @@
     </svg>
 
     <div id="app" class="bg-[#021d44] min-h-screen flex flex-col lg:flex-row items-center justify-center z-10">
-      <div class="absolute top-0 left-0 p-6 lg:p-10 lg:w-2/4">
+      <div class="absolute top-0 text-center p-6 lg:p-10 lg:w-2/4">
         <div class="text-white font-bold text-4xl lg:text-8xl">
           <span class="underline-custom">Skills</span>
         </div>
       </div>
 
       <div class="lg:w-2/3 lg:pl-20 mt-10">
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+        <div class="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-12 lg:gap-6">
           <div
             v-for="(skill, index) in skills"
             :key="index"
             class="rounded-lg p-4 flex flex-col items-center justify-center transition-transform transform hover:scale-105"
           >
-            <i :class="skill.icon" class="text-5xl md:text-6xl lg:text-7xl text-white mb-2"></i>
-            <span class="text-gray-400 text-lg font-semibold text-center">{{ skill.name }}</span>
+            <i :class="skill.icon" class="text-4xl sm:text-5xl lg:text-6xl 2xl:text-8xl text-white mb-2"></i>
+            <span class="text-gray-400 text-base sm:text-lg font-semibold text-center">{{ skill.name }}</span>
           </div>
         </div>
       </div>
