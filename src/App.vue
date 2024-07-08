@@ -1,6 +1,6 @@
 <template>
+  <Header @scroll-to-section="handleScrollToSection" />
   <div>
-    <Header @scroll-to-section="handleScrollToSection" />
     <div class="sections-wrapper">
       <section
         v-for="(section, index) in sections"
@@ -11,8 +11,8 @@
         <component :is="sectionViewMap[index]" />
       </section>
     </div>
-    <Footer />
   </div>
+  <Footer />
 </template>
 
 <script setup>
