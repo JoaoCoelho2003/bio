@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#021d44] border border-[#021d44] p-4 rounded-lg shadow-lg flex flex-col items-start overflow-hidden space-y-4 z-10 relative">
+  <div class="bg-[#062656] border border-[#021d44] p-4 rounded-lg shadow-xl flex flex-col items-start overflow-hidden space-y-4 z-10 relative">
     <img :src="imageSrc" alt="Project Image" class="w-full h-90 object-cover rounded-t-lg"/>
 
     <div class="text-white">
@@ -7,7 +7,7 @@
       <p class="text-gray-300 mt-2 text-[0.675rem] sm:text-base line-clamp-2 sm:line-clamp-3">{{ description }}</p>
     </div>
 
-    <div class="flex flex-wrap gap-2">
+    <div class="flex flex-wrap gap-2 sm:gap-4">
       <span v-for="(tech, index) in technologies" :key="index" class="text-white text-sm sm:text-3xl flex items-center space-x-1">
         <i :class="tech"></i>
       </span>
