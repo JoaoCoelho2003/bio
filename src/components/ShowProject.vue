@@ -1,8 +1,8 @@
 <template>
   <div class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 backdrop-blur" @click="handleClickOutside">
-    <div class="bg-[#062656] border border-[#021d44] p-8 rounded-lg shadow-xl overflow-hidden w-[90vw] h-[85vh] relative" @click.stop>
-      <button @click="$emit('close')" class="absolute top-0 right-2 text-gray-300 text-3xl">✕</button>
-      <div class="grid grid-cols-2 gap-4">
+    <div class="bg-[#062656] border border-[#021d44] p-8 sm:rounded-lg shadow-xl overflow-hidden w-full h-full sm:w-[90vw] sm:h-[85vh] relative" @click.stop>
+      <button @click="$emit('close')" class="absolute top-0 right-2 text-gray-300 text-xl sm:text-3xl">✕</button>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="w-full">
           <Carousel>
             <Slide v-for="(image, index) in images" :key="index">
@@ -10,10 +10,10 @@
               <div>
                 <img
                   :src="image"
-                  class="w-full h-[70vh] object-cover rounded-t-lg"
+                  class="w-full h-[40vh] sm:h-[70vh] object-cover rounded-t-lg"
                   alt="Project Image" 
                 />
-              </div >
+              </div>
               </div>
             </Slide>
             <template #addons>
@@ -22,18 +22,18 @@
             </template>
           </Carousel>
         </div>
-        <div class="text-white space-y-12">
-          <h3 class="text-4xl font-bold">{{ title }}</h3>
-          <p class="text-gray-300 mt-2 text-lg">{{ description }}</p>
+        <div class="text-white space-y-4 sm:space-y-12">
+          <h3 class="text-sm sm:text-4xl font-bold">{{ title }}</h3>
+          <p class="text-gray-300 mt-2 text-xs sm:text-lg">{{ description }}</p>
 
-          <div class="flex flex-wrap gap-8">
-            <span v-for="(tech, index) in technologies" :key="index" class="text-white text-5xl flex items-center space-x-1">
+          <div class="flex flex-wrap gap-4 sm:gap-8">
+            <span v-for="(tech, index) in technologies" :key="index" class="text-white text-xl sm:text-5xl flex items-center space-x-1">
                 <i :class="tech"></i>
             </span>
             </div>
     
             <div class="mt-4">
-            <a :href="giturl" target="_blank" class="text-3xl font-light text-gray-200 dark:text-gray-300 hover:underline hover:text-[#d62f6a] transition-colors duration-300">
+            <a :href="giturl" target="_blank" class="text-lg sm:text-3xl font-light text-gray-200 dark:text-gray-300 hover:underline hover:text-[#d62f6a] transition-colors duration-300">
                 <i class="bi bi-github"></i> View on GitHub
             </a>
             </div>
