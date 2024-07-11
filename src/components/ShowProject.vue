@@ -145,12 +145,12 @@ background-color: #d62f6a;
 }
 
 @media (hover: hover) {
-.carousel__pagination-button:hover::after {
-  background-color: #3c4a77;
-  outline-style: solid;
-  outline-width: 2px;
-  outline-color: #d62f6a;
-}
+  .carousel__pagination-button:hover::after {
+    background-color: #3c4a77;
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: #d62f6a;
+  }
 }
 
 @media (max-width: 768px) {
