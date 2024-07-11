@@ -3,10 +3,10 @@
     <div class="bg-[#062656] border border-[#021d44] p-8 sm:rounded-lg shadow-xl overflow-hidden w-full h-full sm:w-[90vw] sm:h-[85vh] relative" @click.stop>
       <button @click="$emit('close')" class="absolute top-0 right-2 text-gray-300 text-xl sm:text-3xl">✕</button>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="w-full">
+        <div class="w-full rounded-t-xl">
           <Carousel>
             <Slide v-for="(image, index) in images" :key="index">
-              <div class="relative w-full object-fill object-center rounded-t-xl lg:p-0">
+              <div class="relative w-full object-fill object-center lg:p-0">
               <div>
                 <img
                   :src="image"
