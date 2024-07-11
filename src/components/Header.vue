@@ -1,9 +1,9 @@
 <template>
-  <header class="flex justify-between items-center p-4 shadow-md z-50 bg-[#051f46]">
+  <header class="flex justify-between items-center p-4 shadow-md fixed top-0 w-full bg-[#051f46] z-10">
     <div>
       <span class="text-[#d62f6a] font-bold text-2xl lg:text-3xl">&lt;João Coelho /&gt;</span>
     </div>
-    <div class="lg:hidden relative">
+    <div class="lg:hidden relat ive">
       <button @click="isMenuOpen = !isMenuOpen" class="text-[#d62f6a] focus:outline-none">
         <i class="bi bi-list text-3xl"></i>
       </button>
@@ -20,7 +20,7 @@
     </transition>
 
     <transition name="sidebar-slide">
-      <div v-if="isMenuOpen" class="fixed top-0 right-0 w-3/5 h-full shadow-lg z-50 lg:hidden bg-[#051f46] border-l border-[#d62f6a]" @click.stop>
+      <div v-if="isMenuOpen" class="fixed top-0 right-0 w-3/5 h-full shadow-lg z-20 lg:hidden bg-[#051f46] border-l border-[#d62f6a]" @click.stop>
         <div class="relative flex flex-col items-center">
           <button @click="isMenuOpen = false" class="absolute top-4 right-4 text-[#d62f6a] focus:outline-none">
             <i class="bi bi-x-lg text-2xl"></i>
@@ -49,14 +49,6 @@ const emitScrollToSection = (index) => {
 </script>
 
 <style scoped>
-header {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-
 .sidebar-slide-enter-active, .sidebar-slide-leave-active {
   transition: transform 0.5s ease;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#062656] border border-[#021d44] p-4 rounded-lg shadow-xl flex flex-col items-start overflow-hidden space-y-4 z-10 relative">
+  <div class="bg-[#062656] border border-[#021d44] p-4 rounded-lg shadow-xl flex flex-col items-start overflow-hidden space-y-4 z-10 relative" @click="showPopup = !showPopup">
     <img :src="imageSrc" alt="Project Image" class="w-full h-90 object-cover rounded-t-lg"/>
 
     <div class="text-white">
@@ -18,9 +18,14 @@
     </a>
     </div>
   </div>
+  <ShowProject v-if="showPopup" :imageSrc="imageSrc" :title="title" :description="description" :technologies="technologies" :giturl="giturl" @close="showPopup = !showPopup" />
+
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import ShowProject from './ShowProject.vue';
+
 defineProps({
   imageSrc: {
     type: String,
@@ -43,4 +48,6 @@ defineProps({
     required: true
   }
 });
+
+const showPopup = ref(false);
 </script>

@@ -1,7 +1,7 @@
 <template>
-  <Header @scroll-to-section="handleScrollToSection" />
   <div>
     <div class="sections-wrapper">
+    <Header @scroll-to-section="handleScrollToSection" />
       <section
         v-for="(section, index) in sections"
         :key="index"
@@ -150,7 +150,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 20;
 }
 
 ::-webkit-scrollbar {
