@@ -1,6 +1,6 @@
 <template>
   <div class="bg-[#062656] border border-[#021d44] rounded-lg shadow-xl flex flex-col items-start overflow-hidden space-y-2 sm:space-y-4 z-10 relative" @click="showPopup = !showPopup">
-    <img :src="imageSrc" alt="Project Image" class="w-full object-cover rounded-t-lg"/>
+    <img :src="images[0]" alt="Project Image" class="w-full object-cover rounded-t-lg"/>
 
     <div class="text-white p-1">
       <h3 class="text-xs sm:text-xl font-bold">{{ title }}</h3>
@@ -18,7 +18,7 @@
     </a>
     </div>
   </div>
-  <ShowProject v-if="showPopup" :imageSrc="imageSrc" :title="title" :description="description" :technologies="technologies" :giturl="giturl" @close="showPopup = !showPopup" />
+  <ShowProject v-if="showPopup" :images="images" :title="title" :description="description" :technologies="technologies" :giturl="giturl" @close="showPopup = !showPopup" />
 
 </template>
 
@@ -27,8 +27,8 @@ import { ref } from 'vue';
 import ShowProject from './ShowProject.vue';
 
 defineProps({
-  imageSrc: {
-    type: String,
+  images: {
+    type: Array,
     required: true
   },
   title: {
