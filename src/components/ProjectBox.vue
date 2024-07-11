@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#062656] border border-[#021d44] rounded-lg shadow-xl flex flex-col items-start overflow-hidden space-y-2 sm:space-y-4 z-10 relative" @click="showPopup = !showPopup">
+  <div class="bg-[#062656] border border-[#021d44] rounded-lg shadow-xl flex flex-col items-start overflow-hidden space-y-2 sm:space-y-4 z-10 relative cursor-pointer" @click="showPopup = !showPopup">
     <img :src="images[0]" alt="Project Image" class="w-full object-cover rounded-t-lg"/>
 
     <div class="text-white p-1">
