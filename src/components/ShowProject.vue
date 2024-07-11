@@ -7,13 +7,13 @@
           <Carousel>
             <Slide v-for="(image, index) in images" :key="index">
               <div class="relative w-full object-fill object-center lg:p-0">
-              <div>
-                <img
-                  :src="image"
-                  class="w-full h-[40vh] sm:h-[70vh] object-cover rounded-t-lg"
-                  alt="Project Image" 
-                />
-              </div>
+                <div>
+                  <img
+                    :src="image"
+                    class="w-full h-[40vh] sm:h-[70vh] object-cover"
+                    alt="Project Image" 
+                  />
+                </div>
               </div>
             </Slide>
             <template #addons>
