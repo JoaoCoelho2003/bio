@@ -1,7 +1,7 @@
 <template>
     <button
     :class="[
-      size === 'w-full' ? 'w-full' : '', 'text-[#d62f6a] hover:bg-[#d62f6a] hover:text-black transition duration-300 ease-in-out']"
+      size === 'w-full' ? 'w-full' : '', 'text-[#d62f6a] pb-4 pr-3 hover:text-[#e26a94] hover:text-xl text-lg border-b border-[#6b1533] transition duration-300 ease-in-out']"
       @click="handleClick"
       :disabled="isAnimating"
     >
