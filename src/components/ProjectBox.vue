@@ -1,6 +1,6 @@
 <template>
   <div class="bg-[#062656] border border-[#021d44] rounded-lg shadow-xl flex flex-col items-start overflow-hidden space-y-2 sm:space-y-4 z-10 relative cursor-pointer" @click="showPopup = !showPopup">
-    <img :src="images[0]" alt="Project Image" class="w-full object-fill object-center rounded-t-lg"/>
+    <img :src="images[0]" alt="Project Image" class="w-full h-1/2 object-fill object-center rounded-t-lg"/>
     <div class="text-white p-1">
       <h3 class="text-xs sm:text-xl font-bold">{{ title }}</h3>
       <p class="text-gray-300 text-[0.675rem] sm:text-base line-clamp-2 sm:line-clamp-3">{{ description }}</p>
