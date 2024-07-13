@@ -6,7 +6,7 @@
         <div class="w-full rounded-t-xl">
           <Carousel>
             <Slide v-for="(image, index) in images" :key="index">
-              <div class="relative w-full object-fill object-center lg:p-0">
+              <div class="relative w-full lg:p-0">
                 <div>
                   <img
                     :src="image"

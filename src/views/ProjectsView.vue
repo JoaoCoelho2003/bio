@@ -15,30 +15,30 @@
       </div>
 
       <div class="mb-5">
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 p-4">
           <ProjectBox 
-            :images= '["/engweb/loginEng.png", "engweb/fullEng.png", "/engweb/fullEng.png", "/engweb/fullEng.png"]'
+            :images= '["/engweb/engweb2.png", "/engweb/engweb3.png", "/engweb/engweb4.png","/engweb/engweb5.png", "/engweb/engweb6.png", "/engweb/engweb7.png", "/engweb/engweb8.png"]'
             title="Braga Street Map - Web Engineering Project"
             description="Braga Street Map is a web application designed to provide comprehensive information about the various roads in Braga, Portugal. Developed with Elixir and Phoenix and deployed using Docker, the application offers a wide range of functionalities. Users can post new roads, comment on existing ones, and like or dislike other user's comments. Additionally, users have the option to export road data. The platform includes account management features such as login and registration, as well as user profiles that track engagement and allow for configuration changes to account information."
             :technologies="['devicon-elixir-plain colored', 'devicon-phoenix-original colored', 'devicon-docker-plain colored', 'devicon-html5-plain colored', 'devicon-tailwindcss-original colored', 'devicon-javascript-plain colored', 'devicon-python-plain colored']"
             giturl="https://github.com/JoaoCoelho2003/EngwebProject"
           />
           <ProjectBox
-            :images= '["/engweb/fullEng.png", "/engweb/fullEng.png", "/engweb/fullEng.png", "/engweb/fullEng.png"]'
+            :images= '["/engweb/engweb2.png", "/engweb/engweb3.png", "/engweb/engweb4.png","/engweb/engweb5.png", "/engweb/engweb6.png", "/engweb/engweb7.png", "/engweb/engweb8.png"]'
             title="Braga Street Map - Web Engineering Project"
             description="Braga Street Map is a web application that provides information about the different roads in Braga, Portugal. It was developed using Elixir and Phoenix, and deployed using Docker."
             :technologies="['devicon-elixir-plain colored', 'devicon-phoenix-original colored', 'devicon-docker-plain colored', 'devicon-html5-plain colored', 'devicon-tailwindcss-original colored', 'devicon-javascript-plain colored', 'devicon-python-plain colored']"
             giturl="https://github.com/JoaoCoelho2003/EngwebProject"
           />
           <ProjectBox
-            :images= '["/engweb/fullEng.png", "/engweb/fullEng.png", "/engweb/fullEng.png", "/engweb/fullEng.png"]'
+            :images= '["/engweb/engweb2.png", "/engweb/engweb3.png", "/engweb/engweb4.png","/engweb/engweb5.png", "/engweb/engweb6.png", "/engweb/engweb7.png", "/engweb/engweb8.png"]'
             title="Braga Street Map - Web Engineering Project"
             description="Braga Street Map is a web application that provides information about the different roads in Braga, Portugal. It was developed using Elixir and Phoenix, and deployed using Docker."
             :technologies="['devicon-elixir-plain colored', 'devicon-phoenix-original colored', 'devicon-docker-plain colored', 'devicon-html5-plain colored', 'devicon-tailwindcss-original colored', 'devicon-javascript-plain colored', 'devicon-python-plain colored']"
             giturl="https://github.com/JoaoCoelho2003/EngwebProject"
           />
           <ProjectBox
-            :images= '["/engweb/fullEng.png", "/engweb/fullEng.png", "/engweb/fullEng.png", "/engweb/fullEng.png"]'
+            :images= '["/engweb/engweb2.png", "/engweb/engweb3.png", "/engweb/engweb4.png","/engweb/engweb5.png", "/engweb/engweb6.png", "/engweb/engweb7.png", "/engweb/engweb8.png"]'
             title="Braga Street Map - Web Engineering Project"
             description="Braga Street Map is a web application that provides information about the different roads in Braga, Portugal. It was developed using Elixir and Phoenix, and deployed using Docker."
             :technologies="['devicon-elixir-plain colored', 'devicon-phoenix-original colored', 'devicon-docker-plain colored', 'devicon-html5-plain colored', 'devicon-tailwindcss-original colored', 'devicon-javascript-plain colored', 'devicon-python-plain colored']"
