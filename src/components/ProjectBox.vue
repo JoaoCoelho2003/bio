@@ -6,7 +6,7 @@
       <p class="text-gray-300 text-[0.675rem] sm:text-base line-clamp-2 sm:line-clamp-3">{{ description }}</p>
     </div>
 
-    <div class="flex flex-wrap gap-2 sm:gap-4">
+    <div class="flex flex-wrap gap-2 sm:gap-4 ml-1 sm:ml-2">
       <span v-for="(tech, index) in technologies" :key="index" class="text-white text-sm sm:text-3xl flex items-center space-x-1">
         <i :class="tech"></i>
       </span>
