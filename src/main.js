@@ -8,12 +8,5 @@ import VueGtag from 'vue-gtag'
 const app = createApp(App)
 
 app.use(router)
-app.use(VueGtag, {
-    appName: 'Portfolio',
-    pageTrackerScreenviewEnabled: true,
-    config: { id: import.meta.env.VUE_APP_GOOGLE_ANALYTICS_ID }
-    },
-    router
-);
 
 app.mount('#app')   
