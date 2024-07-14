@@ -12,6 +12,8 @@ app.use(VueGtag, {
     appName: 'portfolio',
     pageTrackerScreenviewEnabled: true,
     config: { id: import.meta.env.VUE_APP_GOOGLE_ANALYTICS_ID }
-})
+    },
+    router
+);
 
 app.mount('#app')
