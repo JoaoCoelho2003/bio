@@ -1,50 +1,51 @@
 <template>
-  <div class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 backdrop-blur" @click="handleClickOutside">
-    <div class="bg-[#062656] border border-[#021d44] p-8 sm:rounded-lg shadow-xl overflow-hidden w-full h-full sm:w-[90vw] sm:h-[85vh] relative" @click.stop>
-      <button @click="$emit('close')" class="absolute top-0 right-2 text-gray-300 text-xl sm:text-3xl">✕</button>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="w-full rounded-t-xl">
-          <Carousel>
-            <Slide v-for="(image, index) in images" :key="index">
-              <div class="relative w-full lg:p-0">
-                <div>
-                  <img
-                    :src="image"
-                    class="w-full h-[40vh] sm:h-[70vh] object-cover"
-                    alt="Project Image" 
-                  />
+  <div v-if="visible" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 backdrop-blur" @click="handleClickOutside">
+    <transition name="modal-fade">
+      <div class="bg-[#062656] border border-[#021d44] p-6 sm:p-4 sm:rounded-lg shadow-xl overflow-hidden w-full h-full sm:w-[45vw] sm:h-[85vh] relative" @click.stop>
+        <button @click="closeModal" class="sm:hidden absolute top-0 right-2 text-gray-300 text-xl sm:text-3xl">✕</button>
+        <div class="grid grid-cols-1 gap-4">
+          <div class="w-full rounded-t-xl">
+            <Carousel>
+              <Slide v-for="(image, index) in images" :key="index">
+                <div class="relative w-full lg:p-0">
+                  <div>
+                    <img
+                      :src="image"
+                      class="w-full h-[40vh] sm:h-[40vh] object-cover"
+                      alt="Project Image"
+                    />
+                  </div>
                 </div>
-              </div>
-            </Slide>
-            <template #addons>
-              <Navigation />
-              <Pagination />
-            </template>
-          </Carousel>
-        </div>
-        <div class="text-white space-y-4 sm:space-y-12">
-          <h3 class="text-sm sm:text-4xl font-bold">{{ title }}</h3>
-          <p class="text-gray-300 mt-2 text-xs sm:text-lg">{{ description }}</p>
-
-          <div class="flex flex-wrap gap-4 sm:gap-8">
-            <span v-for="(tech, index) in technologies" :key="index" class="text-white text-xl sm:text-5xl flex items-center space-x-1">
+              </Slide>
+              <template #addons>
+                <Navigation />
+                <Pagination />
+              </template>
+            </Carousel>
+          </div>
+          <div class="text-white space-y-4 sm:space-y-4">
+            <h3 class="text-sm sm:text-2xl font-bold">{{ title }}</h3>
+            <p class="text-gray-300 mt-2 text-xs sm:text-base">{{ description }}</p>
+            <div class="flex flex-wrap gap-4 sm:gap-8">
+              <span v-for="(tech, index) in technologies" :key="index" class="text-white text-xl sm:text-4xl flex items-center space-x-1">
                 <i :class="tech"></i>
-            </span>
+              </span>
             </div>
-    
             <div class="mt-4">
-            <a :href="giturl" target="_blank" class="text-lg sm:text-3xl font-light text-gray-200 dark:text-gray-300 hover:underline hover:text-[#d62f6a] transition-colors duration-300">
-                <i class="bi bi-github"></i> View on GitHub
-            </a>
+              <a :href="giturl" target="_blank" class="text-base lg:text-xl border transition duration-300 ease-in-out py-2 lg:py-3 px-4 rounded-xl inline-flex items-center" :style="{ borderColor: isHovered ? '#d62f6a' : '#d62f6a', backgroundColor: isHovered ? '#d62f6a' : '', color: isHovered ? 'black' : '#d62f6a' }"
+              @mouseover="isHovered = true" @mouseleave="isHovered = false"><i class="bi bi-github mr-2 sm:text-2xl" :style="{ color: isHovered ? 'black' : '' }"></i>
+                GitHub
+              </a>
             </div>
+          </div>
         </div>
-    </div>
-  </div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script setup>
-import { onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 
@@ -72,20 +73,29 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['close']);
+const visible = ref(true);
+const isHovered = ref(false)
 
 const handleClickOutside = (event) => {
   if (event.target === event.currentTarget) {
-    emit('close');
+    closeModal();
   }
+};
+
+const closeModal = () => {
+  visible.value = false;
+  setTimeout(() => {
+    emit('close');
+  }, 300);
 };
 
 onMounted(() => {
   document.body.style.overflow = 'hidden';
-  });
+});
 
-  onUnmounted(() => {
+onUnmounted(() => {
   document.body.style.overflow = '';
-  });
+});
 </script>
 
 <style>
@@ -167,5 +177,13 @@ background-color: #d62f6a;
   height: 12px;
   border-radius: 6px;
 }
+}
+
+.modal-fade-enter-active, .modal-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-fade-enter, .modal-fade-leave-to {
+  opacity: 0;
 }
 </style>
