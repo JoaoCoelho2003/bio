@@ -47,6 +47,7 @@ const isMenuOpen = ref(false)
 
 const emitScrollToSection = (index) => {
   emit('scroll-to-section', index)
+  isMenuOpen.value = false
 }
 </script>
 
