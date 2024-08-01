@@ -1,18 +1,18 @@
 <template>
   <div>
     <div class="sections-wrapper">
-    <Header @scroll-to-section="handleScrollToSection" />
+      <Header @scroll-to-section="handleScrollToSection" />
       <section
         v-for="(section, index) in sections"
-        :key="index"
+        :key="currentSectionIndex === index ? index : null"
         :id="'section-' + index"
         class="section"
       >
-        <component :is="sectionViewMap[index]" />
+        <component :is="sectionViewMap[index]" :key="currentSectionIndex === index ? index : null"/>
       </section>
     </div>
+    <Footer />
   </div>
-  <Footer />
 </template>
 
 <script setup>
