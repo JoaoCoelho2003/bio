@@ -36,7 +36,6 @@
     </transition>
   </header>
 </template>
-
 <script setup>
 import { ref } from 'vue';
 import ButtonAnimated from '@/components/ButtonAnimated.vue';
