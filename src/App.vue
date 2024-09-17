@@ -37,7 +37,7 @@ onMounted(() => {
     currentSectionIndex.value = sectionIndex
   }
 
-  window.addEventListener('wheel', handleScrollThrottled)
+  window.addEventListener('wheel', handleScrollThrottled, { passive: false })
   window.addEventListener('keydown', handleKeyDown)
 })
 
@@ -50,7 +50,7 @@ const sectionViewMap = {
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeyDown)
-  window.removeEventListener('wheel', handleScrollThrottled)
+  window.removeEventListener('wheel', handleScrollThrottled, { passive: false })
 })
 
 const handleScrollThrottled = (event) => {
@@ -60,12 +60,12 @@ const handleScrollThrottled = (event) => {
 }
 
 const handleScroll = (event) => {
+  event.preventDefault()
   const delta = Math.sign(event.deltaY)
   if (
     (delta === 1 && currentSectionIndex.value < sections.value.length - 1) ||
     (delta === -1 && currentSectionIndex.value > 0)
   ) {
-    event.preventDefault()
     currentSectionIndex.value += delta
     scrollToSection(currentSectionIndex.value)
   }

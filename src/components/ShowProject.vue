@@ -1,7 +1,7 @@
 <template>
   <div v-if="visible" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 backdrop-blur" @click="handleClickOutside">
     <transition name="modal-fade">
-      <div class="bg-[#062656] border border-[#021d44] p-6 sm:p-4 sm:rounded-lg shadow-xl overflow-hidden w-full h-full sm:w-[45vw] sm:h-[85vh] relative" @click.stop>
+      <div class="bg-[#062656] border border-[#021d44] p-4 sm:rounded-lg shadow-xl overflow-hidden w-full h-full sm:w-[45vw] sm:h-[85vh] relative" @click.stop>
         <button @click="closeModal" class="sm:hidden absolute top-0 right-2 text-gray-300 text-xl sm:text-3xl">✕</button>
         <div class="grid grid-cols-1 gap-4">
           <div class="w-full rounded-t-xl">
