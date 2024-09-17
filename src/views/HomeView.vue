@@ -5,7 +5,7 @@
     </svg>
 
     <div id="app" class="relative bg-[#021d44] min-h-screen flex flex-col items-center justify-start pt-20 z-10">
-      <div class="mt-20 xl:mt-40 mb-10">
+      <div class="mt-20 xl:mt-32 mb-10">
         <img src="/profileHD.png" class="rounded-full h-auto w-3/4 xl:w-1/2 object-cover mx-auto">
       </div>
 
@@ -14,7 +14,7 @@
       </div>
 
       <div class="text-white w-full lg:w-2/3">
-        <div class="grid grid-cols-1 p-4 gap-4">
+        <div class="grid grid-cols-1 p-4 gap-4 xl:gap-2">
           <div class="text-sm lg:text-lg font-light">
             <p>I am a first-year Master's student in Software Engineering at the University of Minho. Throughout my academic journey, I have delved into various areas including Algorithms and Data Structures, Computer Networking, Distributed Systems, Formal Methods, Cybersecurity, Artificial Intelligence, etc. Additionally, I've been actively involved in initiatives like CoderDojo, where I've contributed my skills to teaching programming to kids aged 7-17.</p>
           </div>
