@@ -5,7 +5,7 @@
     </svg>
 
     <div id="app" class="relative bg-[#021d44] min-h-screen flex flex-col items-center justify-start pt-20 z-10">
-      <div class="mt-20 xl:mt-32 mb-10">
+      <div class="mt-8 xl:mt-20 mb-10">
         <img src="/profileHD.png" class="rounded-full h-auto w-3/4 xl:w-1/2 object-cover mx-auto">
       </div>
 
