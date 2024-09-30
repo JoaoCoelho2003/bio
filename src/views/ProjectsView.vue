@@ -17,11 +17,11 @@
       <div class="mb-5">
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 p-4">
           <ProjectBox 
-            :images= '["/engweb/engweb2.png", "/engweb/engweb3.png", "/engweb/engweb4.png","/engweb/engweb5.png", "/engweb/engweb6.png", "/engweb/engweb7.png", "/engweb/engweb8.png"]'
-            title="Braga Street Map - Web Engineering Project"
-            description="Braga Street Map is a web application designed to provide comprehensive information about the various roads in Braga, Portugal. Developed with Elixir and Phoenix and deployed using Docker, the application offers a wide range of functionalities. Users can post new roads, comment on existing ones, and like or dislike other user's comments. Additionally, users have the option to export road data. The platform includes account management features such as login and registration, as well as user profiles that track engagement and allow for configuration changes to account information."
-            :technologies="['devicon-elixir-plain colored', 'devicon-phoenix-original colored', 'devicon-docker-plain colored', 'devicon-html5-plain colored', 'devicon-tailwindcss-original colored', 'devicon-javascript-plain colored', 'devicon-python-plain colored']"
-            giturl="https://github.com/JoaoCoelho2003/EngwebProject"
+            :images= '["/Dharma/dharmaLogo.png"]'
+            title="Dharma Network - NFT Marketplace"
+            description="Dharma Network is a decentralized NFT marketplace that allows users to buy and sell NFTs. The platform was developed using Vue.js, typescript, millisearch and tailwindcss."
+            :technologies="['devicon-vuejs-plain colored', 'devicon-typescript-original colored', 'devicon-tailwindcss-original colored']"
+            weburl = "https://www.mydharma.network/"
           />
           <ProjectBox
             :images= '["/CG/CG1.png", "/CG/CG2.png", "/CG/CG3.png","/CG/CG4.png", "/CG/CG5.png"]'
