@@ -15,7 +15,7 @@
       </div>
 
       <div class="mb-5">
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 p-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-16 p-4">
           <ProjectBox 
             :images= '["/Dharma/dharmaLogo.png"]'
             title="Dharma Network - NFT Marketplace"
@@ -34,13 +34,6 @@
             :images= '["/engweb/strollBraga.png"]'
             title="Braga Street Map - Web Engineering Project"
             description="Braga Street Map is a web application that provides information about the different roads in Braga, Portugal."
-            :technologies="['devicon-elixir-plain colored', 'devicon-phoenix-original colored', 'devicon-docker-plain colored', 'devicon-html5-plain colored', 'devicon-tailwindcss-original colored', 'devicon-javascript-plain colored', 'devicon-python-plain colored']"
-            giturl="https://github.com/JoaoCoelho2003/EngwebProject"
-          />
-          <ProjectBox
-            :images= '["/engweb/strollBraga.png"]'
-            title="Braga Street Map - Web Engineering Project"
-            description="Braga Street Map is a web application that provides information about the different roads in Braga, Portugal. It was developed using Elixir and Phoenix, and deployed using Docker."
             :technologies="['devicon-elixir-plain colored', 'devicon-phoenix-original colored', 'devicon-docker-plain colored', 'devicon-html5-plain colored', 'devicon-tailwindcss-original colored', 'devicon-javascript-plain colored', 'devicon-python-plain colored']"
             giturl="https://github.com/JoaoCoelho2003/EngwebProject"
           />
