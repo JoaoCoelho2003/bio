@@ -15,7 +15,7 @@
       </div>
 
       <div class="mb-5">
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-16 p-4">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 p-4">
           <ProjectBox 
             :images= '["/Dharma/dharmaLogo.png"]'
             title="Dharma Network - NFT Marketplace"
@@ -36,6 +36,13 @@
             description="Braga Street Map is a web application that provides information about the different roads in Braga, Portugal."
             :technologies="['devicon-elixir-plain colored', 'devicon-phoenix-original colored', 'devicon-docker-plain colored', 'devicon-html5-plain colored', 'devicon-tailwindcss-original colored', 'devicon-javascript-plain colored', 'devicon-python-plain colored']"
             giturl="https://github.com/JoaoCoelho2003/EngwebProject"
+          />
+          <ProjectBox
+            :images= '["/Atomic/atomic.png"]'
+            title="Atomic - Academic Nucleus Social Network"
+            description="Atomic is a social network for academic nuclei that allows students to interact with each other."
+            :technologies="['devicon-elixir-plain colored', 'devicon-phoenix-original colored', 'devicon-docker-plain colored', 'devicon-html5-plain colored', 'devicon-tailwindcss-original colored']"
+            giturl="https://github.com/cesium/atomic"
           />
         </div>
       </div>
