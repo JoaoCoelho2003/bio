@@ -8,7 +8,7 @@
           :key="index"
           :id="'section-' + index"
           class="section"
-          :style="{ paddingTop: '60px' }"
+          :style="{ paddingTop: headerHeight+40 + 'px' }"
         >
           <component :is="sectionViewMap[index]" />
         </section>
@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import Header from '@/components/Header.vue'
 import HomeView from '@/views/HomeView.vue'
@@ -35,14 +35,16 @@ const headerHeight = ref(0)
 const headerRef = ref(null)
 const fullpageInstance = ref(null)
 
-onMounted(() => {
-  const sectionIndex = sections.value.indexOf(route.name)
-  if (sectionIndex !== -1) {
-    currentSectionIndex.value = sectionIndex
-  }
+onMounted(async () => {
+  await nextTick()
 
   if (headerRef.value) {
     headerHeight.value = headerRef.value.clientHeight
+  }
+
+  const sectionIndex = sections.value.indexOf(route.name)
+  if (sectionIndex !== -1) {
+    currentSectionIndex.value = sectionIndex
   }
 
   fullpageInstance.value = new fullpage('#fullpage', {
