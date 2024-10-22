@@ -15,14 +15,14 @@
       </div>
 
       <div class="lg:w-2/3 lg:pl-20 mt-10">
-        <div class="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-12 lg:gap-6">
+        <div class="grid grid-cols-4 sm:grid-cols-6 gap-0 lg:gap-6">
           <div
             v-for="(skill, index) in skills"
             :key="index"
-            class="rounded-lg p-4 flex flex-col items-center justify-center transition-transform transform hover:scale-105"
+            class="rounded-lg p-2 flex flex-col items-center justify-center transition-transform transform hover:scale-105"
           >
             <i :class="skill.icon" class="text-4xl sm:text-5xl lg:text-6xl 2xl:text-8xl text-white mb-2"></i>
-            <span class="text-gray-400 text-base sm:text-lg font-semibold text-center">{{ skill.name }}</span>
+            <span class="text-gray-400 text-xs sm:text-lg font-semibold text-center">{{ skill.name }}</span>
           </div>
         </div>
       </div>
