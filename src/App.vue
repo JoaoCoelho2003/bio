@@ -1,93 +1,98 @@
 <template>
   <div>
     <Header @scroll-to-section="handleScrollToSection" ref="headerRef" />
-    <div id="fullpage">
-      <div class="sections-wrapper">
-        <section
-          v-for="(section, index) in sections"
-          :key="index"
-          :id="'section-' + index"
-          class="section"
-          :style="{ paddingTop: headerHeight+40 + 'px' }"
-        >
-          <component :is="sectionViewMap[index]" />
-        </section>
-      </div>
+    <div id="scroll-container" class="scroll-container" @scroll="onScroll">
+      <section
+        v-for="(section, index) in sections"
+        :key="index"
+        :id="'section-' + index"
+        class="section"
+        :style="{ paddingTop: headerHeight + 40 + 'px' }"
+      >
+        <component :is="sectionViewMap[index]" />
+      </section>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
-import { useRoute } from 'vue-router'
-import Header from '@/components/Header.vue'
-import HomeView from '@/views/HomeView.vue'
-import SkillsView from '@/views/SkillsView.vue'
-import ProjectsView from '@/views/ProjectsView.vue'
-import ContactView from '@/views/ContactView.vue'
-import fullpage from 'fullpage.js'
+import { ref, onMounted, nextTick, watch } from 'vue';
+import { useRoute } from 'vue-router';
+import Header from '@/components/Header.vue';
+import HomeView from '@/views/HomeView.vue';
+import SkillsView from '@/views/SkillsView.vue';
+import ProjectsView from '@/views/ProjectsView.vue';
+import ContactView from '@/views/ContactView.vue';
 
-const sections = ref(['', 'skills', 'projects', 'contact'])
-const route = useRoute()
+const sections = ref(['', 'skills', 'projects', 'contact']);
+const route = useRoute();
 
-const currentSectionIndex = ref(0)
-const headerHeight = ref(0)
-const headerRef = ref(null)
-const fullpageInstance = ref(null)
+const currentSectionIndex = ref(0);
+const headerHeight = ref(0);
+const headerRef = ref(null);
 
 onMounted(async () => {
-  await nextTick()
+  await nextTick();
 
   if (headerRef.value) {
-    headerHeight.value = headerRef.value.clientHeight
+    headerHeight.value = headerRef.value.clientHeight;
   }
 
-  const sectionIndex = sections.value.indexOf(route.name)
+  const sectionIndex = sections.value.indexOf(route.name);
   if (sectionIndex !== -1) {
-    currentSectionIndex.value = sectionIndex
+    currentSectionIndex.value = sectionIndex;
   }
-
-  fullpageInstance.value = new fullpage('#fullpage', {
-    autoScrolling: true,
-    scrollHorizontally: true,
-    scrollingSpeed: 1000,
-    keyboardScrolling: true,
-    onLeave: (origin, destination, direction) => {
-      currentSectionIndex.value = destination.index
-      updateRoute(destination.index)
-    },
-  })
-})
+});
 
 const sectionViewMap = {
   0: HomeView,
   1: SkillsView,
   2: ProjectsView,
   3: ContactView,
-}
-
-onUnmounted(() => {
-  if (fullpageInstance.value) {
-    fullpageInstance.value.destroy('all')
-  }
-})
+};
 
 const handleScrollToSection = (index) => {
-  console.log(`Moving to section index: ${index + 1}`)
-  if (fullpageInstance.value) {
-    fullpageInstance.value.moveTo(index + 1)
+  const scrollContainer = document.getElementById('scroll-container');
+  if (scrollContainer) {
+    const targetSection = scrollContainer.querySelector(`#section-${index}`);
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+      updateRoute(index);
+    }
   } else {
-    console.error('Fullpage instance is not initialized.')
+    console.error('Scroll container is not initialized.');
   }
-}
+};
+
+const onScroll = () => {
+  const scrollContainer = document.getElementById('scroll-container');
+  if (scrollContainer) {
+    const sectionsElements = scrollContainer.querySelectorAll('.section');
+    sectionsElements.forEach((section, index) => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top >= 0 && rect.top < window.innerHeight) {
+        if (currentSectionIndex.value !== index) {
+          currentSectionIndex.value = index;
+          updateRoute(index);
+        }
+      }
+    });
+  }
+};
 
 const updateRoute = (index) => {
-  const sectionName = sections.value[index]
-  window.history.replaceState({}, '', `/${sectionName}`)
-}
+  const sectionName = sections.value[index];
+  window.history.replaceState({}, '', `/${sectionName}`);
+};
 </script>
 
 <style scoped>
+.scroll-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
 .section {
   height: 100vh;
   scroll-snap-align: start;
