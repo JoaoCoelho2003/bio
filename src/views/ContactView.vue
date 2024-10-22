@@ -12,7 +12,7 @@
         <div class="flex justify-center text-white font-bold text-4xl lg:text-8xl">
           <span class="underline-custom">Get In Touch</span>
         </div>
-        <div class="text-white/90 text-lg lg:text-2xl font-light">
+        <div class="text-white/90 text-base lg:text-2xl font-light">
           <p>Whether you have a question or just want to say hello, my inbox is always open. I'll try my best to get back to you!</p>
         </div>
       </div>

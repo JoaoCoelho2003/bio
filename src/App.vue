@@ -7,7 +7,7 @@
         :key="index"
         :id="'section-' + index"
         class="section"
-        :style="{ paddingTop: '5vh' }"
+        :style="{ paddingTop: '8vh' }"
       >
         <component :is="sectionViewMap[index]" />
       </section>
