@@ -1,12 +1,5 @@
 <template>
-  <div class="relative">
-    <svg viewBox="0 0 500 200" class="absolute inset-0 z-0">
-      <path
-        d="M 0,100 C 150,200 350,0 500,100 L 500,00 L 0,0 Z"
-        fill="#051f46"
-      ></path>
-    </svg>
-
+  <AppLayout>
     <div id="app" class="bg-[#021d44] min-h-screen flex flex-col lg:flex-row items-center justify-center z-10">
       <div class="absolute top-0 text-center p-6 lg:p-10 lg:w-2/4">
         <div class="text-white font-bold text-4xl lg:text-8xl">
@@ -27,11 +20,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </AppLayout>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import AppLayout from '@/components/AppLayout.vue';
 
 const skills = ref([
   { name: 'Python', icon: 'devicon-python-plain' },

@@ -1,9 +1,5 @@
 <template>
-  <div class="relative">
-    <svg viewBox="0 0 500 200" class="absolute inset-0 z-0">
-      <path d="M 0,100 C 150,200 350,0 500,100 L 500,0 L 0,0 Z" fill="#051f46"></path>
-    </svg>
-
+  <AppLayout>
     <div id="app" class="relative bg-[#021d44] min-h-screen flex flex-col items-center justify-start pt-20 z-10">
       <div class="mt-8 xl:mt-20 mb-10">
         <img src="/profileHD.png" class="rounded-full h-auto w-3/5 xl:w-1/2 object-cover mx-auto">
@@ -41,12 +37,13 @@
         </div>
       </div>
     </div>
-  </div>
+  </AppLayout>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import TypingAnimation from '@/components/typingAnimation.vue'
+import AppLayout from '@/components/AppLayout.vue';
 
 const isHovered = ref(false)
 </script>

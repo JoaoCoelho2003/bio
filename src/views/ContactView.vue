@@ -1,12 +1,5 @@
 <template>
-  <div class="relative">
-    <svg viewBox="0 0 500 200" class="absolute inset-0 z-0">
-      <path
-        d="M 0,100 C 150,200 350,0 500,100 L 500,00 L 0,0 Z"
-        fill="#051f46"
-      ></path>
-    </svg>
-
+  <AppLayout>
     <div id="app" class="bg-[#021d44] min-h-screen flex flex-col items-center justify-center z-10">
       <div class="absolute top-0 text-center p-10 space-y-8 md:space-y-24">
         <div class="flex justify-center text-white font-bold text-4xl lg:text-8xl">
@@ -44,12 +37,13 @@
         </form>
       </div>
     </div>
-  </div>
+  </AppLayout>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import emailjs from 'emailjs-com';
+import AppLayout from '@/components/AppLayout.vue';
 
 const formData = ref({
   name: '',
