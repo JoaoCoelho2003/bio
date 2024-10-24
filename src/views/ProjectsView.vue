@@ -25,7 +25,7 @@
           />
           <ProjectBox
             :images= '["/engweb/strollBraga.png"]'
-            title="Braga Street Map - Web Engineering Project"
+            title="Stroll Braga - Web Engineering Project"
             description="Braga Street Map is a web application that provides information about the different roads in Braga, Portugal."
             :technologies="['devicon-elixir-plain colored', 'devicon-phoenix-original colored', 'devicon-docker-plain colored', 'devicon-html5-plain colored', 'devicon-tailwindcss-original colored', 'devicon-javascript-plain colored', 'devicon-python-plain colored']"
             giturl="https://github.com/JoaoCoelho2003/EngwebProject"
