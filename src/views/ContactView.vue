@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="flex justify-center items-center w-full z-10 px-4 md:px-20">
-        <form @submit.prevent="submitForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl mt-[20vh] md:mt-[5vh]">
+        <form @submit.prevent="submitForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl mt-[20vh] md:mt-[8vh]">
           <div>
             <label for="name" class="block text-md font-light text-white">Name</label>
             <input type="text" id="name" v-model="formData.name" placeholder="Enter your name" required
@@ -24,9 +24,9 @@
           <div class="md:col-span-2">
             <label for="message" class="block text-md font-light text-white">Message</label>
             <textarea id="message" v-model="formData.message" rows="6" placeholder="Write your Message" required
-              class="mt-1 block w-full rounded-md shadow-sm border-[#d62f6a] border-2 focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-2 text-white"></textarea>
+              class="mt-1 block w-full h-2/3 md:h-full rounded-md shadow-sm border-[#d62f6a] border-2 focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-2 text-white"></textarea>
           </div>
-          <div class="flex justify-end md:col-span-2 mt-2">
+          <div class="flex justify-end md:col-span-2 md:mt-8">
             <button type="submit" class="px-5 py-2 bg-[#d62f6a] text-white rounded-md flex items-center justify-center hover:bg-[#b81d50] focus:outline-none focus:bg-[#b81d50]">
               Send
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 ml-1">
