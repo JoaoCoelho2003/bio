@@ -14,17 +14,17 @@
           <div>
             <label for="name" class="block text-md font-light text-white">Name</label>
             <input type="text" id="name" v-model="formData.name" placeholder="Enter your name" required
-              class="mt-1 block w-full border-[#d62f6a] border-2 rounded-md shadow-sm focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-3 text-white">
+              class="mt-1 block w-full border-[#d62f6a] border-2 rounded-md shadow-sm focus:border-[#b81d50] focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-3 text-white !important">
           </div>
           <div>
             <label for="email" class="block text-md font-light text-white">Email</label>
             <input type="email" id="email" v-model="formData.email" placeholder="email@example.com" required
-              class="mt-1 block w-full border-[#d62f6a] border-2 rounded-md shadow-sm focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-3 text-white">
+              class="mt-1 block w-full border-[#d62f6a] border-2 rounded-md shadow-sm focus:border-[#b81d50] focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-3 text-white !important">
           </div>
           <div class="md:col-span-2 md:h-2/3">
             <label for="message" class="block text-md font-light text-white">Message</label>
             <textarea id="message" v-model="formData.message" rows="6" placeholder="Write your Message" required
-              class="mt-1 block w-full md:h-full rounded-md shadow-sm border-[#d62f6a] border-2 focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-2 text-white"></textarea>
+              class="mt-1 block w-full md:h-full rounded-md shadow-sm border-[#d62f6a] border-2 focus:border-[#b81d50] focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-2 text-white resize-none !important"></textarea>
           </div>
           <div class="flex justify-end md:col-span-2">
             <button type="submit" class="px-5 py-2 bg-[#d62f6a] text-white rounded-md flex items-center justify-center hover:bg-[#b81d50] focus:outline-none focus:bg-[#b81d50]">
