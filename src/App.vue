@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick, watch } from 'vue';
+import { ref, onMounted, nextTick, watch, onBeforeUnmount } from 'vue';
 import { useRoute } from 'vue-router';
 import Header from '@/components/Header.vue';
 import HomeView from '@/views/HomeView.vue';
@@ -42,6 +42,12 @@ onMounted(async () => {
   if (sectionIndex !== -1) {
     currentSectionIndex.value = sectionIndex;
   }
+
+  window.addEventListener('keydown', handleKeyDown);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', handleKeyDown);
 });
 
 const sectionViewMap = {
@@ -83,6 +89,18 @@ const onScroll = () => {
 const updateRoute = (index) => {
   const sectionName = sections.value[index];
   window.history.replaceState({}, '', `/${sectionName}`);
+};
+
+const handleKeyDown = (event) => {
+  if (event.key === 'ArrowDown') {
+    if (currentSectionIndex.value < sections.value.length - 1) {
+      handleScrollToSection(currentSectionIndex.value + 1);
+    }
+  } else if (event.key === 'ArrowUp') {
+    if (currentSectionIndex.value > 0) {
+      handleScrollToSection(currentSectionIndex.value - 1);
+    }
+  }
 };
 </script>
 
