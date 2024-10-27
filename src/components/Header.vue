@@ -9,7 +9,12 @@
       </button>
     </div>
     <div class="hidden lg:flex space-x-4 items-center">
-      <span class="text-[#d62f6a]">✨ Hey! Visitor number <span class="text-xl font-bold text-[#d62f6a]">{{ visits }}</span>. Thanks for stopping by! 🌟</span>
+      <span class="text-[#d62f6a]" v-if="loading">
+        ✨ Loading visitor number... 🌟
+      </span>
+      <span class="text-[#d62f6a]" v-else>
+        ✨ Hey! Visitor number <span class="text-xl font-bold text-[#d62f6a]">{{ visits }}</span>. Thanks for stopping by! 🌟
+      </span>
       <ButtonAnimated buttonText="Home" :sectionIndex="0" @scroll-to-section="emitScrollToSection" />
       <ButtonAnimated buttonText="Skills" :sectionIndex="1" @scroll-to-section="emitScrollToSection" />
       <ButtonAnimated buttonText="Projects" :sectionIndex="2" @scroll-to-section="emitScrollToSection" />
@@ -31,13 +36,22 @@
             <FullButton size="w-full" buttonText="Skills" :sectionIndex="1" @scroll-to-section="emitScrollToSection" class="text-right"/>
             <FullButton size="w-full" buttonText="Projects" :sectionIndex="2" @scroll-to-section="emitScrollToSection" class="text-right"/>
             <FullButton size="w-full" buttonText="Contact" :sectionIndex="3" @scroll-to-section="emitScrollToSection" class="text-right"/>
-            <div>
-              <span class="text-[#d62f6a] text-sm">✨ Hey! Visitor number <span class="text-lg font-bold text-[#d62f6a]">{{ visits }}</span>. Thanks for stopping by! 🌟</span>
-            </div>
+            <span class="text-[#d62f6a] text-sm" v-if="loading">
+              ✨ Loading visitor number... 🌟
+            </span>
+            <span class="text-[#d62f6a] text-sm" v-else>
+              ✨ Hey! Visitor number <span class="text-lg font-bold text-[#d62f6a]">{{ visits }}</span>. Thanks for stopping by! 🌟
+            </span>
           </div>
         </div>
       </div>
     </transition>
+
+    <div v-if="loading" class="fixed inset-0 bg-gray-700 bg-opacity-50 flex items-center justify-center z-30">
+      <div class="spinner-border text-white" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
   </header>
 </template>
 
@@ -48,6 +62,7 @@ import FullButton from '@/components/FullButton.vue';
 
 const isMenuOpen = ref(false);
 const visits = ref(0);
+const loading = ref(true);
 const emit = defineEmits(['scroll-to-section']);
 
 const fetchVisits = async () => {
@@ -59,6 +74,8 @@ const fetchVisits = async () => {
     visits.value = data.visits;
   } catch (error) {
     console.error('Failed to fetch visit count:', error);
+  } finally {
+    loading.value = false;
   }
 };
 
@@ -86,5 +103,19 @@ const emitScrollToSection = (index) => {
 }
 .backdrop-fade-enter, .backdrop-fade-leave-to {
   opacity: 0;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border: 0.3em solid rgba(5, 31, 70, 0.3);
+  border-radius: 50%;
+  border-top-color: #d62f6a;
+  animation: spinner-border 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>

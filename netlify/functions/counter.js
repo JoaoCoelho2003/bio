@@ -1,30 +1,34 @@
-import fs from 'fs';
-import path from 'path';
+import { MongoClient } from 'mongodb';
 
-const FILE_PATH = path.join(process.cwd(), 'data/counter.json');
+const uri = process.env.MONGODB_URI;
+const client = new MongoClient(uri);
 
-export const handler = async (event, context) => {
+export const handler = async (event) => {
   try {
-    if (!fs.existsSync(FILE_PATH)) {
-      throw new Error('Counter file does not exist');
+    await client.connect();
+    const database = client.db('visitor_counter');
+    const visitorsCollection = database.collection('visitors');
+
+    const visitorData = await visitorsCollection.findOne({});
+
+    if (!visitorData) {
+      await visitorsCollection.insertOne({ count: 0 });
     }
 
-    const data = JSON.parse(fs.readFileSync(FILE_PATH, 'utf8'));
-    data.visits += 1;
+    await visitorsCollection.updateOne({}, { $inc: { count: 1 } });
 
-    console.log('Updating visits count:', data.visits);
-    
-    fs.writeFileSync(FILE_PATH, JSON.stringify(data, null, 2));
-
+    const updatedVisitorData = await visitorsCollection.findOne({});
     return {
       statusCode: 200,
-      body: JSON.stringify({ visits: data.visits }),
+      body: JSON.stringify({ visits: updatedVisitorData.count }),
     };
   } catch (error) {
     console.error('Error updating counter:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to update counter' }),
+      body: JSON.stringify({ error: 'Error updating counter' }),
     };
+  } finally {
+    await client.close();
   }
 };
