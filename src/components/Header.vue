@@ -15,8 +15,8 @@
       <ButtonAnimated buttonText="Contact" :sectionIndex="3" @scroll-to-section="emitScrollToSection" />
     </div>
 
-    <transition name="sidebar-slide">
-      <div v-if="isMenuOpen" class="fixed inset-0 lg:hidden z-10 backdrop-blur-sm transition-opacity duration-500" @click="isMenuOpen = false"></div>
+    <transition name="backdrop-fade">
+      <div v-if="isMenuOpen" class="fixed inset-0 lg:hidden z-10 backdrop-blur-sm transition-opacity duration-300" @click="isMenuOpen = false"></div>
     </transition>
 
     <transition name="sidebar-slide">
@@ -25,7 +25,7 @@
           <button @click="isMenuOpen = false" class="absolute top-2 text-[#d62f6a] focus:outline-none">
             <span class="text-[#d62f6a] font-bold text-xl">&lt;João Coelho /&gt;</span>
           </button>
-          <div class="space-y-4 mt-4">
+          <div class="space-y-4 mt-4 px-2">
             <FullButton size="w-full" buttonText="Home" :sectionIndex="0" @scroll-to-section="emitScrollToSection" class="mt-14 text-right"/>
             <FullButton size="w-full" buttonText="Skills" :sectionIndex="1" @scroll-to-section="emitScrollToSection" class="text-right"/>
             <FullButton size="w-full" buttonText="Projects" :sectionIndex="2" @scroll-to-section="emitScrollToSection" class="text-right"/>
@@ -36,6 +36,7 @@
     </transition>
   </header>
 </template>
+
 <script setup>
 import { ref } from 'vue';
 import ButtonAnimated from '@/components/ButtonAnimated.vue';
@@ -52,10 +53,17 @@ const emitScrollToSection = (index) => {
 
 <style scoped>
 .sidebar-slide-enter-active, .sidebar-slide-leave-active {
-  transition: transform 0.5s ease, opacity 0.5s ease;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 .sidebar-slide-enter, .sidebar-slide-leave-to {
   transform: translateX(100%);
+  opacity: 0;
+}
+
+.backdrop-fade-enter-active, .backdrop-fade-leave-active {
+  transition: opacity 0.1s ease;
+}
+.backdrop-fade-enter, .backdrop-fade-leave-to {
   opacity: 0;
 }
 </style>
