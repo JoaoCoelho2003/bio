@@ -8,7 +8,8 @@
         <i class="bi bi-list text-3xl"></i>
       </button>
     </div>
-    <div class="hidden lg:flex space-x-4">
+    <div class="hidden lg:flex space-x-4 items-center">
+      <span class="text-[#d62f6a]">✨ Hey! Visitor number <span class="text-xl font-bold text-[#d62f6a]">{{ visits }}</span>. Thanks for stopping by! 🌟</span>
       <ButtonAnimated buttonText="Home" :sectionIndex="0" @scroll-to-section="emitScrollToSection" />
       <ButtonAnimated buttonText="Skills" :sectionIndex="1" @scroll-to-section="emitScrollToSection" />
       <ButtonAnimated buttonText="Projects" :sectionIndex="2" @scroll-to-section="emitScrollToSection" />
@@ -20,7 +21,7 @@
     </transition>
 
     <transition name="sidebar-slide">
-      <div v-if="isMenuOpen" class="fixed top-0 right-0 w-1/2 h-full shadow-lg lg:hidden bg-[#051f46] z-20" @click.stop>
+      <div v-if="isMenuOpen" class="fixed top-0 right-0 w-2/3 h-full shadow-lg lg:hidden bg-[#051f46] z-20" @click.stop>
         <div class="relative flex flex-col items-center">
           <button @click="isMenuOpen = false" class="absolute top-2 text-[#d62f6a] focus:outline-none">
             <span class="text-[#d62f6a] font-bold text-xl">&lt;João Coelho /&gt;</span>
@@ -30,6 +31,9 @@
             <FullButton size="w-full" buttonText="Skills" :sectionIndex="1" @scroll-to-section="emitScrollToSection" class="text-right"/>
             <FullButton size="w-full" buttonText="Projects" :sectionIndex="2" @scroll-to-section="emitScrollToSection" class="text-right"/>
             <FullButton size="w-full" buttonText="Contact" :sectionIndex="3" @scroll-to-section="emitScrollToSection" class="text-right"/>
+            <div>
+              <span class="text-[#d62f6a] text-sm">✨ Hey! Visitor number <span class="text-lg font-bold text-[#d62f6a]">{{ visits }}</span>. Thanks for stopping by! 🌟</span>
+            </div>
           </div>
         </div>
       </div>
@@ -38,17 +42,34 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import ButtonAnimated from '@/components/ButtonAnimated.vue';
 import FullButton from '@/components/FullButton.vue';
 
-const emit = defineEmits(['scroll-to-section'])
-const isMenuOpen = ref(false)
+const isMenuOpen = ref(false);
+const visits = ref(0);
+const emit = defineEmits(['scroll-to-section']);
+
+const fetchVisits = async () => {
+  try {
+    const response = await fetch('/.netlify/functions/counter');
+    if (!response.ok) throw new Error('Network response was not ok');
+    const data = await response.json();
+    console.log('Fetched visits:', data);
+    visits.value = data.visits;
+  } catch (error) {
+    console.error('Failed to fetch visit count:', error);
+  }
+};
+
+onMounted(() => {
+  fetchVisits();
+});
 
 const emitScrollToSection = (index) => {
-  emit('scroll-to-section', index)
-  isMenuOpen.value = false
-}
+  emit('scroll-to-section', index);
+  isMenuOpen.value = false;
+};
 </script>
 
 <style scoped>
