@@ -65,22 +65,19 @@ const visits = ref(0);
 const loading = ref(true);
 const emit = defineEmits(['scroll-to-section']);
 
-const fetchVisits = async () => {
-  try {
-    const response = await fetch('/.netlify/functions/counter');
-    if (!response.ok) throw new Error('Network response was not ok');
-    const data = await response.json();
-    console.log('Fetched visits:', data);
-    visits.value = data.visits;
-  } catch (error) {
-    console.error('Failed to fetch visit count:', error);
-  } finally {
-    loading.value = false;
+const updateVisitorCount = () => {
+  const storedVisits = localStorage.getItem('visitorCount');
+  if (storedVisits) {
+    visits.value = parseInt(storedVisits, 10) + 1;
+  } else {
+    visits.value = 1;
   }
+  localStorage.setItem('visitorCount', visits.value);
 };
 
 onMounted(() => {
-  fetchVisits();
+  updateVisitorCount();
+  loading.value = false;
 });
 
 const emitScrollToSection = (index) => {
