@@ -9,12 +9,6 @@
       </button>
     </div>
     <div class="hidden lg:flex space-x-4 items-center">
-      <span class="text-[#d62f6a]" v-if="loading">
-        ✨ Loading visitor number... 🌟
-      </span>
-      <span class="text-[#d62f6a]" v-else>
-        ✨ Hey! Visitor number <span class="text-xl font-bold text-[#d62f6a]">{{ visits }}</span>. Thanks for stopping by! 🌟
-      </span>
       <ButtonAnimated buttonText="Home" :sectionIndex="0" @scroll-to-section="emitScrollToSection" />
       <ButtonAnimated buttonText="Skills" :sectionIndex="1" @scroll-to-section="emitScrollToSection" />
       <ButtonAnimated buttonText="Projects" :sectionIndex="2" @scroll-to-section="emitScrollToSection" />
@@ -36,22 +30,10 @@
             <FullButton size="w-full" buttonText="Skills" :sectionIndex="1" @scroll-to-section="emitScrollToSection" class="text-right"/>
             <FullButton size="w-full" buttonText="Projects" :sectionIndex="2" @scroll-to-section="emitScrollToSection" class="text-right"/>
             <FullButton size="w-full" buttonText="Contact" :sectionIndex="3" @scroll-to-section="emitScrollToSection" class="text-right"/>
-            <span class="text-[#d62f6a] text-sm" v-if="loading">
-              ✨ Loading visitor number... 🌟
-            </span>
-            <span class="text-[#d62f6a] text-sm" v-else>
-              ✨ Hey! Visitor number <span class="text-lg font-bold text-[#d62f6a]">{{ visits }}</span>. Thanks for stopping by! 🌟
-            </span>
           </div>
         </div>
       </div>
     </transition>
-
-    <div v-if="loading" class="fixed inset-0 bg-gray-700 bg-opacity-50 flex items-center justify-center z-30">
-      <div class="spinner-border text-white" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
   </header>
 </template>
 
@@ -61,24 +43,7 @@ import ButtonAnimated from '@/components/ButtonAnimated.vue';
 import FullButton from '@/components/FullButton.vue';
 
 const isMenuOpen = ref(false);
-const visits = ref(0);
-const loading = ref(true);
 const emit = defineEmits(['scroll-to-section']);
-
-const updateVisitorCount = () => {
-  const storedVisits = localStorage.getItem('visitorCount');
-  if (storedVisits) {
-    visits.value = parseInt(storedVisits, 10) + 1;
-  } else {
-    visits.value = 1;
-  }
-  localStorage.setItem('visitorCount', visits.value);
-};
-
-onMounted(() => {
-  updateVisitorCount();
-  loading.value = false;
-});
 
 const emitScrollToSection = (index) => {
   emit('scroll-to-section', index);
