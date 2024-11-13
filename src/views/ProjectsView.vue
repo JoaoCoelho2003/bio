@@ -7,7 +7,7 @@
         </div>
       </div>
 
-      <div class="mb-5">
+      <div class="md:mt-[10vh]">
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 p-4">
           <ProjectBox 
             :images= '["/Dharma/dharmaLogo.png"]'

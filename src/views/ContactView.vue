@@ -1,15 +1,15 @@
 <template>
   <AppLayout>
     <div id="app" class="bg-[#021d44] min-h-screen flex flex-col items-center justify-center z-10">
-      <div class="absolute top-0 text-center p-10 space-y-8 md:space-y-24">
+      <div class="absolute top-0 text-center p-10">
         <div class="flex justify-center text-white font-bold text-4xl lg:text-8xl">
           <span class="underline-custom">Get In Touch</span>
         </div>
-        <div class="text-white/90 text-base lg:text-2xl font-light">
+        <div class="text-white/90 text-base lg:text-2xl font-light mt-[8vh]">
           <p>Whether you have a question or just want to say hello, my inbox is always open. I'll try my best to get back to you!</p>
         </div>
       </div>
-      <div class="flex justify-center items-center w-full z-10 px-4 md:px-20">
+      <div class="flex justify-center items-center w-full z-10 px-4 md:px-20 md:mt-[10vh]">
         <form @submit.prevent="submitForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl mt-[20vh] md:mt-[8vh]">
           <div>
             <label for="name" class="block text-md font-light text-white">Name</label>
