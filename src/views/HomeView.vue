@@ -1,8 +1,8 @@
 <template>
   <AppLayout>
-    <div id="app" class="bg-[#021d44] min-h-screen flex flex-col items-center justify-start pt-20 z-10">
-      <div class="mt-8 xl:mt-20 mb-10">
-        <img src="/profileHD.png" class="relative rounded-full h-auto w-3/5 xl:w-1/2 object-cover mx-auto">
+    <div id="app" class="bg-[#021d44] min-h-screen flex flex-col items-center justify-start z-10">
+      <div class="mt-[5vw] xl:mt-[2vw] mb-[2vw]">
+        <img src="/profileHD.png" class="relative rounded-full h-auto w-[30vh] xl:w-[40vh] object-cover mx-auto">
       </div>
 
       <div class="text-white mb-4">
