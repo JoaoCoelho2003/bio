@@ -7,7 +7,6 @@
         :key="index"
         :id="'section-' + index"
         class="section"
-        :style="{ paddingTop: '7vh' }"
       >
         <component :is="sectionViewMap[index]" />
       </section>
@@ -16,7 +15,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick, watch, onBeforeUnmount } from 'vue';
+import { ref, onMounted, nextTick, onBeforeUnmount } from 'vue';
 import { useRoute } from 'vue-router';
 import Header from '@/components/Header.vue';
 import HomeView from '@/views/HomeView.vue';
@@ -62,7 +61,8 @@ const handleScrollToSection = (index) => {
   if (scrollContainer) {
     const targetSection = scrollContainer.querySelector(`#section-${index}`);
     if (targetSection) {
-      targetSection.scrollIntoView({ behavior: 'smooth' });
+      const offsetTop = targetSection.offsetTop - headerHeight.value;
+      scrollContainer.scrollTo({ top: offsetTop, behavior: 'smooth' });
       updateRoute(index);
     }
   } else {
@@ -107,8 +107,13 @@ const handleKeyDown = (event) => {
 <style scoped>
 .scroll-container {
   scroll-snap-type: y mandatory;
+  -ms-overflow-style: none;
   overflow-y: scroll;
   height: 100vh;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
 }
 
 .section {
@@ -118,7 +123,7 @@ const handleKeyDown = (event) => {
 }
 
 header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
