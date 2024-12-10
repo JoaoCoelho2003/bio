@@ -31,7 +31,7 @@ const skills = ref([
   { name: 'Python', icon: 'devicon-python-plain' },
   { name: 'JavaScript', icon: 'devicon-javascript-plain' },
   { name: 'TypeScript', icon: 'devicon-typescript-plain' },
-  { name: 'Elixir', icn: 'devicon-elixir-plain' },
+  { name: 'Elixir', icon: 'devicon-elixir-plain' },
   { name: 'Phoenix', icon: 'devicon-phoenix-plain' },
   { name: 'HTML5', icon: 'devicon-html5-plain' },
   { name: 'Tailwind CSS', icon: 'devicon-tailwindcss-plain' },
