@@ -15,30 +15,36 @@
       <ButtonAnimated buttonText="Contact" :sectionIndex="3" @scroll-to-section="emitScrollToSection" />
     </div>
 
-    <transition name="backdrop-fade">
-      <div v-if="isMenuOpen" class="fixed inset-0 lg:hidden z-10 backdrop-blur-sm transition-opacity duration-300" @click="isMenuOpen = false"></div>
+    <transition name="fade">
+      <div v-if="isMenuOpen" 
+           class="fixed inset-0 lg:hidden z-10 bg-black bg-opacity-50 transition-opacity duration-300" 
+           @click="isMenuOpen = false">
+      </div>
     </transition>
 
-    <transition name="sidebar-slide">
-      <div v-if="isMenuOpen" class="fixed top-0 right-0 w-2/3 h-full shadow-lg lg:hidden bg-[#051f46] z-20" @click.stop>
-        <div class="relative flex flex-col items-center">
-          <button @click="isMenuOpen = false" class="absolute top-2 text-[#d62f6a] focus:outline-none">
-            <span class="text-[#d62f6a] font-bold text-xl">&lt;João Coelho /&gt;</span>
+    <transition name="slide-left">
+      <div v-if="isMenuOpen" 
+           class="fixed top-0 left-0 w-64 h-full shadow-lg lg:hidden bg-[#051f46] z-20 flex flex-col" 
+           @click.stop>
+        <div class="flex justify-between items-center p-4 border-b border-[#d62f6a]">
+          <span class="text-[#d62f6a] font-bold text-xl">&lt;João Coelho /&gt;</span>
+          <button @click="isMenuOpen = false" class="text-[#d62f6a] focus:outline-none">
+            <i class="bi bi-x-lg text-2xl"></i>
           </button>
-          <div class="space-y-4 mt-4 px-2">
-            <FullButton size="w-full" buttonText="Home" :sectionIndex="0" @scroll-to-section="emitScrollToSection" class="mt-14 text-right"/>
-            <FullButton size="w-full" buttonText="Skills" :sectionIndex="1" @scroll-to-section="emitScrollToSection" class="text-right"/>
-            <FullButton size="w-full" buttonText="Projects" :sectionIndex="2" @scroll-to-section="emitScrollToSection" class="text-right"/>
-            <FullButton size="w-full" buttonText="Contact" :sectionIndex="3" @scroll-to-section="emitScrollToSection" class="text-right"/>
-          </div>
         </div>
+        <nav class="flex flex-col mt-8 space-y-4 px-4">
+          <FullButton size="w-full" buttonText="Home" :sectionIndex="0" @scroll-to-section="emitScrollToSection" class="text-left"/>
+          <FullButton size="w-full" buttonText="Skills" :sectionIndex="1" @scroll-to-section="emitScrollToSection" class="text-left"/>
+          <FullButton size="w-full" buttonText="Projects" :sectionIndex="2" @scroll-to-section="emitScrollToSection" class="text-left"/>
+          <FullButton size="w-full" buttonText="Contact" :sectionIndex="3" @scroll-to-section="emitScrollToSection" class="text-left"/>
+        </nav>
       </div>
     </transition>
   </header>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import ButtonAnimated from '@/components/ButtonAnimated.vue';
 import FullButton from '@/components/FullButton.vue';
 
@@ -52,18 +58,21 @@ const emitScrollToSection = (index) => {
 </script>
 
 <style scoped>
-.sidebar-slide-enter-active, .sidebar-slide-leave-active {
-  transition: transform 0.4s ease, opacity 0.4s ease;
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: transform 0.3s ease;
 }
-.sidebar-slide-enter, .sidebar-slide-leave-to {
-  transform: translateX(100%);
-  opacity: 0;
+.slide-left-enter-from,
+.slide-left-leave-to {
+  transform: translateX(-100%);
 }
 
-.backdrop-fade-enter-active, .backdrop-fade-leave-active {
-  transition: opacity 0.1s ease;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
 }
-.backdrop-fade-enter, .backdrop-fade-leave-to {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
 
