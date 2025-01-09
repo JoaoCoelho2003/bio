@@ -89,7 +89,7 @@ const handleTouchMove = debounce((e) => {
   const touchEndY = e.touches[0].clientY;
   const deltaY = touchStartY.value - touchEndY;
   
-  if (Math.abs(deltaY) > 50) { // Threshold for swipe
+  if (Math.abs(deltaY) > 50) {
     if (deltaY > 0 && currentSectionIndex.value < sections.value.length - 1) {
       handleScrollToSection(currentSectionIndex.value + 1);
     } else if (deltaY < 0 && currentSectionIndex.value > 0) {
