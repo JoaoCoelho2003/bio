@@ -1,55 +1,57 @@
 <template>
-  <AppLayout>
-    <div id="app" class="bg-[#021d44] min-h-screen flex flex-col lg:flex-row items-center justify-center z-10">
-      <div class="absolute top-0 text-center p-6 lg:p-10 lg:w-2/4">
-        <div class="text-white font-bold text-4xl lg:text-8xl">
-          <span class="underline-custom">Projects</span>
-        </div>
-      </div>
-
-      <div class="mb-5">
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 p-4">
-          <ProjectBox 
-            :images= '["/Dharma/dharmaLogo.png"]'
-            title="Dharma Network - NFT Marketplace"
-            description="Dharma Network is a decentralized NFT marketplace that allows users to buy and sell NFTs."
-            :technologies="['devicon-vuejs-plain colored', 'devicon-typescript-original colored', 'devicon-tailwindcss-original colored']"
-            weburl = "https://www.mydharma.network/"
-          />
-          <ProjectBox
-            :images= '["/CG/CG1.png", "/CG/CG2.png", "/CG/CG3.png","/CG/CG4.png", "/CG/CG5.png"]'
-            title="3D Engine and Generator - Computer Graphics Project"
-            description="This project consists of a 3D engine and generator developed in C++ and OpenGL."
-            :technologies="[ 'devicon-cplusplus-plain colored', 'devicon-opengl-plain colored', 'devicon-cmake-plain colored']"
-            giturl="https://github.com/JoaoCoelho2003/CG"
-          />
-          <ProjectBox
-            :images= '["/engweb/strollBraga.png"]'
-            title="Stroll Braga - Web Engineering Project"
-            description="Braga Street Map is a web application that provides information about the different roads in Braga, Portugal."
-            :technologies="['devicon-elixir-plain colored', 'devicon-phoenix-original colored', 'devicon-docker-plain colored', 'devicon-html5-plain colored', 'devicon-tailwindcss-original colored', 'devicon-javascript-plain colored', 'devicon-python-plain colored']"
-            giturl="https://github.com/JoaoCoelho2003/EngwebProject"
-          />
-          <ProjectBox
-            :images= '["/Atomic/atomic.png"]'
-            title="Atomic - Academic Nucleus Social Network"
-            description="Atomic is a social network for academic nuclei that allows students to interact with each other."
-            :technologies="['devicon-elixir-plain colored', 'devicon-phoenix-original colored', 'devicon-docker-plain colored', 'devicon-html5-plain colored', 'devicon-tailwindcss-original colored']"
-            giturl="https://github.com/cesium/atomic"
-          />
-        </div>
-      </div>
+  <div class="min-h-screen flex flex-col items-center justify-center p-4">
+    <h1 class="text-4xl font-bold mb-8 text-green-400">Projects</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <ProjectCard
+        v-for="project in projects"
+        :key="project.title"
+        :title="project.title"
+        :description="project.description"
+        :technologies="project.technologies"
+        :images="project.images"
+        :weburl="project.weburl"
+        :giturl="project.giturl"
+      />
     </div>
-  </AppLayout>
+  </div>
 </template>
 
 <script setup>
-import ProjectBox from '@/components/ProjectBox.vue';
-import AppLayout from '@/components/AppLayout.vue';
-</script>
+import { ref } from 'vue';
+import ProjectCard from '@/components/ProjectCard.vue';
 
-<style scoped>
-.underline-custom {
-  border-bottom: 3px solid #d62f6a;
-}
-</style>
+const projects = ref([
+  {
+    title: "Dharma Network - NFT Marketplace",
+    description: "Dharma Network is a decentralized NFT marketplace that allows users to buy and sell NFTs.",
+    technologies: ['Vue.js', 'TypeScript', 'Tailwind CSS'],
+    images: ['/Dharma/dharmaLogo.png'],
+    weburl: "https://www.mydharma.network/",
+    giturl: null
+  },
+  {
+    title: "3D Engine and Generator - Computer Graphics Project",
+    description: "This project consists of a 3D engine and generator developed in C++ and OpenGL.",
+    technologies: ['C++', 'OpenGL', 'CMake'],
+    images: ['/CG/CG1.png', '/CG/CG2.png', '/CG/CG3.png', '/CG/CG4.png', '/CG/CG5.png'],
+    weburl: null,
+    giturl: "https://github.com/JoaoCoelho2003/CG"
+  },
+  {
+    title: "Stroll Braga - Web Engineering Project",
+    description: "Braga Street Map is a web application that provides information about the different roads in Braga, Portugal.",
+    technologies: ['Elixir', 'Phoenix', 'Docker', 'HTML5', 'Tailwind CSS', 'JavaScript', 'Python'],
+    images: ['/engweb/strollBraga.png'],
+    weburl: null,
+    giturl: "https://github.com/JoaoCoelho2003/EngwebProject"
+  },
+  {
+    title: "Atomic - Academic Nucleus Social Network",
+    description: "Atomic is a social network for academic nuclei that allows students to interact with each other.",
+    technologies: ['Elixir', 'Phoenix', 'Docker', 'HTML5', 'Tailwind CSS'],
+    images: ['/Atomic/atomic.png'],
+    weburl: null,
+    giturl: "https://github.com/cesium/atomic"
+  }
+]);
+</script>

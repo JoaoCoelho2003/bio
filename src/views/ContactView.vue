@@ -1,43 +1,32 @@
 <template>
-  <AppLayout>
-    <div id="app" class="bg-[#021d44] min-h-screen flex flex-col items-center justify-center z-10">
-      <div class="absolute top-0 text-center p-10 space-y-8 md:space-y-24">
-        <div class="flex justify-center text-white font-bold text-4xl lg:text-8xl">
-          <span class="underline-custom">Get In Touch</span>
+  <div class="min-h-screen flex flex-col items-center justify-center p-4">
+    <h1 class="text-4xl font-bold mb-8 text-green-400">Get In Touch</h1>
+    <div class="max-w-md w-full">
+      <form @submit.prevent="submitForm" class="space-y-4">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-400">Name</label>
+          <input type="text" id="name" v-model="formData.name" required
+            class="mt-1 block w-full rounded-md bg-gray-900 border-green-500 shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50">
         </div>
-        <div class="text-white/90 text-base lg:text-2xl font-light">
-          <p>Whether you have a question or just want to say hello, my inbox is always open. I'll try my best to get back to you!</p>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-400">Email</label>
+          <input type="email" id="email" v-model="formData.email" required
+            class="mt-1 block w-full rounded-md bg-gray-900 border-green-500 shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50">
         </div>
-      </div>
-      <div class="flex justify-center items-center w-full z-10 px-4 md:px-20">
-        <form @submit.prevent="submitForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl mt-[20vh] md:mt-[8vh]">
-          <div>
-            <label for="name" class="block text-md font-light text-white">Name</label>
-            <input type="text" id="name" v-model="formData.name" placeholder="Enter your name" required
-              class="mt-1 block w-full border-[#d62f6a] border-2 rounded-md shadow-sm focus:border-[#b81d50] focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-3 text-white !important">
-          </div>
-          <div>
-            <label for="email" class="block text-md font-light text-white">Email</label>
-            <input type="email" id="email" v-model="formData.email" placeholder="email@example.com" required
-              class="mt-1 block w-full border-[#d62f6a] border-2 rounded-md shadow-sm focus:border-[#b81d50] focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-3 text-white !important">
-          </div>
-          <div class="md:col-span-2 md:h-2/3">
-            <label for="message" class="block text-md font-light text-white">Message</label>
-            <textarea id="message" v-model="formData.message" rows="6" placeholder="Write your Message" required
-              class="mt-1 block w-full md:h-full rounded-md shadow-sm border-[#d62f6a] border-2 focus:border-[#b81d50] focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-2 text-white resize-none !important"></textarea>
-          </div>
-          <div class="flex justify-end md:col-span-2">
-            <button type="submit" class="px-5 py-2 bg-[#d62f6a] text-white rounded-md flex items-center justify-center hover:bg-[#b81d50] focus:outline-none focus:bg-[#b81d50]">
-              Send
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 ml-1">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-              </svg>
-            </button>
-          </div>
-        </form>
-      </div>
+        <div>
+          <label for="message" class="block text-sm font-medium text-gray-400">Message</label>
+          <textarea id="message" v-model="formData.message" rows="4" required
+            class="mt-1 block w-full rounded-md bg-gray-900 border-green-500 shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50"></textarea>
+        </div>
+        <div>
+          <button type="submit"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+            Send Message
+          </button>
+        </div>
+      </form>
     </div>
-  </AppLayout>
+  </div>
 </template>
 
 <script setup>
