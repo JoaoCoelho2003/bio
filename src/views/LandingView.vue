@@ -38,7 +38,7 @@
   
               <div class="panel-content">
                 <h2 class="text-2xl font-bold mb-4 text-green-400 glitch" :data-text="panel.name">
-                  {{ panel.name }}
+                    <EncryptingText :text="panel.name" />
                 </h2>
                 
                 <div class="panel-icon mb-4">
@@ -85,6 +85,7 @@
   <script setup>
   import { ref, onMounted, onUnmounted } from 'vue'
   import { useRouter } from 'vue-router'
+  import EncryptingText from '@/components/EncryptingText.vue'
   
   const router = useRouter()
   const matrix = ref(null)
@@ -361,54 +362,6 @@
     to {
       transform: translateY(-100vh) rotate(var(--rotation, 0deg));
       opacity: 0;
-    }
-  }
-  
-  .glitch {
-    position: relative;
-  }
-  
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.8;
-  }
-  
-  .glitch::before {
-    animation: glitch-effect 3s infinite;
-    color: #0ff;
-    z-index: -1;
-  }
-  
-  .glitch::after {
-    animation: glitch-effect 2s infinite;
-    color: #f0f;
-    z-index: -2;
-  }
-  
-  @keyframes glitch-effect {
-    0% {
-      transform: translate(0);
-    }
-    20% {
-      transform: translate(-3px, 3px);
-    }
-    40% {
-      transform: translate(-3px, -3px);
-    }
-    60% {
-      transform: translate(3px, 3px);
-    }
-    80% {
-      transform: translate(3px, -3px);
-    }
-    100% {
-      transform: translate(0);
     }
   }
   
