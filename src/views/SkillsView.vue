@@ -19,15 +19,15 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-12">
           <div v-for="(skill, index) in skills"
                :key="index"
-               class="cyber-skill-card"
+               class="cyber-skill-card bg-black/80 border border-green-500/30 rounded-lg p-4 transform opacity-0 translate-y-4 hover:border-green-500 transition-all duration-300"
                :style="{ '--delay': `${index * 0.1}s` }">
-            <div class="skill-icon">
+            <div class="text-4xl mb-4 text-center">
               <i :class="skill.icon"></i>
             </div>
-            <div class="skill-info">
-              <h3 class="skill-name">{{ skill.name }}</h3>
-              <div class="skill-level">
-                <div class="level-bar" :style="{ width: `${skill.level}%` }"></div>
+            <div class="space-y-2">
+              <h3 class="text-green-500 text-center font-medium">{{ skill.name }}</h3>
+              <div class="w-full h-1 bg-gray-800 rounded-full overflow-hidden">
+                <div class="level-bar h-full bg-green-500 transition-all duration-1000" :style="{ width: `${skill.level}%` }"></div>
               </div>
             </div>
           </div>
@@ -36,7 +36,7 @@
         <div class="grid md:grid-cols-3 gap-8 mt-12">
           <div v-for="(category, index) in categories" 
                :key="index"
-               class="cyber-category-card"
+               class="cyber-category-card bg-black/80 border border-green-500/30 rounded-lg p-6 transform opacity-0 translate-y-4 hover:border-green-500 transition-all duration-300"
                :style="{ '--delay': `${index * 0.2}s` }">
             <h3 class="text-xl font-bold text-green-500 mb-4">{{ category.title }}</h3>
             <p class="text-gray-400 mb-4">{{ category.description }}</p>
@@ -166,39 +166,16 @@ onMounted(() => {
 
 <style scoped>
 .cyber-skill-card {
-  @apply bg-black/80 border border-green-500/30 rounded-lg p-4
-         transform opacity-0 translate-y-4 hover:border-green-500
-         transition-all duration-300;
   animation: fade-in-up 0.5s ease forwards;
   animation-delay: var(--delay);
 }
 
-.skill-icon {
-  @apply text-4xl mb-4 text-center;
-}
-
-.skill-info {
-  @apply space-y-2;
-}
-
-.skill-name {
-  @apply text-green-500 text-center font-medium;
-}
-
-.skill-level {
-  @apply w-full h-1 bg-gray-800 rounded-full overflow-hidden;
-}
-
 .level-bar {
-  @apply h-full bg-green-500 transition-all duration-1000;
   animation: level-animate 1.5s ease-out forwards;
   animation-delay: calc(var(--delay) + 0.5s);
 }
 
 .cyber-category-card {
-  @apply bg-black/80 border border-green-500/30 rounded-lg p-6
-         transform opacity-0 translate-y-4 hover:border-green-500
-         transition-all duration-300;
   animation: fade-in-up 0.5s ease forwards;
   animation-delay: var(--delay);
 }
