@@ -1,5 +1,5 @@
-// router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
+import LandingView from '../views/LandingView.vue'
 import HomeView from '../views/HomeView.vue'
 import SkillsView from '../views/SkillsView.vue'
 import ProjectsView from '../views/ProjectsView.vue'
@@ -10,22 +10,27 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'landing',
+      component: LandingView
+    },
+    {
+      path: '/home',
+      name: 'home',
       component: HomeView
     },
     {
       path: '/skills',
-      name: 'Skills',
+      name: 'skills',
       component: SkillsView
     },
     {
       path: '/projects',
-      name: 'Projects',
+      name: 'projects',
       component: ProjectsView
     },
     {
       path: '/contact',
-      name: 'Contact',
+      name: 'contact',
       component: ContactView
     }
   ]

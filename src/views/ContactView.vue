@@ -1,55 +1,101 @@
 <template>
-  <AppLayout>
-    <div id="app" class="bg-[#021d44] min-h-screen flex flex-col items-center justify-center z-10">
-      <div class="absolute top-0 text-center p-10 space-y-8 md:space-y-24">
-        <div class="flex justify-center text-white font-bold text-4xl lg:text-8xl">
-          <span class="underline-custom">Get In Touch</span>
+  <div class="min-h-screen bg-black pt-16">
+    <CyberHeader />
+    
+    <canvas ref="matrix" class="fixed inset-0 opacity-10"></canvas>
+
+    <div class="container mx-auto px-4 py-12">
+      <div class="relative z-10 max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-green-500 mb-4 glitch-text" data-text="Establish Connection">
+            <EncryptingText text="Establish Connection" />
+          </h1>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Ready to collaborate or have a question? Use this secure channel to get in touch.
+          </p>
         </div>
-        <div class="text-white/90 text-base lg:text-2xl font-light">
-          <p>Whether you have a question or just want to say hello, my inbox is always open. I'll try my best to get back to you!</p>
+
+        <div class="bg-black/80 border border-green-500/30 rounded-lg p-8">
+          <form @submit.prevent="submitForm" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label for="name" class="block text-green-500">Identifier</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  v-model="formData.name" 
+                  required
+                  class="w-full bg-black/50 border border-green-500/30 rounded px-4 py-2 text-green-500 focus:outline-none focus:border-green-500 transition-colors duration-300"
+                  placeholder="Enter your name"
+                >
+              </div>
+              <div class="space-y-2">
+                <label for="email" class="block text-green-500">Communication Protocol</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  v-model="formData.email" 
+                  required
+                  class="w-full bg-black/50 border border-green-500/30 rounded px-4 py-2 text-green-500 focus:outline-none focus:border-green-500 transition-colors duration-300"
+                  placeholder="Enter your email"
+                >
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label for="message" class="block text-green-500">Transmission Content</label>
+              <textarea 
+                id="message" 
+                v-model="formData.message" 
+                rows="6" 
+                required
+                class="w-full bg-black/50 border border-green-500/30 rounded px-4 py-2 text-green-500 focus:outline-none focus:border-green-500 transition-colors duration-300"
+                placeholder="Your message here..."
+              ></textarea>
+            </div>
+            <div class="flex justify-end">
+              <button type="submit" class="inline-flex items-center space-x-2 px-6 py-3 bg-green-500 text-black rounded hover:bg-green-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 group">
+                <span class="mr-2">Transmit</span>
+                <i class="bi bi-arrow-right transition-transform group-hover:translate-x-1"></i>
+              </button>
+            </div>
+          </form>
         </div>
-      </div>
-      <div class="flex justify-center items-center w-full z-10 px-4 md:px-20">
-        <form @submit.prevent="submitForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl mt-[20vh] md:mt-[8vh]">
-          <div>
-            <label for="name" class="block text-md font-light text-white">Name</label>
-            <input type="text" id="name" v-model="formData.name" placeholder="Enter your name" required
-              class="mt-1 block w-full border-[#d62f6a] border-2 rounded-md shadow-sm focus:border-[#b81d50] focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-3 text-white !important">
+
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-black/80 border border-green-500/30 rounded-lg p-6 text-center transform hover:scale-105 transition-all duration-300">
+            <i class="bi bi-geo-alt text-4xl text-green-500 mb-4"></i>
+            <h3 class="text-xl font-semibold text-green-400 mb-2">Location</h3>
+            <p class="text-gray-400">Braga, Portugal</p>
           </div>
-          <div>
-            <label for="email" class="block text-md font-light text-white">Email</label>
-            <input type="email" id="email" v-model="formData.email" placeholder="email@example.com" required
-              class="mt-1 block w-full border-[#d62f6a] border-2 rounded-md shadow-sm focus:border-[#b81d50] focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-3 text-white !important">
+          <div class="bg-black/80 border border-green-500/30 rounded-lg p-6 text-center transform hover:scale-105 transition-all duration-300">
+            <i class="bi bi-envelope text-4xl text-green-500 mb-4"></i>
+            <h3 class="text-xl font-semibold text-green-400 mb-2">Email</h3>
+            <a href="mailto:jhcoelho03@gmail.com" class="text-gray-400 hover:text-green-500 transition-colors">jhcoelho03@gmail.com</a>
           </div>
-          <div class="md:col-span-2 md:h-2/3">
-            <label for="message" class="block text-md font-light text-white">Message</label>
-            <textarea id="message" v-model="formData.message" rows="6" placeholder="Write your Message" required
-              class="mt-1 block w-full md:h-full rounded-md shadow-sm border-[#d62f6a] border-2 focus:border-[#b81d50] focus:ring-[#b81d50] bg-[#021d44] focus:ring-opacity-50 p-2 text-white resize-none !important"></textarea>
+          <div class="bg-black/80 border border-green-500/30 rounded-lg p-6 text-center transform hover:scale-105 transition-all duration-300">
+            <i class="bi bi-linkedin text-4xl text-green-500 mb-4"></i>
+            <h3 class="text-xl font-semibold text-green-400 mb-2">LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/joaocoelho03/" target="_blank" class="text-gray-400 hover:text-green-500 transition-colors">joaocoelho03</a>
           </div>
-          <div class="flex justify-end md:col-span-2">
-            <button type="submit" class="px-5 py-2 bg-[#d62f6a] text-white rounded-md flex items-center justify-center hover:bg-[#b81d50] focus:outline-none focus:bg-[#b81d50]">
-              Send
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 ml-1">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-              </svg>
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
-  </AppLayout>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue'
 import emailjs from 'emailjs-com';
-import AppLayout from '@/components/AppLayout.vue';
+import CyberHeader from '@/components/CyberHeader.vue'
+import EncryptingText from '@/components/EncryptingText.vue'
+
+const matrix = ref(null)
 
 const formData = ref({
   name: '',
   email: '',
   message: ''
-});
+})
 
 const submitForm = async () => {
   try {
@@ -81,10 +127,41 @@ const submitForm = async () => {
     alert('An unexpected error occurred. Please try again later.');
   }
 };
-</script>
 
-<style scoped>
-.underline-custom {
-  border-bottom: 3px solid #d62f6a;
+const initMatrix = () => {
+  const canvas = matrix.value
+  const ctx = canvas.getContext('2d')
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
+
+  const chars = 'ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ'
+  const columns = canvas.width / 20
+  const drops = Array(Math.floor(columns)).fill(1)
+
+  function draw() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    
+    ctx.fillStyle = '#0F0'
+    ctx.font = '15px monospace'
+    
+    for (let i = 0; i < drops.length; i++) {
+      const text = chars[Math.floor(Math.random() * chars.length)]
+      ctx.fillText(text, i * 20, drops[i] * 20)
+      
+      if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0
+      }
+      drops[i]++
+    }
+  }
+
+  const interval = setInterval(draw, 33)
+  return () => clearInterval(interval)
 }
-</style>
+
+onMounted(() => {
+  const cleanup = initMatrix()
+  onUnmounted(cleanup)
+})
+</script>
