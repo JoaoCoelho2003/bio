@@ -1,14 +1,10 @@
 <template>
     <div class="min-h-screen bg-black overflow-hidden relative">
-      <!-- Matrix-style background -->
       <canvas ref="matrix" class="fixed inset-0 opacity-20"></canvas>
   
-      <!-- Glitch overlay -->
       <div class="fixed inset-0 pointer-events-none glitch-overlay"></div>
   
-      <!-- Main content -->
       <div class="relative z-10 container mx-auto px-4 py-8 min-h-screen flex flex-col justify-center">
-        <!-- Terminal intro -->
         <div class="mb-8 terminal-container">
           <div class="terminal-header">
             <div class="terminal-buttons">
@@ -27,7 +23,6 @@
           </div>
         </div>
   
-        <!-- Holographic panels -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
           <template v-for="(panel, index) in panels" :key="panel.name">
             <div 
@@ -36,38 +31,32 @@
               :style="{ 'animation-delay': `${index * 0.2}s` }"
               @click="navigateTo(panel.route)"
             >
-              <!-- Panel header with loading bar -->
               <div class="panel-header">
                 <div class="loading-bar" :style="{ width: `${loadingProgress}%` }"></div>
                 <span class="panel-id">#{{ (index + 1).toString().padStart(2, '0') }}</span>
               </div>
   
-              <!-- Panel content -->
               <div class="panel-content">
                 <h2 class="text-2xl font-bold mb-4 text-green-400 glitch" :data-text="panel.name">
                   {{ panel.name }}
                 </h2>
                 
-                <!-- Panel icon -->
                 <div class="panel-icon mb-4">
                   <i :class="panel.icon" class="text-4xl"></i>
                 </div>
   
                 <p class="text-gray-400 mb-4">{{ panel.description }}</p>
   
-                <!-- Status indicators -->
                 <div class="status-indicators">
                   <div class="status-dot"></div>
                   <span class="status-text">SYSTEM READY</span>
                 </div>
   
-                <!-- Enter button -->
                 <div class="enter-button">
                   <span class="text-green-500">> Enter_</span>
                 </div>
               </div>
   
-              <!-- Decorative elements -->
               <div class="panel-decorations">
                 <div class="circuit-lines"></div>
                 <div class="corner-accent top-left"></div>
@@ -79,7 +68,6 @@
           </template>
         </div>
   
-        <!-- Floating elements -->
         <div class="floating-elements">
           <div v-for="n in 5" :key="n" 
                class="floating-code"
@@ -132,7 +120,6 @@
     }
   ])
   
-  // Matrix rain effect
   const initMatrix = () => {
     const canvas = matrix.value
     const ctx = canvas.getContext('2d')
@@ -165,7 +152,6 @@
     return () => clearInterval(interval)
   }
   
-  // Random code generator for floating elements
   const randomCode = () => {
     const snippets = [
       'const hack = async () => {',
@@ -177,16 +163,13 @@
     return snippets[Math.floor(Math.random() * snippets.length)]
   }
   
-  // Navigation
   const navigateTo = (route) => {
     router.push(route)
   }
   
-  // Initialization sequence
   onMounted(() => {
     const cleanup = initMatrix()
     
-    // Simulate loading sequence
     setTimeout(() => {
       typingComplete.value = true
     }, 1000)
@@ -212,7 +195,6 @@
   </script>
   
   <style scoped>
-  /* Terminal styling */
   .terminal-container {
     background: rgba(0, 0, 0, 0.8);
     border: 1px solid #0F0;
@@ -260,7 +242,6 @@
     font-family: 'Source Code Pro', monospace;
   }
   
-  /* Holographic panel styling */
   .holographic-panel {
     background: rgba(16, 16, 24, 0.8);
     border: 1px solid rgba(0, 255, 0, 0.2);
@@ -340,7 +321,6 @@
     font-family: monospace;
   }
   
-  /* Floating code elements */
   .floating-elements {
     position: fixed;
     inset: 0;
@@ -356,7 +336,6 @@
     animation: float-up var(--duration) linear var(--delay) infinite;
   }
   
-  /* Animations */
   @keyframes holographic-sweep {
     0% {
       transform: translateX(-100%) rotate(45deg);
@@ -385,7 +364,6 @@
     }
   }
   
-  /* Glitch effect */
   .glitch {
     position: relative;
   }
@@ -434,7 +412,6 @@
     }
   }
   
-  /* Circuit decoration */
   .circuit-lines {
     position: absolute;
     inset: 0;
@@ -480,7 +457,6 @@
     border-top: none;
   }
   
-  /* Typewriter effect */
   .typewriter-text {
     overflow: hidden;
     white-space: pre-line;
