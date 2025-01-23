@@ -1,15 +1,15 @@
 <template>
-    <div v-if="show" class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6">
+    <div v-if="show" class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 overflow-y-auto">
       <div class="fixed inset-0 bg-black opacity-75" @click="$emit('close')"></div>
       <div class="relative w-full max-w-4xl rounded-lg shadow-lg border border-green-500 overflow-hidden">
-        <div class="cyber-bg p-6">
-          <button @click="$emit('close')" class="absolute top-4 right-4 text-green-500 hover:text-green-400">
-            <i class="bi bi-x-lg text-2xl"></i>
+        <div class="cyber-bg p-4 md:p-6">
+          <button @click="$emit('close')" class="absolute top-2 right-2 md:top-4 md:right-4 text-green-500 hover:text-green-400">
+            <i class="bi bi-x-lg text-xl md:text-2xl"></i>
           </button>
-          <h2 class="text-3xl font-bold mb-4 text-green-400 glitch-text" :data-text="project.title">
+          <h2 class="text-2xl md:text-3xl font-bold mb-4 text-green-400 glitch-text" :data-text="project.title">
             {{ project.title }}
           </h2>
-          <div class="mb-6 relative h-64 overflow-hidden rounded-lg">
+          <div class="mb-4 md:mb-6 relative h-48 md:h-64 overflow-hidden rounded-lg">
             <div class="absolute inset-0 flex">
               <transition-group name="carousel">
                 <img v-for="(image, index) in project.images" :key="image" 
@@ -21,19 +21,19 @@
             <div class="absolute inset-x-0 bottom-0 flex justify-center space-x-2 p-2">
               <button v-for="(_, index) in project.images" :key="index" 
                       @click="currentImageIndex = index"
-                      :class="['w-3 h-3 rounded-full', currentImageIndex === index ? 'bg-green-500' : 'bg-gray-500']">
+                      :class="['w-2 h-2 md:w-3 md:h-3 rounded-full', currentImageIndex === index ? 'bg-green-500' : 'bg-gray-500']">
               </button>
             </div>
-            <button @click="prevImage" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75">
-              <i class="bi bi-chevron-left"></i>
+            <button @click="prevImage" class="absolute left-1 md:left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-1 md:p-2 hover:bg-opacity-75">
+              <i class="bi bi-chevron-left text-sm md:text-base"></i>
             </button>
-            <button @click="nextImage" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75">
-              <i class="bi bi-chevron-right"></i>
+            <button @click="nextImage" class="absolute right-1 md:right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-1 md:p-2 hover:bg-opacity-75">
+              <i class="bi bi-chevron-right text-sm md:text-base"></i>
             </button>
           </div>
-          <p class="text-gray-300 mb-4">{{ project.description }}</p>
+          <p class="text-sm md:text-base text-gray-300 mb-4">{{ project.description }}</p>
           <div class="mb-4">
-            <h3 class="text-xl font-semibold mb-2 text-green-400">Technologies Used</h3>
+            <h3 class="text-lg md:text-xl font-semibold mb-2 text-green-400">Technologies Used</h3>
             <div class="flex flex-wrap gap-2">
               <span v-for="tech in project.technologies" :key="tech" 
                     class="bg-gray-800 text-green-400 text-xs px-2 py-1 rounded">
@@ -42,18 +42,18 @@
             </div>
           </div>
           <div class="mb-4">
-            <h3 class="text-xl font-semibold mb-2 text-green-400">Key Features</h3>
-            <ul class="list-disc list-inside text-gray-300">
+            <h3 class="text-lg md:text-xl font-semibold mb-2 text-green-400">Key Features</h3>
+            <ul class="list-disc list-inside text-sm md:text-base text-gray-300">
               <li v-for="feature in project.features" :key="feature">{{ feature }}</li>
             </ul>
           </div>
-          <div class="flex justify-between mt-6">
+          <div class="flex flex-col md:flex-row justify-between mt-4 md:mt-6 space-y-2 md:space-y-0 md:space-x-2">
             <a v-if="project.weburl" :href="project.weburl" target="_blank" 
-               class="inline-flex items-center px-4 py-2 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-black transition-all duration-300">
+               class="inline-flex items-center justify-center px-4 py-2 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-black transition-all duration-300 text-sm md:text-base">
               <i class="bi bi-globe2 mr-2"></i> Visit Site
             </a>
             <a v-if="project.giturl" :href="project.giturl" target="_blank" 
-               class="inline-flex items-center px-4 py-2 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-black transition-all duration-300">
+               class="inline-flex items-center justify-center px-4 py-2 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-black transition-all duration-300 text-sm md:text-base">
               <i class="bi bi-github mr-2"></i> View Code
             </a>
           </div>
@@ -305,4 +305,11 @@
   .carousel-leave-to {
     opacity: 0;
   }
-  </style>  
+  
+  @media (max-width: 640px) {
+    .glitch-text::before,
+    .glitch-text::after {
+      display: none;
+    }
+  }
+  </style>
