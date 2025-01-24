@@ -14,7 +14,7 @@
               <span>{{ post.category }}</span>
             </div>
             <img :src="post.thumbnail" :alt="post.title" class="w-full h-64 object-cover mb-8 rounded-lg" />
-            <div class="prose prose-invert prose-green max-w-none" v-html="post.body"></div>
+            <p class="prose prose-invert prose-green max-w-none">{{ post.body }}</p>
             <div class="mt-8">
               <h3 class="text-xl font-bold text-green-500 mb-2">Tags:</h3>
               <div class="flex flex-wrap gap-2">
@@ -40,6 +40,7 @@
   import { ref, onMounted, onUnmounted } from 'vue'
   import { useRoute } from 'vue-router'
   import CyberHeader from '@/components/CyberHeader.vue'
+  import dayjs from 'dayjs';
   
   const route = useRoute()
   const matrix = ref(null)
@@ -60,13 +61,9 @@
     onUnmounted(cleanup)
   })
   
-  const formatDate = (date) => {
-    return new Date(date).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    })
-  }
+  const formatDate = (dateString) => {
+    return dayjs(dateString).format('MMMM D, YYYY');
+  };
   
   const initMatrix = () => {
     const canvas = matrix.value

@@ -87,12 +87,13 @@
   const sortOrder = ref('newest')
   
   const posts = ref([])
-  const categories = ['Technology', 'Programming', 'Cybersecurity', 'AI', 'Web Development']
+  const categories = ["Technology", "Programming", "Cybersecurity", "AI", "Web Development", "General", "Introduction", "Announcements"]
   
   const fetchPosts = async () => {
     try {
       const response = await fetch('/api/posts')
       posts.value = await response.json()
+      console.log(posts.value)
     } catch (error) {
       console.error('Error fetching posts:', error)
     }
