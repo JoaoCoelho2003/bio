@@ -93,7 +93,6 @@
     try {
       const response = await fetch('/api/posts')
       posts.value = await response.json()
-      console.log(posts.value)
     } catch (error) {
       console.error('Error fetching posts:', error)
     }
