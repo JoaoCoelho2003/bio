@@ -79,12 +79,21 @@
           </div>
         </div>
       </div>
+
+    <div v-if="showPasswordModal" class="modal">
+      <div class="modal-content">
+        <h3 class="text-lg text-center">Set Your Password</h3>
+        <input v-model="password" type="password" placeholder="Enter password" class="input" />
+        <button @click="setPassword" class="btn">Set Password</button>
+      </div>
+    </div>
     </div>
   </template>
   
   <script setup>
   import { ref, onMounted, onUnmounted } from 'vue'
   import { useRouter } from 'vue-router'
+import netlifyIdentity from 'netlify-identity-widget'
   import EncryptingText from '@/components/EncryptingText.vue'
   
   const router = useRouter()
@@ -93,6 +102,8 @@
   const showWelcome = ref(false)
   const panelsLoaded = ref(false)
   const loadingProgress = ref(0)
+const showPasswordModal = ref(false)
+const password = ref('')
   
   const panels = ref([
     { 
@@ -168,6 +179,23 @@
     router.push(route)
   }
   
+const handleInviteToken = (token) => {
+  netlifyIdentity.acceptInvite(token, true)
+    .then(() => {
+      showPasswordModal.value = true
+    })
+    .catch((err) => {
+      console.error('Invite error:', err)
+    })
+}
+
+const setPassword = () => {
+  if (password.value) {
+    console.log('Password set:', password.value)
+    showPasswordModal.value = false
+  }
+}
+
   onMounted(() => {
     const cleanup = initMatrix()
     
@@ -192,10 +220,56 @@
       cleanup()
       clearInterval(loadingInterval)
     })
-  })
-  </script>
+
+  const hash = window.location.hash.substring(1)
+  const params = new URLSearchParams(hash)
+  const inviteToken = params.get('invite_token')
+
+  if (inviteToken) {
+    handleInviteToken(inviteToken)
+  }
+})
+</script>
   
   <style scoped>
+  .modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 1000;
+  }
+
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .input {
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+
+  .btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: #45a049;
+  }
   .terminal-container {
     background: rgba(0, 0, 0, 0.8);
     border: 1px solid #0F0;
