@@ -62,7 +62,8 @@ const menuItems = [
   { name: 'Home', path: '/home' },
   { name: 'Skills', path: '/skills' },
   { name: 'Projects', path: '/projects' },
-  { name: 'Contact', path: '/contact' }
+  { name: 'Contact', path: '/contact' },
+  { name: 'Blog', path: '/blog' }
 ]
 </script>
 
