@@ -14,7 +14,7 @@ collections:
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image"}
-      - {label: "Category", name: "category", widget: "select", options: ["Technology", "Programming", "Cybersecurity", "AI", "Web Development"]}
-      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Category", name: "category", widget: "select", options: ["Technology", "Programming", "Cybersecurity", "AI", "Web Development"], required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
