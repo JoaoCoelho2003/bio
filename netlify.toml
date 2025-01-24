@@ -12,6 +12,13 @@
   status = 200
   force = true
 
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
+  conditions = { "exclude" = ["/404.html"] }
+
 [dev]
   framework = "vite"
   targetPort = 5173
