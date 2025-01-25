@@ -25,7 +25,7 @@ export const handler = async (event) => {
 
     const excerpt = content.slice(0, 150) + (content.length > 150 ? '...' : '');
 
-    const body = md.render(content);
+    const body = content;
 
     return {
       statusCode: 200,
