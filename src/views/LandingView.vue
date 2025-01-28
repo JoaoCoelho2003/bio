@@ -67,17 +67,6 @@
             </div>
           </template>
         </div>
-  
-        <div class="floating-elements">
-          <div v-for="n in 5" :key="n" 
-               class="floating-code"
-               :style="{ 
-                 '--delay': `${n * 2}s`,
-                 '--duration': `${10 + n * 2}s`
-               }">
-            <pre><code>{{ randomCode() }}</code></pre>
-          </div>
-        </div>
       </div>
 
     <div v-if="showPasswordModal" class="modal">
@@ -123,6 +112,12 @@ const password = ref('')
       description: 'Browse through completed operations',
       route: '/projects',
       icon: 'bi bi-folder-fill'
+    },
+    { 
+      name: 'Blog',
+      description: 'Access encrypted thought protocols',
+      route: '/blog',
+      icon: 'bi bi-journal-code'
     },
     { 
       name: 'Contact',
