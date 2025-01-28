@@ -34,6 +34,7 @@ export const handler = async () => {
           title: data.title || 'Untitled',
           date: data.date || new Date().toISOString(),
           thumbnail: data.thumbnail || '/profileHD.png',
+          category: data.category || 'Uncategorized',
           excerpt,
           body,
         };

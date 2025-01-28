@@ -1,78 +1,85 @@
 <template>
-    <div class="min-h-screen bg-black pt-16">
-      <CyberHeader />
-      
-      <canvas ref="matrix" class="fixed inset-0 opacity-10"></canvas>
-  
-      <div class="container mx-auto px-4 py-12">
-        <div class="relative z-10 max-w-6xl mx-auto">
-          <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-green-500 mb-4 glitch-text" data-text="Cyber Chronicles">
-              <EncryptingText text="Cyber Chronicles" />
-            </h1>
-            <p class="text-gray-400 max-w-2xl mx-auto">
-              Explore the digital frontier through our curated collection of tech insights and cyberpunk musings.
-            </p>
-          </div>
-  
-          <div class="mb-8">
-            <input
-              v-model="searchQuery"
-              type="text"
-              placeholder="Search the matrix..."
-              class="w-full px-4 py-2 bg-gray-900 text-green-500 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-            />
-          </div>
-  
-          <div class="flex flex-wrap justify-between mb-8">
-            <div class="w-full md:w-auto mb-4 md:mb-0">
-              <select
-                v-model="selectedCategory"
-                class="px-4 py-2 bg-gray-900 text-green-500 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-              >
-                <option value="">All Categories</option>
-                <option v-for="category in categories" :key="category" :value="category">
-                  {{ category }}
-                </option>
-              </select>
-            </div>
-            <div class="w-full md:w-auto">
-              <select
-                v-model="sortOrder"
-                class="px-4 py-2 bg-gray-900 text-green-500 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-              >
-                <option value="newest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-              </select>
-            </div>
-          </div>
-  
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              v-for="post in filteredAndSortedPosts"
-              :key="post.slug"
-              class="bg-gray-900 border border-green-500 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300"
+  <div class="min-h-screen bg-black pt-16">
+    <CyberHeader />
+    
+    <canvas ref="matrix" class="fixed inset-0 opacity-10"></canvas>
+
+    <div class="container mx-auto px-4 py-12">
+      <div class="relative z-10 max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-green-500 mb-4 glitch-text" data-text="Cyber Chronicles">
+            <EncryptingText text="Cyber Chronicles" />
+          </h1>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Explore the digital frontier through our curated collection of tech insights and cyberpunk musings.
+          </p>
+        </div>
+
+        <div class="mb-8">
+          <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Search the matrix..."
+            class="w-full px-4 py-2 bg-gray-900 text-green-500 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+        </div>
+
+        <div class="flex flex-wrap justify-between mb-8">
+          <div class="w-full md:w-auto mb-4 md:mb-0">
+            <select
+              v-model="selectedCategory"
+              class="px-4 py-2 bg-gray-900 text-green-500 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
             >
-              <img :src="post.thumbnail" :alt="post.title" class="w-full h-48 object-cover" />
-              <div class="p-6">
-                <h2 class="text-xl font-bold text-green-500 mb-2">{{ post.title }}</h2>
-                <p class="text-gray-400 mb-4">{{ post.excerpt }}</p>
-                <div class="flex justify-between items-center">
-                  <span class="text-sm text-gray-500">{{ formatDate(post.date) }}</span>
-                  <router-link
-                    :to="{ name: 'blogPost', params: { slug: post.slug } }"
-                    class="px-4 py-2 bg-green-500 text-black rounded-md hover:bg-green-400 transition-colors duration-300"
-                  >
-                    Read More
-                  </router-link>
-                </div>
+              <option value="">All Categories</option>
+              <option v-for="category in categories" :key="category" :value="category">
+                {{ category }}
+              </option>
+            </select>
+          </div>
+          <div class="w-full md:w-auto">
+            <select
+              v-model="sortOrder"
+              class="px-4 py-2 bg-gray-900 text-green-500 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+            >
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+            </select>
+          </div>
+        </div>
+
+        <div v-if="isLoading" class="min-h-[60vh] flex items-center justify-center">
+          <div class="text-center text-gray-400">
+            <div class="inline-block border-2 border-t-green-500 border-r-green-500 border-b-transparent border-l-transparent rounded-full w-12 h-12 animate-spin mb-4"></div>
+            <p class="text-lg">Decrypting data streams...</p>
+          </div>
+        </div>
+
+        <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            v-for="post in filteredAndSortedPosts"
+            :key="post.slug"
+            class="bg-gray-900 border border-green-500 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300"
+          >
+            <img :src="post.thumbnail" :alt="post.title" class="w-full h-48 object-cover" />
+            <div class="p-6">
+              <h2 class="text-xl font-bold text-green-500 mb-2">{{ post.title }}</h2>
+              <p class="text-gray-400 mb-4">{{ post.excerpt }}</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">{{ formatDate(post.date) }}</span>
+                <router-link
+                  :to="{ name: 'blogPost', params: { slug: post.slug } }"
+                  class="px-4 py-2 bg-green-500 text-black rounded-md hover:bg-green-400 transition-colors duration-300"
+                >
+                  Read More
+                </router-link>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </template>
+  </div>
+</template>
   
   <script setup>
   import { ref, computed, onMounted, onUnmounted } from 'vue'
@@ -87,14 +94,18 @@
   const sortOrder = ref('newest')
   
   const posts = ref([])
-  const categories = ["Technology", "Programming", "Cybersecurity", "AI", "Web Development", "General", "Introduction", "Announcements"]
-  
+  const categories = ["Technology", "Programming", "Cybersecurity", "AI", "Web Development", "General", "Announcements"]
+  const isLoading = ref(true)
+
   const fetchPosts = async () => {
     try {
+      isLoading.value = true
       const response = await fetch('/api/posts')
       posts.value = await response.json()
     } catch (error) {
       console.error('Error fetching posts:', error)
+    } finally {
+      isLoading.value = false
     }
   }
   

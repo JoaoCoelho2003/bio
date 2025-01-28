@@ -9,7 +9,7 @@ import BlogPostView from "../views/BlogPostView.vue"
 import NotFound from "../views/NotFound.vue"
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: "/",
