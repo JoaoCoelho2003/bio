@@ -16,8 +16,6 @@
   from = "/*"
   to = "/index.html"
   status = 200
-  force = true
-  conditions = { "exclude" = ["/404.html"] }
 
 [dev]
   framework = "vite"
