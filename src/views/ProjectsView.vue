@@ -100,7 +100,7 @@ const projects = ref([
   {
     title: "PictuRas",
     description: "A scalable image management and editing platform with advanced image tools, deployed using Kubernetes. The project features a Vue and TypeScript frontend, a JavaScript backend, and a microservices architecture.",
-    technologies: ['Vue', 'TypeScript', 'JavaScript', 'Kubernetes', 'Helm', 'Minikube', 'Docker', 'CSS', 'HTML', 'HCL'],
+    technologies: ['Vue', 'TypeScript', 'JavaScript', 'Kubernetes', 'Helm', 'Minikube', 'Docker', 'Stripe', 'CSS', 'HTML', 'HCL'],
     images: ['/Picturas/Picturas1.png', '/Picturas/Picturas2.png', '/Picturas/Picturas3.png','/Picturas/Picturas4.png', '/Picturas/Picturas5.png', '/Picturas/Picturas6.png','/Picturas/Picturas7.png', '/Picturas/Picturas8.png', '/Picturas/Picturas9.png', '/Picturas/Picturas10.png'],
     weburl: null,
     giturl: "https://github.com/JoaoCoelho2003/PictuRas",
@@ -111,7 +111,8 @@ const projects = ref([
       "Scalable Kubernetes deployment",
       "Microservices architecture",
       "Email management via Mailhog",
-      "RESTful API for backend operations"
+      "RESTful API for backend operations",
+      "Stripe integration for subscriptions"
     ]
   },
   {
