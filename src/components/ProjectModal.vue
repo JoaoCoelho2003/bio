@@ -9,7 +9,7 @@
           <h2 class="text-2xl md:text-3xl font-bold mb-4 text-green-400 glitch-text" :data-text="project.title">
             {{ project.title }}
           </h2>
-          <div class="mb-4 md:mb-6 relative h-48 md:h-64 overflow-hidden rounded-lg">
+          <div class="mb-4 md:mb-6 relative h-48 md:h-96 overflow-hidden rounded-lg">
             <div class="absolute inset-0 flex">
               <transition-group name="carousel">
                 <img v-for="(image, index) in project.images" :key="image" 
