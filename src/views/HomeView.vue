@@ -6,7 +6,7 @@
 
     <div class="container mx-auto px-4 py-12">
       <div class="relative z-10 max-w-4xl mx-auto">
-        <div class="cyber-card bg-black/80 border border-green-500/30 rounded-lg p-8 backdrop-blur-sm shadow-lg shadow-green-500/10 relative overflow-hidden">
+        <div class="cyber-card bg-black/80 border border-green-500/30 rounded-lg p-4 sm:p-8 backdrop-blur-sm shadow-lg shadow-green-500/10 relative overflow-hidden">
           <div class="grid md:grid-cols-2 gap-8 items-center">
             <div class="relative group">
               <div class="absolute -inset-1 bg-gradient-to-r from-green-500 to-cyan-500 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
@@ -20,36 +20,36 @@
               </div>
             </div>
 
-            <div class="space-y-6">
+            <div class="space-y-4 sm:space-y-6">
               <div>
-                <h1 class="text-4xl font-bold text-green-500 mb-2 glitch-text" data-text="João Coelho">
+                <h1 class="text-3xl sm:text-4xl font-bold text-green-500 mb-2 glitch-text" data-text="João Coelho">
                   <EncryptingText text="João Coelho" />
                 </h1>
                 <div class="h-8">
                   <TypingAnimation 
                     :texts="['Programmer', 'Full Stack Developer']" 
                     :speed="60" 
-                    class="text-xl text-green-400"
+                    class="text-lg sm:text-xl text-green-400"
                   />
                 </div>
               </div>
 
-              <p class="text-gray-400 leading-relaxed">
+              <p class="text-sm sm:text-base text-gray-400 leading-relaxed">
                 I am a first-year Master's student in Software Engineering at the University of Minho. 
                 My journey through computer science has equipped me with expertise in various domains, 
                 from Algorithms to AI. I'm also proud to contribute to CoderDojo, nurturing future programmers.
               </p>
 
-              <div class="flex space-x-4">
+              <div class="flex flex-wrap gap-4">
                 <a href="https://github.com/JoaoCoelho2003" 
                    target="_blank"
-                   class="inline-flex items-center space-x-2 px-4 py-2 border border-green-500/30 text-green-500 rounded hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50">
+                   class="inline-flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 border border-green-500/30 text-green-500 rounded hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 text-sm sm:text-base">
                   <i class="bi bi-github"></i>
                   <span>GitHub</span>
                 </a>
                 <a href="https://www.linkedin.com/in/joaocoelho03/" 
                    target="_blank"
-                   class="inline-flex items-center space-x-2 px-4 py-2 border border-green-500/30 text-green-500 rounded hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50">
+                   class="inline-flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 border border-green-500/30 text-green-500 rounded hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 text-sm sm:text-base">
                   <i class="bi bi-linkedin"></i>
                   <span>LinkedIn</span>
                 </a>
@@ -57,7 +57,7 @@
 
               <a href="/joaoCoelhoResume.pdf" 
                  download 
-                 class="inline-flex items-center space-x-2 px-4 py-2 bg-green-500 text-black rounded hover:bg-green-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50">
+                 class="inline-flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 bg-green-500 text-black rounded hover:bg-green-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 text-sm sm:text-base">
                 <i class="bi bi-file-earmark-text mr-2"></i>
                 <span>Download Resume</span>
               </a>
@@ -65,13 +65,53 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-          <div v-for="(stat, index) in stats" 
-               :key="index"
-               class="cyber-stat bg-black/80 border border-green-500/30 rounded-lg p-4 text-center transform opacity-0 translate-y-4"
-               :style="{ '--delay': `${index * 0.1}s` }">
-            <div class="text-2xl text-green-500">{{ stat.value }}</div>
-            <div class="text-sm text-gray-400">{{ stat.label }}</div>
+        <div class="space-y-12 mt-12">
+          <div class="cyber-section">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-500 mb-6 flex items-center">
+              <i class="bi bi-cpu mr-3"></i>
+              Education
+            </h2>
+            <div class="space-y-8">
+              <div class="cyber-item relative pl-8 pb-8">
+                <div class="cyber-dot"></div>
+                <h3 class="text-lg sm:text-xl font-semibold text-green-400 mb-2">Master's in Software Engineering</h3>
+                <p class="text-sm sm:text-base text-gray-400">University of Minho</p>
+                <p class="text-xs sm:text-sm text-green-500/70 mt-1">Set. 2024 - Present</p>
+              </div>
+              <div class="cyber-item relative pl-8">
+                <div class="cyber-dot"></div>
+                <h3 class="text-lg sm:text-xl font-semibold text-green-400 mb-2">Bachelor of Software Engineering</h3>
+                <p class="text-sm sm:text-base text-gray-400">University of Minho</p>
+                <p class="text-xs sm:text-sm text-green-500/70 mt-1">Set. 2021 - Jul. 2024</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cyber-section">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-500 mb-6 flex items-center">
+              <i class="bi bi-terminal mr-3"></i>
+              Experience
+            </h2>
+            <div class="space-y-8">
+              <div class="cyber-item relative pl-8 pb-8">
+                <div class="cyber-dot"></div>
+                <h3 class="text-lg sm:text-xl font-semibold text-green-400 mb-2">Software Engineer Intern</h3>
+                <p class="text-sm sm:text-base text-gray-400">Yari Labs</p>
+                <p class="text-xs sm:text-sm text-green-500/70 mt-1">Jun. 2024 - Jul. 2024 | Braga, PT</p>
+              </div>
+              <div class="cyber-item relative pl-8 pb-8">
+                <div class="cyber-dot"></div>
+                <h3 class="text-lg sm:text-xl font-semibold text-green-400 mb-2">Python Mentor</h3>
+                <p class="text-sm sm:text-base text-gray-400">CoderDojo</p>
+                <p class="text-xs sm:text-sm text-green-500/70 mt-1">Mar. 2024 - Present | Braga, PT</p>
+              </div>
+              <div class="cyber-item relative pl-8">
+                <div class="cyber-dot"></div>
+                <h3 class="text-lg sm:text-xl font-semibold text-green-400 mb-2">CAOS Collaborator</h3>
+                <p class="text-sm sm:text-base text-gray-400">Cesium</p>
+                <p class="text-xs sm:text-sm text-green-500/70 mt-1">Mar. 2024 - Present | Braga, PT</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -84,13 +124,8 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import CyberHeader from '@/components/CyberHeader.vue'
 import TypingAnimation from '@/components/TypingAnimation.vue'
 import EncryptingText from '@/components/EncryptingText.vue'
+
 const matrix = ref(null)
-const stats = ref([
-  { label: 'Projects', value: '15+' },
-  { label: 'Technologies', value: '20+' },
-  { label: 'Experience', value: '3 yrs' },
-  { label: 'Contributions', value: '200+' }
-])
 
 const initMatrix = () => {
   const canvas = matrix.value
@@ -126,7 +161,16 @@ const initMatrix = () => {
 
 onMounted(() => {
   const cleanup = initMatrix()
-  onUnmounted(cleanup)
+  window.addEventListener('resize', () => {
+    if (matrix.value) {
+      matrix.value.width = window.innerWidth
+      matrix.value.height = window.innerHeight
+    }
+  })
+  onUnmounted(() => {
+    cleanup()
+    window.removeEventListener('resize', () => {})
+  })
 })
 </script>
 
@@ -150,16 +194,59 @@ onMounted(() => {
   animation: holographic-sweep 3s linear infinite;
 }
 
-.cyber-stat {
-  animation: fade-in-up 0.5s ease forwards;
-  animation-delay: var(--delay);
+.cyber-section {
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes fade-in-up {
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.cyber-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #22c55e, transparent);
+  animation: cyber-line 4s linear infinite;
+}
+
+.cyber-item {
+  position: relative;
+  transition: all 0.3s ease;
+  padding-left: 32px;
+}
+
+.cyber-item:hover {
+  transform: translateX(10px);
+}
+
+.cyber-item::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: rgba(34, 197, 94, 0.3);
+}
+
+.cyber-dot {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  background-color: black;
+  border: 2px solid #22c55e;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.cyber-item:hover .cyber-dot {
+  background-color: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  transform: scale(1.1);
 }
 
 @keyframes holographic-sweep {
@@ -168,6 +255,30 @@ onMounted(() => {
   }
   100% {
     transform: translateX(100%) rotate(45deg);
+  }
+}
+
+@keyframes cyber-line {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .cyber-item {
+    padding-left: 24px;
+  }
+  
+  .cyber-item::before {
+    left: 4px;
+  }
+  
+  .cyber-dot {
+    width: 10px;
+    height: 10px;
   }
 }
 </style>
