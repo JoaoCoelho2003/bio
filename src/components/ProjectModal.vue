@@ -1,7 +1,7 @@
 <template>
   <div v-if="show" class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 overflow-y-auto">
     <div class="fixed inset-0 bg-black opacity-75" @click="$emit('close')"></div>
-    <div class="relative w-full max-w-4xl max-h-[90vh] rounded-lg shadow-lg border border-green-500 overflow-y-auto">
+    <div class="relative w-full max-w-4xl max-h-[90vh] rounded-lg shadow-lg border border-green-500 overflow-y-auto" style="max-height: 90vh;">
       <div class="cyber-bg p-4 md:p-6">
         <button @click="$emit('close')" class="absolute top-2 right-2 md:top-4 md:right-4 text-green-500 hover:text-green-400">
           <i class="bi bi-x-lg text-xl md:text-2xl"></i>
@@ -328,44 +328,29 @@ onUnmounted(() => {
     display: none;
   }
 }
+
 .relative {
-scrollbar-width: thin;
-scrollbar-color: rgba(0, 255, 0, 0.5) rgba(0, 0, 0, 0.1);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 0, 0.5) rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
 }
 
 .relative::-webkit-scrollbar {
-width: 8px;
+  width: 8px;
 }
 
 .relative::-webkit-scrollbar-track {
-background: rgba(0, 0, 0, 0.1);
-border-radius: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 }
 
 .relative::-webkit-scrollbar-thumb {
-background-color: rgba(0, 255, 0, 0.5);
-border-radius: 4px;
-border: 2px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 255, 0, 0.5);
+  border-radius: 4px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .relative::-webkit-scrollbar-thumb:hover {
-background-color: rgba(0, 255, 0, 0.7);
-}
-
-.relative::-webkit-scrollbar {
-display: none;
-}
-
-.relative {
--ms-overflow-style: none;
-scrollbar-width: none;
-}
-
-.relative:hover::-webkit-scrollbar {
-display: block;
-}
-
-.relative:hover {
-scrollbar-width: thin;
+  background-color: rgba(0, 255, 0, 0.7);
 }
 </style>
