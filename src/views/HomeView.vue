@@ -96,19 +96,34 @@
               <div class="cyber-item relative pl-8 pb-8">
                 <div class="cyber-dot"></div>
                 <h3 class="text-lg sm:text-xl font-semibold text-green-400 mb-2">Software Engineer Intern</h3>
-                <p class="text-sm sm:text-base text-gray-400">Yari Labs</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  <a href="https://www.yarilabs.com/" target="_blank" class="inline-flex items-center space-x-2 hover:text-green-500 transition-all duration-300">
+                  Yari Labs
+                  <i class="bi bi-box-arrow-up-right ml-2"></i>
+                  </a>
+                </p>
                 <p class="text-xs sm:text-sm text-green-500/70 mt-1">Jun. 2024 - Jul. 2024 | Braga, PT</p>
               </div>
               <div class="cyber-item relative pl-8 pb-8">
                 <div class="cyber-dot"></div>
                 <h3 class="text-lg sm:text-xl font-semibold text-green-400 mb-2">Python Mentor</h3>
-                <p class="text-sm sm:text-base text-gray-400">CoderDojo</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  <a href="https://coderdojobraga.org/" target="_blank" class="inline-flex items-center space-x-2 hover:text-green-500 transition-all duration-300">
+                    CoderDojo
+                    <i class="bi bi-box-arrow-up-right ml-2"></i>
+                  </a>
+                </p>
                 <p class="text-xs sm:text-sm text-green-500/70 mt-1">Mar. 2024 - Present | Braga, PT</p>
               </div>
               <div class="cyber-item relative pl-8">
                 <div class="cyber-dot"></div>
                 <h3 class="text-lg sm:text-xl font-semibold text-green-400 mb-2">CAOS Collaborator</h3>
-                <p class="text-sm sm:text-base text-gray-400">Cesium</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  <a href="https://cesium.di.uminho.pt/" target="_blank" class="inline-flex items-center space-x-2 hover:text-green-500 transition-all duration-300">
+                  Cesium
+                  <i class="bi bi-box-arrow-up-right ml-2"></i>
+                  </a>
+                </p>
                 <p class="text-xs sm:text-sm text-green-500/70 mt-1">Mar. 2024 - Present | Braga, PT</p>
               </div>
             </div>
