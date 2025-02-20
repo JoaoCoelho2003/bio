@@ -1,0 +1,261 @@
+/* Custom styles for Netlify CMS */
+body {
+    background-color: #000;
+    color: #22c55e;
+    font-family: "Courier New", monospace;
+  }
+  
+  .nc-appHeader-container {
+    background-color: #111;
+    border-bottom: 1px solid #22c55e;
+  }
+  
+  .nc-appHeader-content {
+    background-color: #111;
+  }
+  
+  .nc-appHeader-logo {
+    font-family: "Courier New", monospace;
+    font-size: 24px;
+    font-weight: bold;
+    color: #22c55e;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px 0;
+  }
+  
+  .nc-appHeader-logo::before {
+    content: "[ ";
+    color: #4ade80;
+  }
+  
+  .nc-appHeader-logo::after {
+    content: " ]";
+    color: #4ade80;
+  }
+  
+  .nc-appHeader-button-label {
+    color: #22c55e;
+  }
+  
+  .nc-entryEditor-header {
+    background-color: #111;
+    border-bottom: 1px solid #22c55e;
+  }
+  
+  .nc-entryEditor-header-title {
+    color: #22c55e;
+  }
+  
+  .nc-entryEditor-toolbar {
+    background-color: #111;
+    border-bottom: 1px solid #22c55e;
+  }
+  
+  .nc-entryEditor-toolbar button {
+    color: #22c55e;
+  }
+  
+  .nc-list-container {
+    background-color: #000;
+  }
+  
+  .nc-listControl-item {
+    background-color: #111;
+    border: 1px solid #22c55e;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .nc-listControl-item:hover {
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+  }
+  
+  .nc-card-body {
+    padding: 20px;
+  }
+  
+  .nc-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #22c55e;
+  }
+  
+  .nc-card-meta {
+    font-size: 14px;
+    color: #4ade80;
+  }
+  
+  /* Custom form styles */
+  .nc-entryEditor-content input[type="text"],
+  .nc-entryEditor-content input[type="email"],
+  .nc-entryEditor-content textarea,
+  .nc-entryEditor-content select {
+    background-color: #111;
+    border: 1px solid #22c55e;
+    color: #22c55e;
+    padding: 8px;
+    border-radius: 4px;
+  }
+  
+  .nc-entryEditor-content input[type="text"]:focus,
+  .nc-entryEditor-content input[type="email"]:focus,
+  .nc-entryEditor-content textarea:focus,
+  .nc-entryEditor-content select:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+  }
+  
+  /* Custom button styles */
+  .nc-button {
+    background-color: #22c55e;
+    color: #000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .nc-button:hover {
+    background-color: #4ade80;
+  }
+  
+  /* Matrix-like background effect */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(rgba(0, 255, 0, 0.03) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(0, 255, 0, 0.03) 2px, transparent 2px);
+    background-size: 20px 20px;
+    z-index: -1;
+  }
+  
+  /* Glowing effect for active elements */
+  .nc-entryEditor-content input[type="text"]:focus,
+  .nc-entryEditor-content input[type="email"]:focus,
+  .nc-entryEditor-content textarea:focus,
+  .nc-entryEditor-content select:focus,
+  .nc-listControl-item:hover {
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+  }
+  
+  /* Additional cyberpunk-themed styles */
+  .nc-app-header {
+    border-bottom: 1px solid #22c55e;
+  }
+  
+  .nc-app-header__button {
+    color: #22c55e;
+  }
+  
+  .nc-app-header__button:hover {
+    background-color: rgba(34, 197, 94, 0.1);
+  }
+  
+  .nc-collectionPage-container {
+    background-color: #000;
+  }
+  
+  .nc-entryEditor-container {
+    background-color: #000;
+  }
+  
+  .nc-entryEditor-sidebarTop {
+    background-color: #111;
+    border-bottom: 1px solid #22c55e;
+  }
+  
+  .nc-entryEditor-sidebarBottom {
+    background-color: #111;
+    border-top: 1px solid #22c55e;
+  }
+  
+  .nc-entryEditor-toggleSidebar {
+    background-color: #111;
+    color: #22c55e;
+  }
+  
+  .nc-entryEditor-toggleSidebar:hover {
+    background-color: rgba(34, 197, 94, 0.1);
+  }
+  
+  /* Markdown editor styles */
+  .CodeMirror {
+    background-color: #111 !important;
+    color: #22c55e !important;
+    border: 1px solid #22c55e;
+    border-radius: 4px;
+  }
+  
+  .CodeMirror-gutters {
+    background-color: #000 !important;
+    border-right: 1px solid #22c55e !important;
+  }
+  
+  .CodeMirror-linenumber {
+    color: #4ade80 !important;
+  }
+  
+  .cm-s-default .cm-header {
+    color: #4ade80 !important;
+  }
+  
+  .cm-s-default .cm-quote {
+    color: #22c55e !important;
+  }
+  
+  .cm-s-default .cm-keyword {
+    color: #22d3ee !important;
+  }
+  
+  .cm-s-default .cm-atom {
+    color: #f472b6 !important;
+  }
+  
+  .cm-s-default .cm-number {
+    color: #fb923c !important;
+  }
+  
+  .cm-s-default .cm-def {
+    color: #22d3ee !important;
+  }
+  
+  .cm-s-default .cm-variable {
+    color: #22c55e !important;
+  }
+  
+  .cm-s-default .cm-punctuation,
+  .cm-s-default .cm-property,
+  .cm-s-default .cm-operator {
+    color: #22c55e !important;
+  }
+  
+  .cm-s-default .cm-string {
+    color: #fbbf24 !important;
+  }
+  
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #000;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #22c55e;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4ade80;
+  }  
