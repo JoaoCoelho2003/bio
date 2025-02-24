@@ -130,6 +130,104 @@ const fetchPost = async () => {
   }
 }
 
+watch(() => post.value, (newPost) => {
+  if (newPost) {
+    document.title = `${newPost.title} | João Coelho's Blog`
+    
+    const metaTags = [
+      {
+        name: 'description',
+        content: newPost.excerpt || newPost.body.substring(0, 160)
+      },
+      {
+        property: 'og:title',
+        content: `${newPost.title} | João Coelho's Blog`
+      },
+      {
+        property: 'og:description',
+        content: newPost.excerpt || newPost.body.substring(0, 160)
+      },
+      {
+        property: 'og:image',
+        content: newPost.thumbnail || 'https://sjc.microlink.io/mgfYbADPF1sl6zLr80j0bMa6-WGEcRERRSxTQ33sXsNOjybms8WGP3NaObakI4NeywfsCTgNNAbWa6iebSCAGQ.jpeg'
+      },
+      {
+        property: 'og:type',
+        content: 'article'
+      },
+      {
+        property: 'og:url',
+        content: `https://joaocoelho.xyz/blog/${route.params.slug}`
+      },
+      {
+        property: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      {
+        property: 'twitter:title',
+        content: `${newPost.title} | João Coelho's Blog`
+      },
+      {
+        property: 'twitter:description',
+        content: newPost.excerpt || newPost.body.substring(0, 160)
+      },
+      {
+        property: 'twitter:image',
+        content: newPost.thumbnail || 'https://sjc.microlink.io/mgfYbADPF1sl6zLr80j0bMa6-WGEcRERRSxTQ33sXsNOjybms8WGP3NaObakI4NeywfsCTgNNAbWa6iebSCAGQ.jpeg'
+      }
+    ]
+
+    metaTags.forEach(tag => {
+      let element = document.querySelector(`meta[${tag.property ? 'property' : 'name'}="${tag.property || tag.name}"]`)
+      
+      if (!element) {
+        element = document.createElement('meta')
+        if (tag.property) {
+          element.setAttribute('property', tag.property)
+        } else {
+          element.setAttribute('name', tag.name)
+        }
+        document.head.appendChild(element)
+      }
+      
+      element.setAttribute('content', tag.content)
+    })
+
+    const articleSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      'headline': newPost.title,
+      'description': newPost.excerpt || newPost.body.substring(0, 160),
+      'image': newPost.thumbnail || 'https://sjc.microlink.io/mgfYbADPF1sl6zLr80j0bMa6-WGEcRERRSxTQ33sXsNOjybms8WGP3NaObakI4NeywfsCTgNNAbWa6iebSCAGQ.jpeg',
+      'datePublished': newPost.date,
+      'dateModified': newPost.date,
+      'author': {
+        '@type': 'Person',
+        'name': 'João Coelho',
+        'url': 'https://joaocoelho.xyz'
+      },
+      'publisher': {
+        '@type': 'Person',
+        'name': 'João Coelho',
+        'url': 'https://joaocoelho.xyz'
+      },
+      'mainEntityOfPage': {
+        '@type': 'WebPage',
+        '@id': `https://joaocoelho.xyz/blog/${route.params.slug}`
+      },
+      'keywords': newPost.tags.join(', ')
+    }
+
+    let scriptElement = document.querySelector('script[type="application/ld+json"]')
+    if (!scriptElement) {
+      scriptElement = document.createElement('script')
+      scriptElement.setAttribute('type', 'application/ld+json')
+      document.head.appendChild(scriptElement)
+    }
+    scriptElement.textContent = JSON.stringify(articleSchema)
+  }
+}, { immediate: true })
+
 onMounted(() => {
   fetchPost()
   const cleanup = initMatrix()
