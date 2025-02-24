@@ -91,7 +91,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { CalendarIcon, FolderIcon } from '@heroicons/vue/24/outline'
 import { XIcon, LinkedinIcon, FacebookIcon } from 'lucide-vue-next'
