@@ -9,7 +9,10 @@
 </template>
 
 <script setup>
+import { useMeta } from './composables/useMeta'
 import { RouterView } from 'vue-router';
+
+useMeta();
 </script>
 
 <style>
