@@ -291,7 +291,7 @@ onMounted(() => {
     
     const loadingInterval = setInterval(() => {
       if (loadingProgress.value < 100) {
-        loadingProgress.value += 1
+        loadingProgress.value += 2.5
       } else {
         clearInterval(loadingInterval)
         panelsLoaded.value = true
@@ -321,7 +321,7 @@ onMounted(() => {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-  transition: opacity 1s ease-out;
+  transition: opacity 0.1s ease-out;
 }
 
 .terminal-header {
