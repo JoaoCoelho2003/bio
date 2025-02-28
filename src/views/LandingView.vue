@@ -125,32 +125,11 @@
 
           <div class="mt-8 border-t border-dashed border-green-500/30 pt-5">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div class="bg-black/50 border border-green-500/20 rounded p-2.5">
-                <div class="text-xs text-green-500/70 mb-1">CPU</div>
-                <div class="text-lg font-bold text-green-500 mb-1">98%</div>
+              <div v-for="(stat, index) in stats" :key="index" class="bg-black/50 border border-green-500/20 rounded p-2.5">
+                <div class="text-xs text-green-500/70 mb-1">{{ stat.name }}</div>
+                <div class="text-lg font-bold text-green-500 mb-1">{{ stat.value.toFixed(1) }}%</div>
                 <div class="h-1 bg-green-500/10 rounded overflow-hidden">
-                  <div class="stat-fill h-full" style="width: 98%"></div>
-                </div>
-              </div>
-              <div class="bg-black/50 border border-green-500/20 rounded p-2.5">
-                <div class="text-xs text-green-500/70 mb-1">MEMORY</div>
-                <div class="text-lg font-bold text-green-500 mb-1">86%</div>
-                <div class="h-1 bg-green-500/10 rounded overflow-hidden">
-                  <div class="stat-fill h-full" style="width: 86%"></div>
-                </div>
-              </div>
-              <div class="bg-black/50 border border-green-500/20 rounded p-2.5">
-                <div class="text-xs text-green-500/70 mb-1">NETWORK</div>
-                <div class="text-lg font-bold text-green-500 mb-1">72%</div>
-                <div class="h-1 bg-green-500/10 rounded overflow-hidden">
-                  <div class="stat-fill h-full" style="width: 72%"></div>
-                </div>
-              </div>
-              <div class="bg-black/50 border border-green-500/20 rounded p-2.5">
-                <div class="text-xs text-green-500/70 mb-1">SECURITY</div>
-                <div class="text-lg font-bold text-green-500 mb-1">100%</div>
-                <div class="h-1 bg-green-500/10 rounded overflow-hidden">
-                  <div class="stat-fill h-full" style="width: 100%"></div>
+                  <div class="stat-fill h-full" :style="{ width: `${stat.value}%` }"></div>
                 </div>
               </div>
             </div>
@@ -254,6 +233,13 @@ const panels = ref([
   }
 ])
 
+const stats = ref([
+  { name: 'CPU', value: 98 },
+  { name: 'MEMORY', value: 86 },
+  { name: 'NETWORK', value: 72 },
+  { name: 'SECURITY', value: 100 },
+])
+
 const initMatrix = () => {
   const canvas = matrix.value
   const ctx = canvas.getContext('2d')
@@ -307,6 +293,14 @@ const setPassword = () => {
   }
 }
 
+const updateStats = () => {
+  stats.value.forEach((stat, index) => {
+    if (index === 3) return; // Keep SECURITY at 100%
+    const change = (Math.random() - 0.5) * 2 // Random value between -1 and 1
+    stat.value = Math.max(0, Math.min(100, stat.value + change))
+  })
+}
+
 onMounted(() => {
   const cleanup = initMatrix()
   
@@ -328,7 +322,7 @@ onMounted(() => {
     
     const loadingInterval = setInterval(() => {
       if (loadingProgress.value < 100) {
-        loadingProgress.value += 1.5
+        loadingProgress.value += 2.5
       } else {
         clearInterval(loadingInterval)
         panelsLoaded.value = true
@@ -337,7 +331,7 @@ onMounted(() => {
     
     onUnmounted(() => {
       cleanup()
-      if (loadingInterval) clearInterval(loadingInterval)
+      clearInterval(loadingInterval)
     })
   }, 4000)
 
@@ -348,6 +342,14 @@ onMounted(() => {
   if (inviteToken) {
     handleInviteToken(inviteToken)
   }
+
+  const statUpdateInterval = setInterval(updateStats, 100) // Update every 100ms for smooth animation
+
+  onUnmounted(() => {
+    cleanup()
+    clearInterval(loadingInterval)
+    clearInterval(statUpdateInterval)
+  })
 })
 </script>
 
@@ -486,7 +488,7 @@ onMounted(() => {
 
 .stat-fill {
   background: #0F0;
-  animation: pulse 2s infinite;
+  transition: width 0.1s ease-in-out;
 }
 
 .hacking-animation {
