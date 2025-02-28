@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-black overflow-hidden relative">
     <canvas ref="matrix" class="fixed inset-0 opacity-20"></canvas>
-    <div class="fixed inset-0 pointer-events-none glitch-overlay"></div>
+    <div class="fixed inset-0 pointer-events-none"></div>
 
     <div 
       v-if="showInitialAnimation" 
@@ -52,7 +52,20 @@
             <div class="loading-bar" :style="{ width: `${loadingProgress}%` }"></div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div v-if="loadingProgress < 100" class="hacking-animation">
+            <div class="code-scroll">
+              <pre v-for="(line, index) in codeLines" :key="index" :style="{ animationDelay: `${index * 0.1}s` }">{{ line }}</pre>
+            </div>
+            <div class="access-messages">
+              <div v-for="(message, index) in accessMessages" :key="index" 
+                   :class="{ 'message-appear': loadingProgress >= (index + 1) * 20 }"
+                   :style="{ animationDelay: `${index * 0.2}s` }">
+                {{ message }}
+              </div>
+            </div>
+          </div>
+
+          <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <div>
                 <div 
@@ -167,7 +180,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import netlifyIdentity from 'netlify-identity-widget'
 import EncryptingText from '@/components/EncryptingText.vue'
@@ -183,6 +196,30 @@ const password = ref('')
 const animationComplete = ref(false)
 const showInitialAnimation = ref(true)
 const fadeOutAnimation = ref(false)
+
+const codeLines = ref([
+  "function hack() {",
+  "  const target = 'mainframe';",
+  "  const method = 'bruteforce';",
+  "  return compromise(target, method);",
+  "}",
+  "async function compromise(t, m) {",
+  "  const result = await exploit(t, m);",
+  "  return result.success;",
+  "}",
+  "// Initializing hack sequence...",
+  "hack().then(success => {",
+  "  if (success) console.log('Access granted');",
+  "});",
+])
+
+const accessMessages = ref([
+  "BYPASSING FIREWALL...",
+  "CRACKING ENCRYPTION...",
+  "INJECTING PAYLOAD...",
+  "ESCALATING PRIVILEGES...",
+  "ACCESS GRANTED"
+])
 
 const panels = ref([
   { 
@@ -291,7 +328,7 @@ onMounted(() => {
     
     const loadingInterval = setInterval(() => {
       if (loadingProgress.value < 100) {
-        loadingProgress.value += 2.5
+        loadingProgress.value += 1.5
       } else {
         clearInterval(loadingInterval)
         panelsLoaded.value = true
@@ -452,6 +489,53 @@ onMounted(() => {
   animation: pulse 2s infinite;
 }
 
+.hacking-animation {
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+}
+
+.code-scroll {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.code-scroll pre {
+  color: #0F0;
+  font-size: 12px;
+  margin: 0;
+  white-space: pre-wrap;
+  animation: scrollUp 10s linear infinite;
+  opacity: 0;
+}
+
+.access-messages {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.access-messages div {
+  color: #0F0;
+  font-size: 18px;
+  font-weight: bold;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.3s ease;
+}
+
+.access-messages div.message-appear {
+  opacity: 1;
+  transform: scale(1);
+}
+
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }
@@ -483,6 +567,35 @@ onMounted(() => {
   }
   100% {
     transform: translateX(100%);
+  }
+}
+
+@keyframes scrollUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes glitchEffect {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.1;
   }
 }
 </style>
