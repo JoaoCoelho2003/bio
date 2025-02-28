@@ -1,12 +1,12 @@
-import { createRouter, createWebHistory } from "vue-router"
-import LandingView from "../views/LandingView.vue"
-import HomeView from "../views/HomeView.vue"
-import SkillsView from "../views/SkillsView.vue"
-import ProjectsView from "../views/ProjectsView.vue"
-import ContactView from "../views/ContactView.vue"
-import BlogView from "../views/BlogView.vue"
-import BlogPostView from "../views/BlogPostView.vue"
-import NotFound from "../views/NotFound.vue"
+import { createRouter, createWebHistory } from "vue-router";
+import LandingView from "../views/LandingView.vue";
+import HomeView from "../views/HomeView.vue";
+import SkillsView from "../views/SkillsView.vue";
+import ProjectsView from "../views/ProjectsView.vue";
+import ContactView from "../views/ContactView.vue";
+import BlogView from "../views/BlogView.vue";
+import BlogPostView from "../views/BlogPostView.vue";
+import NotFound from "../views/NotFound.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -52,6 +52,6 @@ const router = createRouter({
       component: NotFound,
     },
   ],
-})
+});
 
-export default router
+export default router;

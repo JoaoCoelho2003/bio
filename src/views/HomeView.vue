@@ -1,63 +1,80 @@
 <template>
   <div class="min-h-screen bg-black pt-16">
     <CyberHeader />
-    
+
     <canvas ref="matrix" class="fixed inset-0 opacity-10"></canvas>
 
     <div class="container mx-auto px-4 py-12">
       <div class="relative z-10 max-w-4xl mx-auto">
-        <div class="cyber-card bg-black/80 border border-green-500/30 rounded-lg p-4 sm:p-8 backdrop-blur-sm shadow-lg shadow-green-500/10 relative overflow-hidden">
+        <div
+          class="cyber-card bg-black/80 border border-green-500/30 rounded-lg p-4 sm:p-8 backdrop-blur-sm shadow-lg shadow-green-500/10 relative overflow-hidden"
+        >
           <div class="grid md:grid-cols-2 gap-8 items-center">
             <div class="relative group">
-              <div class="absolute -inset-1 bg-gradient-to-r from-green-500 to-cyan-500 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+              <div
+                class="absolute -inset-1 bg-gradient-to-r from-green-500 to-cyan-500 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000"
+              ></div>
               <div class="relative">
-                <img 
-                  src="/profileHD.png" 
+                <img
+                  src="/profileHD.png"
                   class="rounded-lg w-full object-cover border-2 border-green-500/50"
                   alt="Profile"
-                >
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-lg"></div>
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-lg"
+                ></div>
               </div>
             </div>
 
             <div class="space-y-4 sm:space-y-6">
               <div>
-                <h1 class="text-3xl sm:text-4xl font-bold text-green-500 mb-2 glitch-text" data-text="João Coelho">
+                <h1
+                  class="text-3xl sm:text-4xl font-bold text-green-500 mb-2 glitch-text"
+                  data-text="João Coelho"
+                >
                   <EncryptingText text="João Coelho" />
                 </h1>
                 <div class="h-8">
-                  <TypingAnimation 
-                    :texts="['Programmer', 'Full Stack Developer']" 
-                    :speed="60" 
+                  <TypingAnimation
+                    :texts="['Programmer', 'Full Stack Developer']"
+                    :speed="60"
                     class="text-lg sm:text-xl text-green-400"
                   />
                 </div>
               </div>
 
               <p class="text-sm sm:text-base text-gray-400 leading-relaxed">
-                I am a first-year Master's student in Software Engineering at the University of Minho. 
-                My journey through computer science has equipped me with expertise in various domains, 
-                from Algorithms to AI. I'm also proud to contribute to CoderDojo, nurturing future programmers.
+                I am a first-year Master's student in Software Engineering at
+                the University of Minho. My journey through computer science has
+                equipped me with expertise in various domains, from Algorithms
+                to AI. I'm also proud to contribute to CoderDojo, nurturing
+                future programmers.
               </p>
 
               <div class="flex flex-wrap gap-4">
-                <a href="https://github.com/JoaoCoelho2003" 
-                   target="_blank"
-                   class="inline-flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 border border-green-500/30 text-green-500 rounded hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 text-sm sm:text-base">
+                <a
+                  href="https://github.com/JoaoCoelho2003"
+                  target="_blank"
+                  class="inline-flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 border border-green-500/30 text-green-500 rounded hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 text-sm sm:text-base"
+                >
                   <i class="bi bi-github"></i>
                   <span>GitHub</span>
                 </a>
-                <a href="https://www.linkedin.com/in/joaocoelho03/" 
-                   target="_blank"
-                   class="inline-flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 border border-green-500/30 text-green-500 rounded hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 text-sm sm:text-base">
+                <a
+                  href="https://www.linkedin.com/in/joaocoelho03/"
+                  target="_blank"
+                  class="inline-flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 border border-green-500/30 text-green-500 rounded hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 text-sm sm:text-base"
+                >
                   <i class="bi bi-linkedin"></i>
                   <span>LinkedIn</span>
                 </a>
               </div>
 
-              <a href="/joaoCoelhoResume.pdf" 
-                 download 
-                 class="inline-flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 bg-green-500 text-black rounded hover:bg-green-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 text-sm sm:text-base">
+              <a
+                href="/joaoCoelhoResume.pdf"
+                download
+                class="inline-flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 bg-green-500 text-black rounded hover:bg-green-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 text-sm sm:text-base"
+              >
                 <i class="bi bi-file-earmark-text mr-2"></i>
                 <span>Download Resume</span>
               </a>
@@ -67,64 +84,114 @@
 
         <div class="space-y-12 mt-12">
           <div class="cyber-section">
-            <h2 class="text-2xl sm:text-3xl font-bold text-green-500 mb-6 flex items-center">
+            <h2
+              class="text-2xl sm:text-3xl font-bold text-green-500 mb-6 flex items-center"
+            >
               <i class="bi bi-cpu mr-3"></i>
               Education
             </h2>
             <div class="space-y-8">
               <div class="cyber-item relative pl-8 pb-8">
                 <div class="cyber-dot"></div>
-                <h3 class="text-lg sm:text-xl font-semibold text-green-400 mb-2">Master's in Software Engineering</h3>
-                <p class="text-sm sm:text-base text-gray-400">University of Minho</p>
-                <p class="text-xs sm:text-sm text-green-500/70 mt-1">Set. 2024 - Present</p>
+                <h3
+                  class="text-lg sm:text-xl font-semibold text-green-400 mb-2"
+                >
+                  Master's in Software Engineering
+                </h3>
+                <p class="text-sm sm:text-base text-gray-400">
+                  University of Minho
+                </p>
+                <p class="text-xs sm:text-sm text-green-500/70 mt-1">
+                  Set. 2024 - Present
+                </p>
               </div>
               <div class="cyber-item relative pl-8">
                 <div class="cyber-dot"></div>
-                <h3 class="text-lg sm:text-xl font-semibold text-green-400 mb-2">Bachelor of Software Engineering</h3>
-                <p class="text-sm sm:text-base text-gray-400">University of Minho</p>
-                <p class="text-xs sm:text-sm text-green-500/70 mt-1">Set. 2021 - Jul. 2024</p>
+                <h3
+                  class="text-lg sm:text-xl font-semibold text-green-400 mb-2"
+                >
+                  Bachelor of Software Engineering
+                </h3>
+                <p class="text-sm sm:text-base text-gray-400">
+                  University of Minho
+                </p>
+                <p class="text-xs sm:text-sm text-green-500/70 mt-1">
+                  Set. 2021 - Jul. 2024
+                </p>
               </div>
             </div>
           </div>
 
           <div class="cyber-section">
-            <h2 class="text-2xl sm:text-3xl font-bold text-green-500 mb-6 flex items-center">
+            <h2
+              class="text-2xl sm:text-3xl font-bold text-green-500 mb-6 flex items-center"
+            >
               <i class="bi bi-terminal mr-3"></i>
               Experience
             </h2>
             <div class="space-y-8">
               <div class="cyber-item relative pl-8 pb-8">
                 <div class="cyber-dot"></div>
-                <h3 class="text-lg sm:text-xl font-semibold text-green-400 mb-2">Software Engineer Intern</h3>
+                <h3
+                  class="text-lg sm:text-xl font-semibold text-green-400 mb-2"
+                >
+                  Software Engineer Intern
+                </h3>
                 <p class="text-sm sm:text-base text-gray-400">
-                  <a href="https://www.yarilabs.com/" target="_blank" class="inline-flex items-center space-x-2 hover:text-green-500 transition-all duration-300">
-                  Yari Labs
-                  <i class="bi bi-box-arrow-up-right ml-2"></i>
+                  <a
+                    href="https://www.yarilabs.com/"
+                    target="_blank"
+                    class="inline-flex items-center space-x-2 hover:text-green-500 transition-all duration-300"
+                  >
+                    Yari Labs
+                    <i class="bi bi-box-arrow-up-right ml-2"></i>
                   </a>
                 </p>
-                <p class="text-xs sm:text-sm text-green-500/70 mt-1">Jun. 2024 - Jul. 2024 | Braga, PT</p>
+                <p class="text-xs sm:text-sm text-green-500/70 mt-1">
+                  Jun. 2024 - Jul. 2024 | Braga, PT
+                </p>
               </div>
               <div class="cyber-item relative pl-8 pb-8">
                 <div class="cyber-dot"></div>
-                <h3 class="text-lg sm:text-xl font-semibold text-green-400 mb-2">Python Mentor</h3>
+                <h3
+                  class="text-lg sm:text-xl font-semibold text-green-400 mb-2"
+                >
+                  Python Mentor
+                </h3>
                 <p class="text-sm sm:text-base text-gray-400">
-                  <a href="https://coderdojobraga.org/" target="_blank" class="inline-flex items-center space-x-2 hover:text-green-500 transition-all duration-300">
+                  <a
+                    href="https://coderdojobraga.org/"
+                    target="_blank"
+                    class="inline-flex items-center space-x-2 hover:text-green-500 transition-all duration-300"
+                  >
                     CoderDojo
                     <i class="bi bi-box-arrow-up-right ml-2"></i>
                   </a>
                 </p>
-                <p class="text-xs sm:text-sm text-green-500/70 mt-1">Mar. 2024 - Present | Braga, PT</p>
+                <p class="text-xs sm:text-sm text-green-500/70 mt-1">
+                  Mar. 2024 - Present | Braga, PT
+                </p>
               </div>
               <div class="cyber-item relative pl-8">
                 <div class="cyber-dot"></div>
-                <h3 class="text-lg sm:text-xl font-semibold text-green-400 mb-2">CAOS Collaborator</h3>
+                <h3
+                  class="text-lg sm:text-xl font-semibold text-green-400 mb-2"
+                >
+                  CAOS Collaborator
+                </h3>
                 <p class="text-sm sm:text-base text-gray-400">
-                  <a href="https://cesium.di.uminho.pt/" target="_blank" class="inline-flex items-center space-x-2 hover:text-green-500 transition-all duration-300">
-                  Cesium
-                  <i class="bi bi-box-arrow-up-right ml-2"></i>
+                  <a
+                    href="https://cesium.di.uminho.pt/"
+                    target="_blank"
+                    class="inline-flex items-center space-x-2 hover:text-green-500 transition-all duration-300"
+                  >
+                    Cesium
+                    <i class="bi bi-box-arrow-up-right ml-2"></i>
                   </a>
                 </p>
-                <p class="text-xs sm:text-sm text-green-500/70 mt-1">Mar. 2024 - Present | Braga, PT</p>
+                <p class="text-xs sm:text-sm text-green-500/70 mt-1">
+                  Mar. 2024 - Present | Braga, PT
+                </p>
               </div>
             </div>
           </div>
@@ -135,63 +202,63 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import CyberHeader from '@/components/CyberHeader.vue'
-import TypingAnimation from '@/components/TypingAnimation.vue'
-import EncryptingText from '@/components/EncryptingText.vue'
+import { ref, onMounted, onUnmounted } from "vue";
+import CyberHeader from "@/components/CyberHeader.vue";
+import TypingAnimation from "@/components/TypingAnimation.vue";
+import EncryptingText from "@/components/EncryptingText.vue";
 
-const matrix = ref(null)
+const matrix = ref(null);
 
 const initMatrix = () => {
-  const canvas = matrix.value
-  const ctx = canvas.getContext('2d')
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
+  const canvas = matrix.value;
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-  const chars = 'ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ'
-  const columns = canvas.width / 20
-  const drops = Array(Math.floor(columns)).fill(1)
+  const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ";
+  const columns = canvas.width / 20;
+  const drops = Array(Math.floor(columns)).fill(1);
 
   function draw() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-    
-    ctx.fillStyle = '#0F0'
-    ctx.font = '15px monospace'
-    
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#0F0";
+    ctx.font = "15px monospace";
+
     for (let i = 0; i < drops.length; i++) {
-      const text = chars[Math.floor(Math.random() * chars.length)]
-      ctx.fillText(text, i * 20, drops[i] * 20)
-      
+      const text = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillText(text, i * 20, drops[i] * 20);
+
       if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0
+        drops[i] = 0;
       }
-      drops[i]++
+      drops[i]++;
     }
   }
 
-  const interval = setInterval(draw, 33)
-  return () => clearInterval(interval)
-}
+  const interval = setInterval(draw, 33);
+  return () => clearInterval(interval);
+};
 
 onMounted(() => {
-  const cleanup = initMatrix()
-  window.addEventListener('resize', () => {
+  const cleanup = initMatrix();
+  window.addEventListener("resize", () => {
     if (matrix.value) {
-      matrix.value.width = window.innerWidth
-      matrix.value.height = window.innerHeight
+      matrix.value.width = window.innerWidth;
+      matrix.value.height = window.innerHeight;
     }
-  })
+  });
   onUnmounted(() => {
-    cleanup()
-    window.removeEventListener('resize', () => {})
-  })
-})
+    cleanup();
+    window.removeEventListener("resize", () => {});
+  });
+});
 </script>
 
 <style scoped>
 .cyber-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -215,7 +282,7 @@ onMounted(() => {
 }
 
 .cyber-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -236,7 +303,7 @@ onMounted(() => {
 }
 
 .cyber-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 6px;
   top: 0;
@@ -286,11 +353,11 @@ onMounted(() => {
   .cyber-item {
     padding-left: 24px;
   }
-  
+
   .cyber-item::before {
     left: 4px;
   }
-  
+
   .cyber-dot {
     width: 10px;
     height: 10px;
