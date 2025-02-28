@@ -6,20 +6,20 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted } from "vue";
 
 const props = defineProps({
   texts: {
     type: Array,
-    required: true
+    required: true,
   },
   speed: {
     type: Number,
-    default: 100
-  }
+    default: 100,
+  },
 });
 
-const displayText = ref('');
+const displayText = ref("");
 let currentIndex = 0;
 let charIndex = 0;
 let timer;
@@ -60,8 +60,14 @@ onUnmounted(() => {
 }
 
 @keyframes blink {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 </style>

@@ -1,28 +1,42 @@
 <template>
-  <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-green-500/30">
+  <header
+    class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-green-500/30"
+  >
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-between h-16">
         <router-link to="/" class="flex items-center space-x-2 group">
-          <div class="w-8 h-8 border-2 border-green-500 rounded flex items-center justify-center
-                      group-hover:border-green-400 transition-colors duration-300">
-            <i class="bi bi-terminal-fill text-green-500 group-hover:text-green-400"></i>
+          <div
+            class="w-8 h-8 border-2 border-green-500 rounded flex items-center justify-center group-hover:border-green-400 transition-colors duration-300"
+          >
+            <i
+              class="bi bi-terminal-fill text-green-500 group-hover:text-green-400"
+            ></i>
           </div>
-          <span class="text-green-500 font-mono text-lg group-hover:text-green-400">&lt;JC /&gt;</span>
+          <span
+            class="text-green-500 font-mono text-lg group-hover:text-green-400"
+            >&lt;JC /&gt;</span
+          >
         </router-link>
 
         <nav class="hidden md:flex space-x-6">
-          <router-link v-for="item in menuItems" 
-                       :key="item.path"
-                       :to="item.path"
-                       class="relative cyber-link">
-            <span class="text-green-500 hover:text-green-400 transition-colors duration-300">
+          <router-link
+            v-for="item in menuItems"
+            :key="item.path"
+            :to="item.path"
+            class="relative cyber-link"
+          >
+            <span
+              class="text-green-500 hover:text-green-400 transition-colors duration-300"
+            >
               {{ item.name }}
             </span>
           </router-link>
         </nav>
 
-        <button @click="isMenuOpen = !isMenuOpen" 
-                class="md:hidden text-green-500 hover:text-green-400 focus:outline-none">
+        <button
+          @click="isMenuOpen = !isMenuOpen"
+          class="md:hidden text-green-500 hover:text-green-400 focus:outline-none"
+        >
           <i class="bi" :class="isMenuOpen ? 'bi-x-lg' : 'bi-list'"></i>
         </button>
       </div>
@@ -36,7 +50,10 @@
       leave-from-class="transform translate-y-0 opacity-100"
       leave-to-class="transform -translate-y-full opacity-0"
     >
-      <div v-if="isMenuOpen" class="md:hidden bg-black/95 border-b border-green-500/30">
+      <div
+        v-if="isMenuOpen"
+        class="md:hidden bg-black/95 border-b border-green-500/30"
+      >
         <div class="px-4 py-2 space-y-2">
           <router-link
             v-for="item in menuItems"
@@ -54,22 +71,22 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const isMenuOpen = ref(false)
+const isMenuOpen = ref(false);
 
 const menuItems = [
-  { name: 'Home', path: '/home' },
-  { name: 'Skills', path: '/skills' },
-  { name: 'Projects', path: '/projects' },
-  { name: 'Blog', path: '/blog' },
-  { name: 'Contact', path: '/contact' }
-]
+  { name: "Home", path: "/home" },
+  { name: "Skills", path: "/skills" },
+  { name: "Projects", path: "/projects" },
+  { name: "Blog", path: "/blog" },
+  { name: "Contact", path: "/contact" },
+];
 </script>
 
 <style scoped>
 .cyber-link::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -90,4 +107,4 @@ const menuItems = [
 .router-link-active::before {
   width: 100%;
 }
-</style>  
+</style>
