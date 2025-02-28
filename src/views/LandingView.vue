@@ -295,8 +295,8 @@ const setPassword = () => {
 
 const updateStats = () => {
   stats.value.forEach((stat, index) => {
-    if (index === 3) return; // Keep SECURITY at 100%
-    const change = (Math.random() - 0.5) * 2 // Random value between -1 and 1
+    if (index === 3) return;
+    const change = (Math.random() - 0.5) * 2
     stat.value = Math.max(0, Math.min(100, stat.value + change))
   })
 }
@@ -343,7 +343,7 @@ onMounted(() => {
     handleInviteToken(inviteToken)
   }
 
-  const statUpdateInterval = setInterval(updateStats, 100) // Update every 100ms for smooth animation
+  const statUpdateInterval = setInterval(updateStats, 100)
 
   onUnmounted(() => {
     cleanup()
