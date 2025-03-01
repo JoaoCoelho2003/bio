@@ -10,16 +10,17 @@
 
 <script setup>
 import { RouterView } from "vue-router";
-import { useHead } from '@vueuse/head';
+import { useHead } from "@vueuse/head";
 
 useHead({
-  title: 'João Coelho - Software Engineer',
+  title: "João Coelho - Software Engineer",
   meta: [
     {
-      name: 'description',
-      content: 'Welcome to João Coelho’s personal website. Explore projects, skills, and blog posts about software development and technology.'
-    }
-  ]
+      name: "description",
+      content:
+        "Welcome to João Coelho’s personal website. Explore projects, skills, and blog posts about software development and technology.",
+    },
+  ],
 });
 </script>
 
