@@ -117,6 +117,8 @@ import { XIcon, LinkedinIcon, FacebookIcon } from "lucide-vue-next";
 import CyberHeader from "@/components/CyberHeader.vue";
 import dayjs from "dayjs";
 import MarkdownIt from "markdown-it";
+import { useHead } from "@vueuse/head";
+
 const md = new MarkdownIt();
 
 const route = useRoute();
@@ -143,6 +145,16 @@ const fetchPost = async () => {
       tags: data.tags || [],
       category: data.category || "Uncategorized",
     };
+
+    useHead({
+      title: post.value.title,
+      meta: [
+        {
+          name: "description",
+          content: post.value.excerpt || "Read this amazing blog post.",
+        },
+      ],
+    });
   } catch (error) {
     console.error("Error fetching post:", error);
     router.push("/blog");
