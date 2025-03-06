@@ -110,6 +110,18 @@ import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 import CyberHeader from "@/components/CyberHeader.vue";
 import EncryptingText from "@/components/EncryptingText.vue";
+import { useHead } from "@vueuse/head";
+
+useHead({
+  title: "João Coelho - Welcome to My Blog",
+  meta: [
+    {
+      name: "description",
+      content: "Read insightful blog posts about software engineering, AI, and modern development trends.",
+    },
+  ],
+});
+
 
 const route = useRoute();
 const matrix = ref(null);

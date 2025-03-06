@@ -206,6 +206,17 @@ import { ref, onMounted, onUnmounted } from "vue";
 import CyberHeader from "@/components/CyberHeader.vue";
 import TypingAnimation from "@/components/TypingAnimation.vue";
 import EncryptingText from "@/components/EncryptingText.vue";
+import { useHead } from "@vueuse/head";
+
+useHead({
+  title: "João Coelho - About Me",
+  meta: [
+    {
+      name: "description",
+      content: "Learn more about João Coelho, his experience, resume, and journey in software engineering.",
+    },
+  ],
+});
 
 const matrix = ref(null);
 
