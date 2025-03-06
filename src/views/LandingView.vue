@@ -227,6 +227,17 @@ import { ref, onMounted, onUnmounted, computed } from "vue";
 import { useRouter } from "vue-router";
 import netlifyIdentity from "netlify-identity-widget";
 import EncryptingText from "@/components/EncryptingText.vue";
+import { useHead } from "@vueuse/head";
+
+useHead({
+  title: "João Coelho",
+  meta: [
+    {
+      name: "description",
+      content: "Explore the digital portfolio of João Coelho, showcasing skills, projects, and insights in software development.",
+    },
+  ],
+});
 
 const router = useRouter();
 const matrix = ref(null);

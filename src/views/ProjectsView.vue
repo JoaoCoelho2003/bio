@@ -93,6 +93,17 @@ import { ref, onMounted, onUnmounted } from "vue";
 import CyberHeader from "@/components/CyberHeader.vue";
 import EncryptingText from "@/components/EncryptingText.vue";
 import ProjectModal from "@/components/ProjectModal.vue";
+import { useHead } from "@vueuse/head";
+
+useHead({
+  title: "João Coelho - Projects",
+  meta: [
+    {
+      name: "description",
+      content: "Discover João Coelho's diverse portfolio of software engineering projects, featuring full stack development, blockchain, 3D rendering, image management, and more.",
+    },
+  ],
+});
 
 const matrix = ref(null);
 const showModal = ref(false);

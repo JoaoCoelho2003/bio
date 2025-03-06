@@ -118,6 +118,17 @@ import { ref, onMounted, onUnmounted } from "vue";
 import emailjs from "emailjs-com";
 import CyberHeader from "@/components/CyberHeader.vue";
 import EncryptingText from "@/components/EncryptingText.vue";
+import { useHead } from "@vueuse/head";
+
+useHead({
+  title: "João Coelho - Contact",
+  meta: [
+    {
+      name: "description",
+      content: "Get in touch with João Coelho for collaboration, job opportunities, or tech discussions.",
+    },
+  ],
+});
 
 const matrix = ref(null);
 

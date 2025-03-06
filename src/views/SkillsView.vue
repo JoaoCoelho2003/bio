@@ -77,6 +77,17 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import CyberHeader from "@/components/CyberHeader.vue";
 import EncryptingText from "@/components/EncryptingText.vue";
+import { useHead } from "@vueuse/head";
+
+useHead({
+  title: "João Coelho - Skills",
+  meta: [
+    {
+      name: "description",
+      content: "Discover João Coelho's skills in programming, including frontend and backend development, as well as DevOps and various tools.",
+    },
+  ],
+});
 
 const matrix = ref(null);
 
