@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://joaocoelho.xyz/</loc>
+        <loc>https://joaocoelho.dev/</loc>
         <priority>1.0</priority>
         <changefreq>weekly</changefreq>
         <lastmod>2025-03-01</lastmod>
     </url>
     <url>
-        <loc>https://joaocoelho.xyz/home</loc>
+        <loc>https://joaocoelho.dev/home</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
         <lastmod>2025-02-25</lastmod>
     </url>
     <url>
-        <loc>https://joaocoelho.xyz/projects</loc>
+        <loc>https://joaocoelho.dev/projects</loc>
         <priority>0.8</priority>
         <changefreq>monthly</changefreq>
         <lastmod>2025-02-20</lastmod>
     </url>
     <url>
-        <loc>https://joaocoelho.xyz/skills</loc>
+        <loc>https://joaocoelho.dev/skills</loc>
         <priority>0.8</priority>
         <changefreq>monthly</changefreq>
         <lastmod>2025-02-15</lastmod>
     </url>
     <url>
-        <loc>https://joaocoelho.xyz/blog</loc>
+        <loc>https://joaocoelho.dev/blog</loc>
         <priority>0.7</priority>
         <changefreq>weekly</changefreq>
         <lastmod>2025-02-27</lastmod>
     </url>
     <url>
-        <loc>https://joaocoelho.xyz/contact</loc>
+        <loc>https://joaocoelho.dev/contact</loc>
         <priority>0.6</priority>
         <changefreq>yearly</changefreq>
         <lastmod>2025-01-01</lastmod>
