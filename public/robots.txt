@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /admin
 Allow: /
 
-Sitemap: https://joaocoelho.xyz/sitemap.xml
+Sitemap: https://joaocoelho.dev/sitemap.xml
