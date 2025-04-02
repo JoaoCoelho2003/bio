@@ -195,6 +195,58 @@
               </div>
             </div>
           </div>
+          <div class="cyber-section">
+            <h2
+              class="text-2xl sm:text-3xl font-bold text-green-500 mb-6 flex items-center"
+            >
+              <i class="bi bi-trophy mr-3"></i>
+              Awards & Achievements
+            </h2>
+            <div class="space-y-8">
+              <div class="cyber-item relative pl-8 pb-8">
+                <div class="cyber-dot"></div>
+                <h3
+                  class="text-lg sm:text-xl font-semibold text-green-400 mb-2"
+                >
+                  Overall Winner
+                </h3>
+                <p class="text-sm sm:text-base text-gray-400">
+                  <a
+                    href="https://bugsbyte.org/"
+                    target="_blank"
+                    class="inline-flex items-center space-x-2 hover:text-green-500 transition-all duration-300"
+                  >
+                    BugsByte Hackathon 2025
+                    <i class="bi bi-box-arrow-up-right ml-2"></i>
+                  </a>
+                </p>
+                <p class="text-xs sm:text-sm text-green-500/70 mt-1">
+                  Mar. 2025 | Braga, PT
+                </p>
+              </div>
+              <div class="cyber-item relative pl-8 pb-8">
+                <div class="cyber-dot"></div>
+                <h3
+                  class="text-lg sm:text-xl font-semibold text-green-400 mb-2"
+                >
+                  SingleStore Theme Prize Winner
+                </h3>
+                <p class="text-sm sm:text-base text-gray-400">
+                  <a
+                    href="https://bugsbyte.org/"
+                    target="_blank"
+                    class="inline-flex items-center space-x-2 hover:text-green-500 transition-all duration-300"
+                  >
+                    BugsByte Hackathon 2025
+                    <i class="bi bi-box-arrow-up-right ml-2"></i>
+                  </a>
+                </p>
+                <p class="text-xs sm:text-sm text-green-500/70 mt-1">
+                  Mar. 2025 | Braga, PT
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -213,7 +265,8 @@ useHead({
   meta: [
     {
       name: "description",
-      content: "Learn more about João Coelho, his experience, resume, and journey in software engineering.",
+      content:
+        "Learn more about João Coelho, his experience, resume, and journey in software engineering.",
     },
   ],
 });
