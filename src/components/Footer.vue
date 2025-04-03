@@ -14,7 +14,7 @@
       ></i>
       <span
         class="text-sm md:text-2xl md:font-light text-gray-200 sm:text-center dark:text-gray-300 ml-2 hover:underline"
-        >jhcoelho03@gmail.com</span
+        >me@joaocoelho.dev</span
       >
     </div>
     <div>

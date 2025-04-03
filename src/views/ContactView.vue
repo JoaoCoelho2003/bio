@@ -90,9 +90,9 @@
             <i class="bi bi-envelope text-4xl text-green-500 mb-4"></i>
             <h3 class="text-xl font-semibold text-green-400 mb-2">Email</h3>
             <a
-              href="mailto:jhcoelho03@gmail.com"
+              href="mailto:me@joaocoelho.dev"
               class="text-gray-400 hover:text-green-500 transition-colors"
-              >jhcoelho03@gmail.com</a
+              >me@joaocoelho.dev</a
             >
           </div>
           <div
@@ -125,7 +125,8 @@ useHead({
   meta: [
     {
       name: "description",
-      content: "Get in touch with João Coelho for collaboration, job opportunities, or tech discussions.",
+      content:
+        "Get in touch with João Coelho for collaboration, job opportunities, or tech discussions.",
     },
   ],
 });
