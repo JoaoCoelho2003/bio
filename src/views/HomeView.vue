@@ -16,7 +16,7 @@
               ></div>
               <div class="relative">
                 <img
-                  src="/profileHD.png"
+                  src="/profileHD.jpeg"
                   class="rounded-lg w-full object-cover border-2 border-green-500/50"
                   alt="Profile"
                 />
