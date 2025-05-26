@@ -93,25 +93,16 @@ const matrix = ref(null);
 
 const skills = ref([
   { name: "Python", icon: "devicon-python-plain colored", level: 95 },
-  { name: "JavaScript", icon: "devicon-javascript-plain colored", level: 95 },
-  { name: "TypeScript", icon: "devicon-typescript-plain colored", level: 95 },
-  { name: "Elixir", icon: "devicon-elixir-plain colored", level: 90 },
-  { name: "Phoenix", icon: "devicon-phoenix-plain colored", level: 90 },
+  { name: "JavaScript", icon: "devicon-javascript-plain colored", level: 90 },
+  { name: "TypeScript", icon: "devicon-typescript-plain colored", level: 90 },
+  { name: "Elixir", icon: "devicon-elixir-plain colored", level: 75 },
+  { name: "Phoenix", icon: "devicon-phoenix-plain colored", level: 75 },
   { name: "Vue.js", icon: "devicon-vuejs-plain colored", level: 90 },
-  { name: "Node.js", icon: "devicon-nodejs-plain colored", level: 85 },
-  { name: "Html5", icon: "devicon-html5-plain colored", level: 90 },
   { name: "Git", icon: "devicon-git-plain colored", level: 90 },
   { name: "Tailwindcss", icon: "devicon-tailwindcss-plain colored", level: 90 },
   { name: "MongoDB", icon: "devicon-mongodb-plain colored", level: 85 },
-  { name: "Css", icon: "devicon-css3-plain colored", level: 85 },
-  { name: "Express", icon: "devicon-express-original", level: 85 },
-  { name: "React", icon: "devicon-react-original colored", level: 80 },
-  { name: "Java", icon: "devicon-java-plain colored", level: 80 },
   { name: "PostgreSQL", icon: "devicon-postgresql-plain colored", level: 80 },
-  { name: "C++", icon: "devicon-cplusplus-plain colored", level: 75 },
-  { name: "C", icon: "devicon-c-plain colored", level: 75 },
   { name: "Docker", icon: "devicon-docker-plain colored", level: 75 },
-  { name: "Haskell", icon: "devicon-haskell-plain colored", level: 75 },
 ]);
 
 const categories = ref([
@@ -121,12 +112,10 @@ const categories = ref([
       "Creating responsive and interactive user interfaces with modern frameworks and tools.",
     technologies: [
       "Vue.js",
-      "React",
       "TypeScript",
-      "Tailwind CSS",
-      "HTML5",
-      "CSS",
       "JavaScript",
+      "Tailwind CSS",
+      "Phoenix",
     ],
   },
   {
@@ -135,16 +124,9 @@ const categories = ref([
       "Building robust server-side applications and APIs with various technologies.",
     technologies: [
       "Elixir",
-      "Phoenix",
-      "Node.js",
       "Python",
-      "C++",
-      "C",
-      "Java",
-      "Express",
       "MongoDB",
       "PostgreSQL",
-      "Haskell",
     ],
   },
   {
