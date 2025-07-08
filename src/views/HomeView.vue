@@ -105,11 +105,14 @@
       </div>
     </div>
   </div>
+
+  <CyberFooter />
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import CyberHeader from "@/components/CyberHeader.vue";
+import CyberFooter from "@/components/CyberFooter.vue";
 import TypingAnimation from "@/components/TypingAnimation.vue";
 import EncryptingText from "@/components/EncryptingText.vue";
 import TimelineSection from "@/components/TimelineSection.vue";

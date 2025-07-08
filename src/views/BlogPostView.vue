@@ -107,6 +107,8 @@
       </div>
     </main>
   </div>
+
+  <CyberFooter />
 </template>
 
 <script setup>
@@ -115,6 +117,7 @@ import { useRoute, useRouter } from "vue-router";
 import { CalendarIcon, FolderIcon } from "@heroicons/vue/24/outline";
 import { XIcon, LinkedinIcon, FacebookIcon } from "lucide-vue-next";
 import CyberHeader from "@/components/CyberHeader.vue";
+import CyberFooter from "@/components/CyberFooter.vue";
 import dayjs from "dayjs";
 import MarkdownIt from "markdown-it";
 import { useHead } from "@vueuse/head";
