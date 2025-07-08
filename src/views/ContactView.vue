@@ -111,12 +111,15 @@
       </div>
     </div>
   </div>
+
+  <CyberFooter />
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import emailjs from "emailjs-com";
 import CyberHeader from "@/components/CyberHeader.vue";
+import CyberFooter from "@/components/CyberFooter.vue";
 import EncryptingText from "@/components/EncryptingText.vue";
 import { useHead } from "@vueuse/head";
 
