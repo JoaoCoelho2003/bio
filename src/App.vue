@@ -2,10 +2,7 @@
   <div class="bg-black min-h-screen text-green-500 font-mono">
     <RouterView v-slot="{ Component }">
       <Transition name="fade" mode="out-in">
-        <div>
-          <component :is="Component" />
-          <CyberFooter />
-        </div>
+        <component :is="Component" />
       </Transition>
     </RouterView>
   </div>
@@ -13,7 +10,6 @@
 
 <script setup>
 import { RouterView } from "vue-router";
-import CyberFooter from "@/components/CyberFooter.vue";
 </script>
 
 <style>
