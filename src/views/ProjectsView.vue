@@ -8,7 +8,7 @@
       <div class="relative z-10 max-w-6xl mx-auto">
         <div class="text-center mb-12">
           <h1
-            class="text-4xl font-bold text-green-500 mb-4 glitch-text"
+            class="text-4xl font-bold text-green-500 mb-4"
             data-text="Digital Creations"
           >
             <EncryptingText text="Digital Creations" />
