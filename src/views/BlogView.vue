@@ -8,7 +8,7 @@
       <div class="relative z-10 max-w-6xl mx-auto">
         <div class="text-center mb-12">
           <h1
-            class="text-4xl font-bold text-green-500 mb-4 glitch-text"
+            class="text-4xl font-bold text-green-500 mb-4"
             data-text="Cyber Chronicles"
           >
             <EncryptingText text="Cyber Chronicles" />
@@ -228,36 +228,6 @@ const initMatrix = () => {
 </script>
 
 <style scoped>
-.glitch-text {
-  position: relative;
-  animation: glitch 1s linear infinite;
-}
-
-.glitch-text::before,
-.glitch-text::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.glitch-text::before {
-  left: 2px;
-  text-shadow: -2px 0 #ff00c1;
-  clip: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim 5s infinite linear alternate-reverse;
-}
-
-.glitch-text::after {
-  left: -2px;
-  text-shadow:
-    -2px 0 #00fff9,
-    2px 2px #ff00c1;
-  animation: glitch-anim2 1s infinite linear alternate-reverse;
-}
-
 @keyframes glitch {
   2%,
   64% {
