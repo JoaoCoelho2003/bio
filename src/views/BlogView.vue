@@ -133,15 +133,13 @@ const selectedCategory = ref("");
 const sortOrder = ref("newest");
 
 const posts = ref([]);
-const categories = [
-  "Technology",
-  "Programming",
-  "Cybersecurity",
-  "AI",
-  "Web Development",
-  "General",
-  "Announcements",
-];
+const categories = computed(() => {
+  const set = new Set();
+  for (const post of posts.value) {
+    if (post?.category) set.add(post.category);
+  }
+  return Array.from(set).sort((a, b) => a.localeCompare(b));
+});
 const isLoading = ref(true);
 
 const fetchPosts = async () => {

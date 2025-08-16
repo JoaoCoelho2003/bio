@@ -15,6 +15,6 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
-      - {label: "Category", name: "category", widget: "select", options: ["Technology", "Programming", "Cybersecurity", "AI", "Web Development", "General", "Introduction", "Announcements"]}
+      - {label: "Category", name: "category", widget: "select", options: ["AI", "Machine Learning", "Deep Learning", "Python", "Web Development", "Data Science", "General", "Announcements"]}
       - {label: "Tags", name: "tags", widget: "list"}
       - {label: "Body", name: "body", widget: "markdown"}
