@@ -35,6 +35,7 @@ export const handler = async () => {
           date: data.date || new Date().toISOString(),
           thumbnail: data.thumbnail || '/profileHD.jpeg',
           category: data.category || 'Uncategorized',
+          tags: Array.isArray(data.tags) ? data.tags : (data.tags ? [data.tags] : []),
           excerpt,
           body,
         };
