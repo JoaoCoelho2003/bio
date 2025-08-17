@@ -7,10 +7,7 @@
     <div class="container mx-auto px-4 py-12">
       <div class="relative z-10 max-w-6xl mx-auto">
         <div class="text-center mb-12">
-          <h1
-            class="text-4xl font-bold text-green-500 mb-4"
-            data-text="Cyber Chronicles"
-          >
+          <h1 class="text-4xl font-bold text-green-500 mb-4">
             <EncryptingText text="Cyber Chronicles" />
           </h1>
           <p class="text-gray-400 max-w-2xl mx-auto">
@@ -20,39 +17,18 @@
         </div>
 
         <div class="mb-8">
-          <input
-            v-model="searchQuery"
-            type="text"
-            placeholder="Search the matrix..."
-            class="w-full px-4 py-2 bg-gray-900 text-green-500 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+          <BlogFilters
+            :posts="posts"
+            :search-query="searchQuery"
+            :selected-category="selectedCategory"
+            :selected-tag="selectedTag"
+            :sort-order="sortOrder"
+            :filtered-count="filteredAndSortedPosts.length"
+            @update:search-query="searchQuery = $event"
+            @update:selected-category="selectedCategory = $event"
+            @update:selected-tag="selectedTag = $event"
+            @update:sort-order="sortOrder = $event"
           />
-        </div>
-
-        <div class="flex flex-wrap justify-between mb-8">
-          <div class="w-full md:w-auto mb-4 md:mb-0">
-            <select
-              v-model="selectedCategory"
-              class="px-4 py-2 bg-gray-900 text-green-500 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-            >
-              <option value="">All Categories</option>
-              <option
-                v-for="category in categories"
-                :key="category"
-                :value="category"
-              >
-                {{ category }}
-              </option>
-            </select>
-          </div>
-          <div class="w-full md:w-auto">
-            <select
-              v-model="sortOrder"
-              class="px-4 py-2 bg-gray-900 text-green-500 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-            >
-              <option value="newest">Newest First</option>
-              <option value="oldest">Oldest First</option>
-            </select>
-          </div>
         </div>
 
         <div
@@ -64,6 +40,19 @@
               class="inline-block border-2 border-t-green-500 border-r-green-500 border-b-transparent border-l-transparent rounded-full w-12 h-12 animate-spin mb-4"
             ></div>
             <p class="text-lg">Decrypting data streams...</p>
+          </div>
+        </div>
+
+        <div
+          v-else-if="filteredAndSortedPosts.length === 0"
+          class="min-h-[40vh] flex items-center justify-center"
+        >
+          <div class="text-center text-gray-400">
+            <svg class="w-16 h-16 mx-auto mb-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.291-1.007-5.691-2.709M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+            <h3 class="text-xl font-semibold text-green-500 mb-2">No posts found</h3>
+            <p class="text-gray-400">Try adjusting your search or filter criteria</p>
           </div>
         </div>
 
@@ -86,6 +75,18 @@
                 {{ post.title }}
               </h2>
               <p class="text-gray-400 mb-4">{{ post.excerpt }}</p>
+              
+              <div v-if="post.tags && post.tags.length > 0" class="flex flex-wrap gap-2 mb-4">
+                <span
+                  v-for="tag in post.tags"
+                  :key="tag"
+                  class="px-2 py-1 text-xs bg-green-500/10 text-green-400 rounded-full border border-green-500/40 cursor-pointer hover:bg-green-500/20 transition-colors"
+                  @click="selectedTag = tag"
+                >
+                  #{{ tag }}
+                </span>
+              </div>
+              
               <div class="flex justify-between items-center">
                 <span class="text-sm text-gray-500">{{
                   formatDate(post.date)
@@ -113,6 +114,7 @@ import { useRoute } from "vue-router";
 import CyberHeader from "@/components/CyberHeader.vue";
 import CyberFooter from "@/components/CyberFooter.vue";
 import EncryptingText from "@/components/EncryptingText.vue";
+import BlogFilters from "@/components/BlogFilters.vue";
 import { useHead } from "@vueuse/head";
 
 useHead({
@@ -130,16 +132,10 @@ const route = useRoute();
 const matrix = ref(null);
 const searchQuery = ref("");
 const selectedCategory = ref("");
+const selectedTag = ref("");
 const sortOrder = ref("newest");
 
 const posts = ref([]);
-const categories = computed(() => {
-  const set = new Set();
-  for (const post of posts.value) {
-    if (post?.category) set.add(post.category);
-  }
-  return Array.from(set).sort((a, b) => a.localeCompare(b));
-});
 const isLoading = ref(true);
 
 const fetchPosts = async () => {
@@ -154,20 +150,17 @@ const fetchPosts = async () => {
   }
 };
 
-onMounted(() => {
-  fetchPosts();
-  const cleanup = initMatrix();
-  onUnmounted(cleanup);
-});
-
 const filteredAndSortedPosts = computed(() => {
   let result = posts.value;
 
   if (searchQuery.value) {
+    const query = searchQuery.value.toLowerCase();
     result = result.filter(
       (post) =>
-        post.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-        post.body.toLowerCase().includes(searchQuery.value.toLowerCase()),
+        post.title.toLowerCase().includes(query) ||
+        post.body.toLowerCase().includes(query) ||
+        (post.excerpt && post.excerpt.toLowerCase().includes(query)) ||
+        (post.tags && post.tags.some(tag => tag.toLowerCase().includes(query)))
     );
   }
 
@@ -175,10 +168,25 @@ const filteredAndSortedPosts = computed(() => {
     result = result.filter((post) => post.category === selectedCategory.value);
   }
 
+  if (selectedTag.value) {
+    result = result.filter((post) => 
+      post.tags && post.tags.includes(selectedTag.value)
+    );
+  }
+
   result.sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    return sortOrder.value === "newest" ? dateB - dateA : dateA - dateB;
+    switch (sortOrder.value) {
+      case 'newest':
+        return new Date(b.date) - new Date(a.date);
+      case 'oldest':
+        return new Date(a.date) - new Date(b.date);
+      case 'title':
+        return a.title.localeCompare(b.title);
+      case 'title-desc':
+        return b.title.localeCompare(a.title);
+      default:
+        return new Date(b.date) - new Date(a.date);
+    }
   });
 
   return result;
@@ -223,6 +231,12 @@ const initMatrix = () => {
   const interval = setInterval(draw, 33);
   return () => clearInterval(interval);
 };
+
+onMounted(() => {
+  fetchPosts();
+  const cleanup = initMatrix();
+  onUnmounted(cleanup);
+});
 </script>
 
 <style scoped>
