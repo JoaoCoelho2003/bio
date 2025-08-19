@@ -6,7 +6,7 @@
         @input="updateSearch"
         type="text"
         placeholder="Search the matrix..."
-        class="w-full px-4 py-2 bg-gray-900 text-green-500 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 pl-10"
+        class="w-full px-4 py-3 bg-gray-900 text-green-500 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 pl-10"
       />
       <svg
         class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-green-500"
@@ -18,8 +18,8 @@
       </svg>
     </div>
 
-    <div class="flex flex-wrap gap-4 items-center">
-      <div class="min-w-[200px]">
+    <div class="space-y-3 md:space-y-0 md:flex md:flex-wrap md:gap-4 md:items-center">
+      <div class="w-full md:min-w-[180px] md:max-w-[220px] md:flex-1">
         <CyberDropdown
           v-model="localSelectedCategory"
           :options="categoryOptions"
@@ -28,7 +28,7 @@
         />
       </div>
 
-      <div class="min-w-[200px]">
+      <div class="w-full md:min-w-[180px] md:max-w-[220px] md:flex-1">
         <CyberDropdown
           v-model="localSelectedTag"
           :options="tagOptions"
@@ -37,25 +37,27 @@
         />
       </div>
 
-      <div class="min-w-[150px]">
-        <CyberDropdown
-          v-model="localSortOrder"
-          :options="sortOptions"
-          placeholder="Sort by"
-          @update:modelValue="updateSort"
-        />
-      </div>
+      <div class="flex gap-3 md:min-w-[200px]">
+        <div class="flex-1 md:min-w-[140px]">
+          <CyberDropdown
+            v-model="localSortOrder"
+            :options="sortOptions"
+            placeholder="Sort by"
+            @update:modelValue="updateSort"
+          />
+        </div>
 
-      <button
-        v-if="hasActiveFilters"
-        @click="clearFilters"
-        class="px-3 py-2 text-sm bg-red-900 text-red-400 border border-red-500 rounded-md hover:bg-red-800 transition-colors duration-200"
-      >
-        Clear Filters
-      </button>
+        <button
+          v-if="hasActiveFilters"
+          @click="clearFilters"
+          class="px-4 py-2 text-sm bg-red-900 text-red-400 border border-red-500 rounded-md hover:bg-red-800 transition-colors duration-200 whitespace-nowrap"
+        >
+          Clear
+        </button>
+      </div>
     </div>
 
-    <div class="flex items-center justify-between text-sm text-gray-400">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-gray-400">
       <span>
         Showing {{ filteredCount }} of {{ totalCount }} posts
         <span v-if="hasActiveFilters" class="text-green-500">
@@ -66,21 +68,24 @@
       <div v-if="hasActiveFilters" class="flex flex-wrap gap-2">
         <span
           v-if="localSelectedCategory"
-          class="px-2 py-1 bg-green-500/10 text-green-400 rounded-full text-xs border border-green-500/40"
+          class="px-2 py-1 bg-green-500/10 text-green-400 rounded-full text-xs border border-green-500/40 max-w-[120px] truncate"
+          :title="`Category: ${getCategoryLabel(localSelectedCategory)}`"
         >
-          Category: {{ getCategoryLabel(localSelectedCategory) }}
+          {{ getCategoryLabel(localSelectedCategory) }}
         </span>
         <span
           v-if="localSelectedTag"
-          class="px-2 py-1 bg-green-500/10 text-green-400 rounded-full text-xs border border-green-500/40"
+          class="px-2 py-1 bg-green-500/10 text-green-400 rounded-full text-xs border border-green-500/40 max-w-[120px] truncate"
+          :title="`Tag: ${getTagLabel(localSelectedTag)}`"
         >
-          Tag: {{ getTagLabel(localSelectedTag) }}
+          #{{ getTagLabel(localSelectedTag) }}
         </span>
         <span
           v-if="localSearchQuery"
-          class="px-2 py-1 bg-green-500/10 text-green-400 rounded-full text-xs border border-green-500/40"
+          class="px-2 py-1 bg-green-500/10 text-green-400 rounded-full text-xs border border-green-500/40 max-w-[120px] truncate"
+          :title="`Search: ${localSearchQuery}`"
         >
-          Search: "{{ localSearchQuery }}"
+          "{{ localSearchQuery }}"
         </span>
       </div>
     </div>
