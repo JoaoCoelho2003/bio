@@ -2,12 +2,12 @@
   <div class="relative" ref="dropdownRef">
     <button
       @click="toggleDropdown"
-      class="w-full px-4 py-2 bg-gray-900 text-green-500 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-gray-800 transition-colors duration-200 flex items-center justify-between"
+      class="w-full px-4 py-3 bg-gray-900 text-green-500 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:bg-gray-800 transition-colors duration-200 flex items-center justify-between min-h-[44px]"
       :class="{ 'ring-2 ring-green-500': isOpen }"
     >
-      <span class="truncate">{{ displayValue }}</span>
+      <span class="truncate text-left">{{ displayValue }}</span>
       <svg
-        class="w-4 h-4 transition-transform duration-200"
+        class="w-4 h-4 transition-transform duration-200 flex-shrink-0 ml-2"
         :class="{ 'rotate-180': isOpen }"
         fill="none"
         stroke="currentColor"
@@ -33,11 +33,11 @@
           v-for="option in options"
           :key="option.value"
           @click="selectOption(option)"
-          class="px-4 py-2 text-green-500 hover:bg-gray-800 cursor-pointer transition-colors duration-150 flex items-center justify-between"
+          class="px-4 py-3 text-green-500 hover:bg-gray-800 cursor-pointer transition-colors duration-150 flex items-center justify-between min-h-[44px]"
           :class="{ 'bg-gray-800': option.value === modelValue }"
         >
-          <span>{{ option.label }}</span>
-          <span v-if="option.count !== undefined" class="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded">
+          <span class="truncate">{{ option.label }}</span>
+          <span v-if="option.count !== undefined" class="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded flex-shrink-0 ml-2">
             {{ option.count }}
           </span>
         </div>
