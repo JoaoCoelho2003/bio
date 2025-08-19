@@ -103,7 +103,8 @@ useHead({
   meta: [
     {
       name: "description",
-      content: "Discover João Coelho's diverse portfolio of software engineering projects, featuring full stack development, blockchain, 3D rendering, image management, and more.",
+      content:
+        "Discover João Coelho's diverse portfolio of software engineering projects, featuring full stack development, blockchain, 3D rendering, image management, and more.",
     },
   ],
 });

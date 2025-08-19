@@ -234,7 +234,8 @@ useHead({
   meta: [
     {
       name: "description",
-      content: "Explore the digital portfolio of João Coelho, showcasing skills, projects, and insights in software development.",
+      content:
+        "Explore the digital portfolio of João Coelho, showcasing skills, projects, and insights in software development.",
     },
   ],
 });

@@ -13,10 +13,15 @@
         stroke="currentColor"
         viewBox="0 0 24 24"
       >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 9l-7 7-7-7"
+        />
       </svg>
     </button>
-    
+
     <transition
       enter-active-class="transition ease-out duration-200"
       enter-from-class="opacity-0 scale-95"
@@ -37,7 +42,10 @@
           :class="{ 'bg-gray-800': option.value === modelValue }"
         >
           <span class="truncate">{{ option.label }}</span>
-          <span v-if="option.count !== undefined" class="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded flex-shrink-0 ml-2">
+          <span
+            v-if="option.count !== undefined"
+            class="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded flex-shrink-0 ml-2"
+          >
             {{ option.count }}
           </span>
         </div>
@@ -47,53 +55,55 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from "vue";
 
 const props = defineProps({
   modelValue: {
     type: [String, Number],
-    default: ''
+    default: "",
   },
   options: {
     type: Array,
-    required: true
+    required: true,
   },
   placeholder: {
     type: String,
-    default: 'Select option'
-  }
-})
+    default: "Select option",
+  },
+});
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(["update:modelValue"]);
 
-const isOpen = ref(false)
-const dropdownRef = ref(null)
+const isOpen = ref(false);
+const dropdownRef = ref(null);
 
 const displayValue = computed(() => {
-  const selected = props.options.find(option => option.value === props.modelValue)
-  return selected ? selected.label : props.placeholder
-})
+  const selected = props.options.find(
+    (option) => option.value === props.modelValue,
+  );
+  return selected ? selected.label : props.placeholder;
+});
 
 const toggleDropdown = () => {
-  isOpen.value = !isOpen.value
-}
+  isOpen.value = !isOpen.value;
+};
 
 const selectOption = (option) => {
-  emit('update:modelValue', option.value)
-  isOpen.value = false
-}
+  emit("update:modelValue", option.value);
+  isOpen.value = false;
+};
 
 const handleClickOutside = (event) => {
   if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
-    isOpen.value = false
+    isOpen.value = false;
   }
-}
+};
 
 onMounted(() => {
-  document.addEventListener('click', handleClickOutside)
-})
+  document.addEventListener("click", handleClickOutside);
+});
 
 onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside)
-})
+  document.removeEventListener("click", handleClickOutside);
+});
 </script>

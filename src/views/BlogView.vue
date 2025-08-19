@@ -48,11 +48,25 @@
           class="min-h-[40vh] flex items-center justify-center"
         >
           <div class="text-center text-gray-400">
-            <svg class="w-16 h-16 mx-auto mb-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.291-1.007-5.691-2.709M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            <svg
+              class="w-16 h-16 mx-auto mb-4 text-gray-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.291-1.007-5.691-2.709M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+              />
             </svg>
-            <h3 class="text-xl font-semibold text-green-500 mb-2">No posts found</h3>
-            <p class="text-gray-400">Try adjusting your search or filter criteria</p>
+            <h3 class="text-xl font-semibold text-green-500 mb-2">
+              No posts found
+            </h3>
+            <p class="text-gray-400">
+              Try adjusting your search or filter criteria
+            </p>
           </div>
         </div>
 
@@ -75,8 +89,11 @@
                 {{ post.title }}
               </h2>
               <p class="text-gray-400 mb-4">{{ post.excerpt }}</p>
-              
-              <div v-if="post.tags && post.tags.length > 0" class="flex flex-wrap gap-2 mb-4">
+
+              <div
+                v-if="post.tags && post.tags.length > 0"
+                class="flex flex-wrap gap-2 mb-4"
+              >
                 <span
                   v-for="tag in post.tags"
                   :key="tag"
@@ -86,7 +103,7 @@
                   #{{ tag }}
                 </span>
               </div>
-              
+
               <div class="flex justify-between items-center">
                 <span class="text-sm text-gray-500">{{
                   formatDate(post.date)
@@ -160,7 +177,8 @@ const filteredAndSortedPosts = computed(() => {
         post.title.toLowerCase().includes(query) ||
         post.body.toLowerCase().includes(query) ||
         (post.excerpt && post.excerpt.toLowerCase().includes(query)) ||
-        (post.tags && post.tags.some(tag => tag.toLowerCase().includes(query)))
+        (post.tags &&
+          post.tags.some((tag) => tag.toLowerCase().includes(query))),
     );
   }
 
@@ -169,20 +187,20 @@ const filteredAndSortedPosts = computed(() => {
   }
 
   if (selectedTag.value) {
-    result = result.filter((post) => 
-      post.tags && post.tags.includes(selectedTag.value)
+    result = result.filter(
+      (post) => post.tags && post.tags.includes(selectedTag.value),
     );
   }
 
   result.sort((a, b) => {
     switch (sortOrder.value) {
-      case 'newest':
+      case "newest":
         return new Date(b.date) - new Date(a.date);
-      case 'oldest':
+      case "oldest":
         return new Date(a.date) - new Date(b.date);
-      case 'title':
+      case "title":
         return a.title.localeCompare(b.title);
-      case 'title-desc':
+      case "title-desc":
         return b.title.localeCompare(a.title);
       default:
         return new Date(b.date) - new Date(a.date);
