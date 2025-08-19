@@ -94,6 +94,7 @@
               </button>
             </div>
           </div>
+          <CommentSection :post-slug="route.params.slug" />
         </div>
       </article>
 
@@ -118,6 +119,7 @@ import { CalendarIcon, FolderIcon } from "@heroicons/vue/24/outline";
 import { XIcon, LinkedinIcon, FacebookIcon } from "lucide-vue-next";
 import CyberHeader from "@/components/CyberHeader.vue";
 import CyberFooter from "@/components/CyberFooter.vue";
+import CommentSection from "@/components/CommentSection.vue";
 import dayjs from "dayjs";
 import MarkdownIt from "markdown-it";
 import { useHead } from "@vueuse/head";
