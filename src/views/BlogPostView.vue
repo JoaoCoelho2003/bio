@@ -149,13 +149,29 @@ const fetchPost = async () => {
       category: data.category || "Uncategorized",
     };
 
+    const absoluteUrl = window.location.href;
+    const absoluteImage = (post.value.thumbnail || "").startsWith("http")
+      ? post.value.thumbnail
+      : new URL(post.value.thumbnail || "/profileHD.jpeg", window.location.origin).toString();
+    const description = (post.value.excerpt || "Read this amazing blog post.").replace(/\s+/g, " ").trim();
+
     useHead({
       title: post.value.title,
+      link: [{ rel: "canonical", href: absoluteUrl }],
       meta: [
-        {
-          name: "description",
-          content: post.value.excerpt || "Read this amazing blog post.",
-        },
+        { name: "description", content: description },
+        { property: "og:title", content: post.value.title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: absoluteUrl },
+        { property: "og:image", content: absoluteImage },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:alt", content: post.value.title },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: post.value.title },
+        { name: "twitter:description", content: description },
+        { name: "twitter:image", content: absoluteImage },
       ],
     });
   } catch (error) {
@@ -175,23 +191,44 @@ const formatDate = (dateString) => {
 };
 
 const sharePost = (platform) => {
-  const url = encodeURIComponent(window.location.href);
-  const title = encodeURIComponent(post.value.title);
-  let shareUrl = "";
+  if (!post.value) return;
 
-  switch (platform) {
-    case "X":
-      shareUrl = `https://x.com/intent/tweet?url=${url}&text=${title}`;
-      break;
-    case "LinkedIn":
-      shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`;
-      break;
-    case "Facebook":
-      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-      break;
+  const pageUrl = window.location.href;
+  const url = encodeURIComponent(pageUrl);
+  const title = post.value.title || "";
+  const excerpt = (post.value.excerpt || "").replace(/\s+/g, " ").trim();
+  const textRaw = excerpt ? `${title} — ${excerpt}` : title;
+  const limited = textRaw.length > 240 ? textRaw.slice(0, 237) + "…" : textRaw;
+  const text = encodeURIComponent(limited);
+  const hashtagsRaw = (post.value.tags || []).map((t) => String(t).replace(/#/g, "").replace(/\s+/g, ""));
+  const hashtags = encodeURIComponent(hashtagsRaw.join(","));
+
+  if (navigator.share) {
+    navigator
+      .share({ title, text: limited, url: pageUrl })
+      .catch(() => {/* no-op */});
+    return;
   }
 
-  window.open(shareUrl, "_blank");
+  let shareUrl = "";
+  switch (platform) {
+    case "X": {
+      const hashParam = hashtagsRaw.length ? `&hashtags=${hashtags}` : "";
+      shareUrl = `https://x.com/intent/tweet?url=${url}&text=${text}${hashParam}`;
+      break;
+    }
+    case "LinkedIn": {
+      const summary = encodeURIComponent(excerpt || title);
+      shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${encodeURIComponent(title)}&summary=${summary}`;
+      break;
+    }
+    case "Facebook": {
+      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+      break;
+    }
+  }
+
+  window.open(shareUrl, "_blank", "noopener,noreferrer");
 };
 
 const initMatrix = () => {
