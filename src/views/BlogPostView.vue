@@ -180,12 +180,6 @@ const fetchPost = async () => {
   }
 };
 
-onMounted(() => {
-  fetchPost();
-  const cleanup = initMatrix();
-  onUnmounted(cleanup);
-});
-
 const formatDate = (dateString) => {
   return dayjs(dateString).format("MMMM D, YYYY");
 };
@@ -196,17 +190,34 @@ const sharePost = (platform) => {
   const pageUrl = window.location.href;
   const url = encodeURIComponent(pageUrl);
   const title = post.value.title || "";
-  const excerpt = (post.value.excerpt || "").replace(/\s+/g, " ").trim();
-  const textRaw = excerpt ? `${title} — ${excerpt}` : title;
-  const limited = textRaw.length > 240 ? textRaw.slice(0, 237) + "…" : textRaw;
-  const text = encodeURIComponent(limited);
-  const hashtagsRaw = (post.value.tags || []).map((t) => String(t).replace(/#/g, "").replace(/\s+/g, ""));
+
+  let shareMessage = "";
+  switch (platform) {
+    case "X":
+      shareMessage = "Just read this interesting blog post! 🚀";
+      break;
+    case "LinkedIn":
+      shareMessage =
+        "Found this blog post really insightful – thought you might like it too.";
+      break;
+    case "Facebook":
+      shareMessage =
+        "Came across this blog post and thought it was worth sharing!";
+      break;
+    default:
+      shareMessage = "Check out this interesting blog post I found!";
+  }
+
+  const text = encodeURIComponent(shareMessage);
+  const hashtagsRaw = (post.value.tags || []).map((t) =>
+    String(t).replace(/#/g, "").replace(/\s+/g, ""),
+  );
   const hashtags = encodeURIComponent(hashtagsRaw.join(","));
 
   if (navigator.share) {
-    navigator
-      .share({ title, text: limited, url: pageUrl })
-      .catch(() => {/* no-op */});
+    navigator.share({ title, text: shareMessage, url: pageUrl }).catch(() => {
+      /* no-op */
+    });
     return;
   }
 
@@ -218,7 +229,7 @@ const sharePost = (platform) => {
       break;
     }
     case "LinkedIn": {
-      const summary = encodeURIComponent(excerpt || title);
+      const summary = encodeURIComponent(post.value.excerpt || title);
       shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${encodeURIComponent(title)}&summary=${summary}`;
       break;
     }
@@ -273,6 +284,12 @@ const initMatrix = () => {
     window.removeEventListener("resize", handleResize);
   };
 };
+
+onMounted(() => {
+  const cleanup = initMatrix();
+  fetchPost();
+  onUnmounted(cleanup);
+});
 </script>
 
 <style scoped>

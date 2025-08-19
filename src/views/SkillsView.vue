@@ -86,7 +86,8 @@ useHead({
   meta: [
     {
       name: "description",
-      content: "Discover João Coelho's skills in programming, including frontend and backend development, as well as DevOps and various tools.",
+      content:
+        "Discover João Coelho's skills in programming, including frontend and backend development, as well as DevOps and various tools.",
     },
   ],
 });
@@ -124,12 +125,7 @@ const categories = ref([
     title: "Backend Development",
     description:
       "Building robust server-side applications and APIs with various technologies.",
-    technologies: [
-      "Elixir",
-      "Python",
-      "MongoDB",
-      "PostgreSQL",
-    ],
+    technologies: ["Elixir", "Python", "MongoDB", "PostgreSQL"],
   },
   {
     title: "DevOps & Tools",
