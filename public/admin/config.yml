@@ -18,3 +18,18 @@ collections:
       - {label: "Category", name: "category", widget: "select", options: ["AI", "Machine Learning", "Deep Learning", "Python", "Web Development", "Data Science", "General", "Announcements"]}
       - {label: "Tags", name: "tags", widget: "list"}
       - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "projects"
+    label: "Projects"
+    folder: "content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Images", name: "images", widget: "list", fields: [{ label: "Image", name: "image", widget: "image" }] }
+      - { label: "Technologies", name: "technologies", widget: "list", fields: [{ label: "Technology", name: "technology", widget: "string" }] }
+      - { label: "Features", name: "features", widget: "list", fields: [{ label: "Feature", name: "feature", widget: "string" }] }
+      - { label: "Live URL", name: "liveUrl", widget: "string", required: false}
+      - { label: "Repository URL", name: "repoUrl", widget: "string" }
+      - { label: "Demo Video", name: "demoVideo", widget: "string", required: false }
