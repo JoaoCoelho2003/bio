@@ -26,7 +26,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Description", name: "description", widget: "markdown" }
       - { label: "Images", name: "images", widget: "list", fields: [{ label: "Image", name: "image", widget: "image" }] }
       - { label: "Technologies", name: "technologies", widget: "list", fields: [{ label: "Technology", name: "technology", widget: "string" }] }
       - { label: "Features", name: "features", widget: "list", fields: [{ label: "Feature", name: "feature", widget: "string" }] }
