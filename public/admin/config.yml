@@ -29,7 +29,6 @@ collections:
       - { label: "Description", name: "description", widget: "markdown" }
       - { label: "Images", name: "images", widget: "list", fields: [{ label: "Image", name: "image", widget: "image" }] }
       - { label: "Technologies", name: "technologies", widget: "list", fields: [{ label: "Technology", name: "technology", widget: "string" }] }
-      - { label: "Features", name: "features", widget: "list", fields: [{ label: "Feature", name: "feature", widget: "string" }] }
       - { label: "Live URL", name: "liveUrl", widget: "string", required: false}
       - { label: "Repository URL", name: "repoUrl", widget: "string" }
       - { label: "Demo Video", name: "demoVideo", widget: "string", required: false }
