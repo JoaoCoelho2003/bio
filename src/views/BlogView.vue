@@ -48,19 +48,7 @@
           class="min-h-[40vh] flex items-center justify-center"
         >
           <div class="text-center text-gray-400">
-            <svg
-              class="w-16 h-16 mx-auto mb-4 text-gray-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.291-1.007-5.691-2.709M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-              />
-            </svg>
+            <i class="bi bi-journal-x text-6xl mb-4 text-gray-600"></i>
             <h3 class="text-xl font-semibold text-green-500 mb-2">
               No posts found
             </h3>
@@ -133,6 +121,7 @@ import CyberFooter from "@/components/CyberFooter.vue";
 import EncryptingText from "@/components/EncryptingText.vue";
 import BlogFilters from "@/components/BlogFilters.vue";
 import { useHead } from "@vueuse/head";
+import { initMatrix } from "@/lib/background";
 
 useHead({
   title: "João Coelho - Welcome to My Blog",
@@ -218,41 +207,9 @@ const formatDate = (date) => {
   });
 };
 
-const initMatrix = () => {
-  const canvas = matrix.value;
-  const ctx = canvas.getContext("2d");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ";
-  const columns = canvas.width / 20;
-  const drops = Array(Math.floor(columns)).fill(1);
-
-  function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "#0F0";
-    ctx.font = "15px monospace";
-
-    for (let i = 0; i < drops.length; i++) {
-      const text = chars[Math.floor(Math.random() * chars.length)];
-      ctx.fillText(text, i * 20, drops[i] * 20);
-
-      if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
-    }
-  }
-
-  const interval = setInterval(draw, 33);
-  return () => clearInterval(interval);
-};
-
 onMounted(() => {
   fetchPosts();
-  const cleanup = initMatrix();
+  const cleanup = initMatrix(matrix);
   onUnmounted(cleanup);
 });
 </script>

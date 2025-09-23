@@ -71,14 +71,13 @@
                 </a>
               </div>
 
-              <a
-                href="/joaoCoelhoResume.pdf"
-                download
+              <router-link
+                to="/cv"
                 class="inline-flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 bg-green-500 text-black rounded hover:bg-green-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 text-sm sm:text-base"
               >
                 <i class="bi bi-file-earmark-text mr-2"></i>
-                <span>Download Resume</span>
-              </a>
+                <span>View CV</span>
+              </router-link>
             </div>
           </div>
         </div>
@@ -117,6 +116,7 @@ import TypingAnimation from "@/components/TypingAnimation.vue";
 import EncryptingText from "@/components/EncryptingText.vue";
 import TimelineSection from "@/components/TimelineSection.vue";
 import { useHead } from "@vueuse/head";
+import { initMatrix } from "@/lib/background";
 
 useHead({
   title: "João Coelho - About Me",
@@ -190,40 +190,8 @@ const achievementItems = [
   },
 ];
 
-const initMatrix = () => {
-  const canvas = matrix.value;
-  const ctx = canvas.getContext("2d");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ";
-  const columns = canvas.width / 20;
-  const drops = Array(Math.floor(columns)).fill(1);
-
-  function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "#0F0";
-    ctx.font = "15px monospace";
-
-    for (let i = 0; i < drops.length; i++) {
-      const text = chars[Math.floor(Math.random() * chars.length)];
-      ctx.fillText(text, i * 20, drops[i] * 20);
-
-      if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
-    }
-  }
-
-  const interval = setInterval(draw, 33);
-  return () => clearInterval(interval);
-};
-
 onMounted(() => {
-  const cleanup = initMatrix();
+  const cleanup = initMatrix(matrix);
   window.addEventListener("resize", () => {
     if (matrix.value) {
       matrix.value.width = window.innerWidth;
