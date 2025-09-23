@@ -6,20 +6,10 @@
       :class="{ 'ring-2 ring-green-500': isOpen }"
     >
       <span class="truncate text-left">{{ displayValue }}</span>
-      <svg
-        class="w-4 h-4 transition-transform duration-200 flex-shrink-0 ml-2"
+      <i
+        class="bi bi-chevron-down transition-transform duration-200 flex-shrink-0 ml-2"
         :class="{ 'rotate-180': isOpen }"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M19 9l-7 7-7-7"
-        />
-      </svg>
+      ></i>
     </button>
 
     <transition

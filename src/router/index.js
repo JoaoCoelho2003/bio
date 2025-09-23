@@ -6,6 +6,7 @@ import ProjectsView from "../views/ProjectsView.vue";
 import ContactView from "../views/ContactView.vue";
 import BlogView from "../views/BlogView.vue";
 import BlogPostView from "../views/BlogPostView.vue";
+import CVView from "../views/CVView.vue";
 import NotFound from "../views/NotFound.vue";
 
 const router = createRouter({
@@ -45,6 +46,11 @@ const router = createRouter({
       path: "/blog/:slug",
       name: "blogPost",
       component: BlogPostView,
+    },
+    {
+      path: "/cv",
+      name: "cv",
+      component: CVView,
     },
     {
       path: "/:pathMatch(.*)*",
