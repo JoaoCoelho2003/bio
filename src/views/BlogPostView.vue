@@ -44,12 +44,12 @@
                 class="flex flex-wrap items-center gap-4 text-gray-400 text-sm sm:text-lg"
               >
                 <span class="flex items-center gap-2">
-                  <CalendarIcon class="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
+                  <i class="bi bi-calendar3 text-green-500"></i>
                   {{ formatDate(post.date) }}
                 </span>
                 <span class="hidden sm:block">|</span>
                 <span class="flex items-center gap-2">
-                  <FolderIcon class="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
+                  <i class="bi bi-folder text-green-500"></i>
                   {{ post.category }}
                 </span>
               </div>
@@ -86,7 +86,7 @@
                 @click="sharePost(platform.name)"
                 class="px-4 py-2 border border-green-500/50 text-green-500 hover:bg-green-500 hover:text-black transition-all duration-300 flex items-center gap-2"
               >
-                <component :is="platform.icon" class="w-5 h-5" />
+                <i :class="platform.icon" class="text-lg"></i>
                 <span class="hidden sm:inline"
                   >Share on {{ platform.name }}</span
                 >
@@ -114,13 +114,12 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { CalendarIcon, FolderIcon } from "@heroicons/vue/24/outline";
-import { XIcon, LinkedinIcon, FacebookIcon } from "lucide-vue-next";
 import CyberHeader from "@/components/CyberHeader.vue";
 import CyberFooter from "@/components/CyberFooter.vue";
 import dayjs from "dayjs";
 import MarkdownIt from "markdown-it";
 import { useHead } from "@vueuse/head";
+import { initMatrix } from "@/lib/background";
 
 const md = new MarkdownIt();
 
@@ -130,9 +129,9 @@ const matrix = ref(null);
 const post = ref(null);
 
 const sharePlatforms = [
-  { name: "X", icon: XIcon },
-  { name: "LinkedIn", icon: LinkedinIcon },
-  { name: "Facebook", icon: FacebookIcon },
+  { name: "Twitter", icon: "bi-twitter" },
+  { name: "LinkedIn", icon: "bi-linkedin" },
+  { name: "Facebook", icon: "bi-facebook" },
 ];
 
 const fetchPost = async () => {
@@ -242,51 +241,8 @@ const sharePost = (platform) => {
   window.open(shareUrl, "_blank", "noopener,noreferrer");
 };
 
-const initMatrix = () => {
-  const canvas = matrix.value;
-  const ctx = canvas.getContext("2d");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ";
-  const columns = canvas.width / 20;
-  const drops = Array(Math.floor(columns)).fill(1);
-
-  function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "#0F0";
-    ctx.font = "15px monospace";
-
-    for (let i = 0; i < drops.length; i++) {
-      const text = chars[Math.floor(Math.random() * chars.length)];
-      ctx.fillText(text, i * 20, drops[i] * 20);
-
-      if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
-    }
-  }
-
-  const interval = setInterval(draw, 33);
-
-  const handleResize = () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  };
-
-  window.addEventListener("resize", handleResize);
-
-  return () => {
-    clearInterval(interval);
-    window.removeEventListener("resize", handleResize);
-  };
-};
-
 onMounted(() => {
-  const cleanup = initMatrix();
+  const cleanup = initMatrix(matrix);
   fetchPost();
   onUnmounted(cleanup);
 });
