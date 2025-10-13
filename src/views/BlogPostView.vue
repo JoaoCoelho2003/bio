@@ -151,7 +151,7 @@ const fetchPost = async () => {
     const absoluteUrl = window.location.href;
     const absoluteImage = (post.value.thumbnail || "").startsWith("http")
       ? post.value.thumbnail
-      : new URL(post.value.thumbnail || "/profileHD.jpeg", window.location.origin).toString();
+      : new URL(post.value.thumbnail || "/profile.png", window.location.origin).toString();
     const description = (post.value.excerpt || "Read this amazing blog post.").replace(/\s+/g, " ").trim();
 
     useHead({

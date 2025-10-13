@@ -20,7 +20,7 @@
               ></div>
               <div class="relative">
                 <img
-                  src="/profileHD.jpeg"
+                  src="/profile.png"
                   class="rounded-lg w-full object-cover border-2 border-green-500/50"
                   alt="Profile"
                 />
@@ -148,6 +148,22 @@ const educationItems = [
 
 const experienceItems = [
   {
+    title: "CeSIUM",
+    organization: "CeSIUM",
+    link: "https://cesium.di.uminho.pt/",
+    location: "Braga, PT",
+    subItems: [
+      {
+        title: "Co-Director of CAOS (Department of Technology)",
+        period: "Oct. 2025 - Present",
+      },
+      {
+        title: "Collaborator of CAOS (Department of Technology)",
+        period: "Mar. 2024 - Oct. 2025",
+      },
+    ],
+  },
+  {
     title: "Software Engineer Intern",
     organization: "Yari Labs",
     link: "https://www.yarilabs.com/",
@@ -160,14 +176,7 @@ const experienceItems = [
     link: "https://coderdojobraga.org/",
     period: "Mar. 2024 - Present",
     location: "Braga, PT",
-  },
-  {
-    title: "CAOS Collaborator",
-    organization: "Cesium",
-    link: "https://cesium.di.uminho.pt/",
-    period: "Mar. 2024 - Present",
-    location: "Braga, PT",
-  },
+  }
 ];
 
 const achievementItems = [

@@ -30,9 +30,10 @@
         <span v-else>{{ item.organization }}</span>
       </p>
 
-      <p class="text-xs sm:text-sm text-green-500/70 mt-1">
-        {{ item.period }}
-        <span v-if="item.location"> | {{ item.location }}</span>
+      <p v-if="item.period || item.location" class="text-xs sm:text-sm text-green-500/70 mt-1">
+        <span v-if="item.period">{{ item.period }}</span>
+        <span v-if="item.period && item.location"> | </span>
+        <span v-if="item.location">{{ item.location }}</span>
       </p>
 
       <div
