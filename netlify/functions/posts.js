@@ -33,7 +33,7 @@ export const handler = async () => {
           slug: file.replace(/\.md$/, ''),
           title: data.title || 'Untitled',
           date: data.date || new Date().toISOString(),
-          thumbnail: data.thumbnail || '/profileHD.jpeg',
+          thumbnail: data.thumbnail || '/profile.png',
           category: data.category || 'Uncategorized',
           tags: Array.isArray(data.tags) ? data.tags : (data.tags ? [data.tags] : []),
           excerpt,
