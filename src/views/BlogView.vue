@@ -124,13 +124,23 @@ import { useHead } from "@vueuse/head";
 import { initMatrix } from "@/lib/background";
 
 useHead({
-  title: "João Coelho - Welcome to My Blog",
+  title: "Blog - João Coelho",
+  link: [{ rel: "canonical", href: "https://joaocoelho.dev/blog" }],
   meta: [
     {
       name: "description",
       content:
-        "Read insightful blog posts about software engineering, AI, and modern development trends.",
+        "Read insightful blog posts about software engineering, AI, and modern development trends by João Coelho.",
     },
+    { property: "og:title", content: "Blog - João Coelho" },
+    { property: "og:description", content: "Read insightful blog posts about software engineering, AI, and modern development trends by João Coelho." },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "https://joaocoelho.dev/blog" },
+    { property: "og:image", content: "https://joaocoelho.dev/profile.png" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "Blog - João Coelho" },
+    { name: "twitter:description", content: "Read insightful blog posts about software engineering, AI, and modern development trends." },
+    { name: "twitter:image", content: "https://joaocoelho.dev/profile.png" },
   ],
 });
 

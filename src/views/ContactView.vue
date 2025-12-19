@@ -174,13 +174,23 @@ import { useHead } from "@vueuse/head";
 import { initMatrix } from "@/lib/background";
 
 useHead({
-  title: "João Coelho - Contact",
+  title: "Contact - João Coelho",
+  link: [{ rel: "canonical", href: "https://joaocoelho.dev/contact" }],
   meta: [
     {
       name: "description",
       content:
         "Get in touch with João Coelho for collaboration, job opportunities, or tech discussions.",
     },
+    { property: "og:title", content: "Contact - João Coelho" },
+    { property: "og:description", content: "Get in touch with João Coelho for collaboration, job opportunities, or tech discussions." },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "https://joaocoelho.dev/contact" },
+    { property: "og:image", content: "https://joaocoelho.dev/profile.png" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "Contact - João Coelho" },
+    { name: "twitter:description", content: "Get in touch with João Coelho for collaboration or tech discussions." },
+    { name: "twitter:image", content: "https://joaocoelho.dev/profile.png" },
   ],
 });
 

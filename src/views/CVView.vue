@@ -124,12 +124,22 @@ import { useHead } from "@vueuse/head";
 import { initMatrix } from "@/lib/background";
 
 useHead({
-  title: "João Coelho - CV",
+  title: "CV - João Coelho",
+  link: [{ rel: "canonical", href: "https://joaocoelho.dev/cv" }],
   meta: [
     {
       name: "description",
-      content: "View João Coelho's CV.",
+      content: "View João Coelho's curriculum vitae and professional experience as a Software Engineer.",
     },
+    { property: "og:title", content: "CV - João Coelho" },
+    { property: "og:description", content: "View João Coelho's curriculum vitae and professional experience as a Software Engineer." },
+    { property: "og:type", content: "profile" },
+    { property: "og:url", content: "https://joaocoelho.dev/cv" },
+    { property: "og:image", content: "https://joaocoelho.dev/profile.png" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "CV - João Coelho" },
+    { name: "twitter:description", content: "View João Coelho's curriculum vitae and professional experience." },
+    { name: "twitter:image", content: "https://joaocoelho.dev/profile.png" },
   ],
 });
 
