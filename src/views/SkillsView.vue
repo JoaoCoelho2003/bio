@@ -83,13 +83,23 @@ import { useHead } from "@vueuse/head";
 import { initMatrix } from "@/lib/background";
 
 useHead({
-  title: "João Coelho - Skills",
+  title: "Skills - João Coelho",
+  link: [{ rel: "canonical", href: "https://joaocoelho.dev/skills" }],
   meta: [
     {
       name: "description",
       content:
         "Discover João Coelho's skills in programming, including frontend and backend development, as well as DevOps and various tools.",
     },
+    { property: "og:title", content: "Skills - João Coelho" },
+    { property: "og:description", content: "Discover João Coelho's technical skills in programming, frontend and backend development, DevOps and various tools." },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "https://joaocoelho.dev/skills" },
+    { property: "og:image", content: "https://joaocoelho.dev/profile.png" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "Skills - João Coelho" },
+    { name: "twitter:description", content: "Discover João Coelho's technical skills in programming and development." },
+    { name: "twitter:image", content: "https://joaocoelho.dev/profile.png" },
   ],
 });
 
