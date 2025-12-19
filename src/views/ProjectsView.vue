@@ -100,13 +100,23 @@ import { useHead } from "@vueuse/head";
 import { initMatrix } from "@/lib/background";
 
 useHead({
-  title: "João Coelho - Projects",
+  title: "Projects - João Coelho",
+  link: [{ rel: "canonical", href: "https://joaocoelho.dev/projects" }],
   meta: [
     {
       name: "description",
       content:
         "Discover João Coelho's diverse portfolio of software engineering projects, featuring full stack development, blockchain, 3D rendering, image management, and more.",
     },
+    { property: "og:title", content: "Projects - João Coelho" },
+    { property: "og:description", content: "Discover João Coelho's diverse portfolio of software engineering projects, featuring full stack development, blockchain, 3D rendering, and more." },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "https://joaocoelho.dev/projects" },
+    { property: "og:image", content: "https://joaocoelho.dev/profile.png" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "Projects - João Coelho" },
+    { name: "twitter:description", content: "Discover João Coelho's diverse portfolio of software engineering projects." },
+    { name: "twitter:image", content: "https://joaocoelho.dev/profile.png" },
   ],
 });
 

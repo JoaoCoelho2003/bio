@@ -167,11 +167,42 @@ const fetchPost = async () => {
         { property: "og:image:width", content: "1200" },
         { property: "og:image:height", content: "630" },
         { property: "og:image:alt", content: post.value.title },
+        { property: "article:published_time", content: post.value.date },
+        { property: "article:author", content: "João Coelho" },
+        { property: "article:section", content: post.value.category },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: post.value.title },
         { name: "twitter:description", content: description },
         { name: "twitter:image", content: absoluteImage },
       ],
+      script: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.value.title,
+            "image": absoluteImage,
+            "datePublished": post.value.date,
+            "dateModified": post.value.date,
+            "author": {
+              "@type": "Person",
+              "name": "João Coelho",
+              "url": "https://joaocoelho.dev"
+            },
+            "publisher": {
+              "@type": "Person",
+              "name": "João Coelho",
+              "url": "https://joaocoelho.dev"
+            },
+            "description": description,
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": absoluteUrl
+            }
+          })
+        }
+      ]
     });
   } catch (error) {
     console.error("Error fetching post:", error);

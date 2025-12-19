@@ -119,14 +119,50 @@ import { useHead } from "@vueuse/head";
 import { initMatrix } from "@/lib/background";
 
 useHead({
-  title: "João Coelho - About Me",
+  title: "About Me - João Coelho",
+  link: [{ rel: "canonical", href: "https://joaocoelho.dev/home" }],
   meta: [
     {
       name: "description",
       content:
-        "Learn more about João Coelho, his experience, resume, and journey in software engineering.",
+        "Learn more about João Coelho, a Master's student in Software Engineering at University of Minho. Explore his experience, education, and journey in software development.",
     },
+    { property: "og:title", content: "About Me - João Coelho" },
+    { property: "og:description", content: "Learn more about João Coelho, a Master's student in Software Engineering at University of Minho. Explore his experience, education, and journey in software development." },
+    { property: "og:type", content: "profile" },
+    { property: "og:url", content: "https://joaocoelho.dev/home" },
+    { property: "og:image", content: "https://joaocoelho.dev/profile.png" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "About Me - João Coelho" },
+    { name: "twitter:description", content: "Learn more about João Coelho, a Master's student in Software Engineering at University of Minho." },
+    { name: "twitter:image", content: "https://joaocoelho.dev/profile.png" },
   ],
+  script: [
+    {
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "João Coelho",
+        "url": "https://joaocoelho.dev",
+        "image": "https://joaocoelho.dev/profile.png",
+        "jobTitle": "Software Engineer",
+        "worksFor": {
+          "@type": "EducationalOrganization",
+          "name": "University of Minho"
+        },
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "University of Minho"
+        },
+        "sameAs": [
+          "https://github.com/JoaoCoelho2003",
+          "https://www.linkedin.com/in/joaocoelho03/"
+        ],
+        "description": "Master's student in Software Engineering at University of Minho. Full Stack Developer with expertise in various domains from Algorithms to AI."
+      })
+    }
+  ]
 });
 
 const matrix = ref(null);

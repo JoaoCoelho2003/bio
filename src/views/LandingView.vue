@@ -231,14 +231,40 @@ import { useHead } from "@vueuse/head";
 import { initMatrix } from "@/lib/background";
 
 useHead({
-  title: "João Coelho",
+  title: "João Coelho - Software Engineer & Full Stack Developer",
+  link: [{ rel: "canonical", href: "https://joaocoelho.dev/" }],
   meta: [
     {
       name: "description",
       content:
         "Explore the digital portfolio of João Coelho, showcasing skills, projects, and insights in software development.",
     },
+    { property: "og:title", content: "João Coelho - Software Engineer & Full Stack Developer" },
+    { property: "og:description", content: "Explore the digital portfolio of João Coelho, showcasing skills, projects, and insights in software development." },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "https://joaocoelho.dev/" },
+    { property: "og:image", content: "https://joaocoelho.dev/profile.png" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "João Coelho - Software Engineer & Full Stack Developer" },
+    { name: "twitter:description", content: "Explore the digital portfolio of João Coelho, showcasing skills, projects, and insights in software development." },
+    { name: "twitter:image", content: "https://joaocoelho.dev/profile.png" },
   ],
+  script: [
+    {
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "João Coelho Portfolio",
+        "url": "https://joaocoelho.dev",
+        "description": "Software Engineer and Full Stack Developer portfolio",
+        "author": {
+          "@type": "Person",
+          "name": "João Coelho"
+        }
+      })
+    }
+  ]
 });
 
 const router = useRouter();
