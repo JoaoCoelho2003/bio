@@ -1,17 +1,23 @@
 import "./assets/main.css";
 import "./assets/styles.css";
 
-import { createApp } from "vue";
+import { ViteSSG } from "vite-ssg";
 import App from "./App.vue";
 import netlifyIdentity from "netlify-identity-widget";
-import router from "./router";
 import { createHead } from "@vueuse/head";
-import "./assets/main.css";
+import { routes } from "./router";
 
-netlifyIdentity.init();
-const app = createApp(App);
-const head = createHead();
-
-app.use(router);
-app.use(head);
-app.mount("#app");
+export const createApp = ViteSSG(
+  App,
+  { 
+    routes,
+  },
+  ({ app, router, routes, isClient, initialState }) => {
+    const head = createHead();
+    app.use(head);
+    
+    if (isClient) {
+      netlifyIdentity.init();
+    }
+  }
+);

@@ -19,5 +19,12 @@ export default defineConfig({
         additionalData: `@import "@/assets/styles.css";`
       }
     }
+  },
+  ssgOptions: {
+    script: 'async',
+    formatting: 'minify',
+    crittersOptions: {
+      reduceInlineStyles: false,
+    },
   }
 })
