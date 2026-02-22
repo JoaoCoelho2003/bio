@@ -225,7 +225,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import { useRouter } from "vue-router";
-import netlifyIdentity from "netlify-identity-widget";
 import EncryptingText from "@/components/EncryptingText.vue";
 import { useHead } from "@vueuse/head";
 import { initMatrix } from "@/lib/background";
@@ -347,17 +346,6 @@ const navigateTo = (route) => {
   router.push(route);
 };
 
-const handleInviteToken = (token) => {
-  netlifyIdentity
-    .acceptInvite(token, true)
-    .then(() => {
-      showPasswordModal.value = true;
-    })
-    .catch((err) => {
-      console.error("Invite error:", err);
-    });
-};
-
 const setPassword = () => {
   if (password.value) {
     console.log("Password set:", password.value);
@@ -406,14 +394,6 @@ onMounted(() => {
       clearInterval(loadingInterval);
     });
   }, 4000);
-
-  const hash = window.location.hash.substring(1);
-  const params = new URLSearchParams(hash);
-  const inviteToken = params.get("invite_token");
-
-  if (inviteToken) {
-    handleInviteToken(inviteToken);
-  }
 
   const statUpdateInterval = setInterval(updateStats, 100);
 

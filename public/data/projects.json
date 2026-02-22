@@ -1,0 +1,81 @@
+[
+  {
+    "id": "dharma-network",
+    "title": "Dharma Network - NFT Marketplace",
+    "description": "A decentralized NFT marketplace allowing users to buy, sell, and trade unique digital assets securely on the blockchain.\n\n## Key Features\n\n- Secure wallet integration\n- Real-time bidding system\n- Customizable user profiles\n- Advanced search and filtering options\n- Buying and selling NFTs\n- Trading NFTs",
+    "images": ["/Dharma/dharmaLogo.png"],
+    "technologies": ["Vue.js", "TypeScript", "Tailwind CSS", "Blockchain"],
+    "repoUrl": "",
+    "liveUrl": "https://www.mydharma.network/",
+    "demoVideo": ""
+  },
+  {
+    "id": "3d-engine",
+    "title": "3D Engine and Generator",
+    "description": "A powerful 3D engine and generator built with C++ and OpenGL, enabling real-time rendering and procedural content creation.\n\n## Key Features\n\n- Real-time 3D rendering\n- Procedural terrain generation\n- Advanced lighting and shadow systems\n- Physics simulation",
+    "images": [
+      "/CG/CG1.png",
+      "/CG/CG2.png",
+      "/CG/CG3.png",
+      "/CG/CG4.png",
+      "/CG/CG5.png"
+    ],
+    "technologies": ["C++", "OpenGL", "CMake"],
+    "repoUrl": "https://github.com/JoaoCoelho2003/CG",
+    "liveUrl": "",
+    "demoVideo": ""
+  },
+  {
+    "id": "picturas",
+    "title": "PictuRas",
+    "description": "# Overview\n\nThis project was developed for the Software Requirements and Architectures course, with the objective of building an image processing and editing platform inspired by popular solutions such as Canva.\n\nOur team successfully designed and implemented a fully featured platform that includes both the frontend and backend, deployed using **Kubernetes** for scalability and resilience. We also integrated monitoring and observability through **Prometheus** and **Grafana**, ensuring system reliability.\n\nBeyond core functionality, we implemented a secure authentication system, including login, password reset via email, and support for testing through **MailHog**. To extend functionality, we integrated **Stripe** for payment processing, enabling a premium subscription model. Premium users gain access to advanced image editing tools and exclusive AI-powered features, further enriching the platform's capabilities.\n\n# My Contribution\n\nMy primary responsibility was the **frontend development**, where I implemented the user interface using **Vue** and **TypeScript**. In addition, I contributed to the backend, specifically by developing some of the image filter functionalities, and also supported the implementation of the API Gateway to ensure seamless communication between services.\n\n# What did I learn?\n\nThis was one of the most complete and challenging projects I have participated in so far. By the end, we had built a fully functional application capable of supporting high user demand, which gave me valuable insights into how large-scale systems operate.\n\nThrough this experience, I learned how the different components of a modern application — frontend, backend, infrastructure, monitoring, and third-party integrations — communicate and work together to deliver a reliable platform. I also gained a deeper appreciation for the importance of scalability, security, and observability in real-world software projects.\n\n# Would I Do Something Differently?\n\nYes! Since then, I have pursued the field of Artificial Intelligence with much greater enthusiasm, and I now realize that some of the AI tools we implemented were not as efficient as they could have been. They were computationally intensive and could have produced better outputs with more optimized approaches.\n\nIf I had the chance to revisit the project, I would definitely focus on improving the design and implementation of the AI components. Aside from that, I am extremely satisfied with the final results and would not change much else.\n\n## Key Features\n\n- Image management and editing tools\n- Frontend built with Vue and TypeScript\n- Backend powered by JavaScript\n- Scalable Kubernetes deployment\n- Microservices architecture\n- Email management via Mailhog\n- RESTful API for backend operations\n- Stripe integration for subscriptions",
+    "images": [
+      "/Picturas/Picturas1.png",
+      "/Picturas/Picturas2.png",
+      "/Picturas/Picturas3.png",
+      "/Picturas/Picturas4.png",
+      "/Picturas/Picturas5.png",
+      "/Picturas/Picturas6.png",
+      "/Picturas/Picturas7.png",
+      "/Picturas/Picturas8.png",
+      "/Picturas/Picturas9.png",
+      "/Picturas/Picturas10.png"
+    ],
+    "technologies": [
+      "Vue 3",
+      "TypeScript",
+      "JavaScript",
+      "Kubernetes",
+      "Helm",
+      "Minikube",
+      "Docker",
+      "Stripe",
+      "TailwindCSS",
+      "Node.js",
+      "Express"
+    ],
+    "repoUrl": "https://github.com/JoaoCoelho2003/PictuRas",
+    "liveUrl": "",
+    "demoVideo": ""
+  },
+  {
+    "id": "stroll-braga",
+    "title": "Stroll Braga - City Explorer",
+    "description": "An interactive web application providing detailed information about roads and points of interest in Braga, Portugal.\n\n## Key Features\n\n- Create posts about roads of Braga\n- View historical data from city roads\n- Comment on posts\n- User interactions and discussions",
+    "images": ["/engweb/strollBraga.png"],
+    "technologies": ["Elixir", "Phoenix", "Docker", "Tailwind CSS", "JavaScript"],
+    "repoUrl": "https://github.com/JoaoCoelho2003/EngwebProject",
+    "liveUrl": "",
+    "demoVideo": ""
+  },
+  {
+    "id": "atomic",
+    "title": "Atomic - Academic Social Network",
+    "description": "A social networking platform designed for academic nuclei, fostering collaboration and knowledge sharing among students.\n\n## Key Features\n\n- User profiles with academic focus\n- Project collaboration tools\n- Event organization and management\n- Organizations management",
+    "images": ["/Atomic/atomic.png"],
+    "technologies": ["Elixir", "Phoenix", "Docker", "HTML5", "Tailwind CSS"],
+    "repoUrl": "https://github.com/cesium/atomic",
+    "liveUrl": "",
+    "demoVideo": ""
+  }
+]

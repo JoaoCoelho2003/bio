@@ -64,7 +64,7 @@
         >
           <div
             v-for="post in filteredAndSortedPosts"
-            :key="post.slug"
+            :key="post.id"
             class="bg-gray-900 border border-green-500 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300"
           >
             <img
@@ -97,7 +97,7 @@
                   formatDate(post.date)
                 }}</span>
                 <router-link
-                  :to="{ name: 'blogPost', params: { slug: post.slug } }"
+                  :to="{ name: 'blogPost', params: { slug: post.id } }"
                   class="px-4 py-2 bg-green-500 text-black rounded-md hover:bg-green-400 transition-colors duration-300"
                 >
                   Read More
@@ -122,6 +122,9 @@ import EncryptingText from "@/components/EncryptingText.vue";
 import BlogFilters from "@/components/BlogFilters.vue";
 import { useHead } from "@vueuse/head";
 import { initMatrix } from "@/lib/background";
+import { useContent } from "@/composables/useContent";
+
+const { getBlogPosts } = useContent();
 
 useHead({
   title: "Blog - João Coelho",
@@ -157,10 +160,11 @@ const isLoading = ref(true);
 const fetchPosts = async () => {
   try {
     isLoading.value = true;
-    const response = await fetch("/api/posts");
-    posts.value = await response.json();
+    const data = await getBlogPosts();
+    posts.value = data || [];
   } catch (error) {
     console.error("Error fetching posts:", error);
+    posts.value = [];
   } finally {
     isLoading.value = false;
   }
@@ -174,7 +178,7 @@ const filteredAndSortedPosts = computed(() => {
     result = result.filter(
       (post) =>
         post.title.toLowerCase().includes(query) ||
-        post.body.toLowerCase().includes(query) ||
+        post.content.toLowerCase().includes(query) ||
         (post.excerpt && post.excerpt.toLowerCase().includes(query)) ||
         (post.tags &&
           post.tags.some((tag) => tag.toLowerCase().includes(query))),

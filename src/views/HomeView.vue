@@ -20,7 +20,8 @@
               ></div>
               <div class="relative">
                 <img
-                  src="/profile.png"
+                  v-if="profile"
+                  :src="profile.image"
                   class="rounded-lg w-full object-cover border-2 border-green-500/50"
                   alt="Profile"
                 />
@@ -30,14 +31,14 @@
               </div>
             </div>
 
-            <div class="space-y-4 sm:space-y-6">
+            <div v-if="profile" class="space-y-4 sm:space-y-6">
               <div>
                 <h1 class="text-3xl sm:text-4xl font-bold text-green-500 mb-2">
-                  <EncryptingText text="João Coelho" />
+                  <EncryptingText :text="profile.name" />
                 </h1>
                 <div class="h-8">
                   <TypingAnimation
-                    :texts="['Programmer', 'Full Stack Developer']"
+                    :texts="profile.titles"
                     :speed="60"
                     class="text-lg sm:text-xl text-green-400"
                   />
@@ -45,29 +46,19 @@
               </div>
 
               <p class="text-sm sm:text-base text-gray-400 leading-relaxed">
-                I am a first-year Master's student in Software Engineering at
-                the University of Minho. My journey through computer science has
-                equipped me with expertise in various domains, from Algorithms
-                to AI. I'm also proud to contribute to CoderDojo, nurturing
-                future programmers.
+                {{ profile.bio }}
               </p>
 
               <div class="flex flex-wrap gap-4">
                 <a
-                  href="https://github.com/JoaoCoelho2003"
+                  v-for="social in profile.social"
+                  :key="social.name"
+                  :href="social.url"
                   target="_blank"
                   class="inline-flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 border border-green-500/30 text-green-500 rounded hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 text-sm sm:text-base"
                 >
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/joaocoelho03/"
-                  target="_blank"
-                  class="inline-flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 border border-green-500/30 text-green-500 rounded hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 text-sm sm:text-base"
-                >
-                  <i class="bi bi-linkedin"></i>
-                  <span>LinkedIn</span>
+                  <i :class="social.icon"></i>
+                  <span>{{ social.name }}</span>
                 </a>
               </div>
 
@@ -84,18 +75,21 @@
 
         <div class="space-y-12 mt-12">
           <TimelineSection
+            v-if="educationItems.length"
             title="Education"
             icon="bi bi-cpu"
             :items="educationItems"
           />
 
           <TimelineSection
+            v-if="experienceItems.length"
             title="Experience"
             icon="bi bi-terminal"
             :items="experienceItems"
           />
 
           <TimelineSection
+            v-if="achievementItems.length"
             title="Awards & Achievements"
             icon="bi bi-trophy"
             :items="achievementItems"
@@ -117,6 +111,34 @@ import EncryptingText from "@/components/EncryptingText.vue";
 import TimelineSection from "@/components/TimelineSection.vue";
 import { useHead } from "@vueuse/head";
 import { initMatrix } from "@/lib/background";
+import { useContent } from "@/composables/useContent";
+
+const { getProfile, getEducation, getExperience, getAchievements } = useContent();
+
+const matrix = ref(null);
+const profile = ref(null);
+const educationItems = ref([]);
+const experienceItems = ref([]);
+const achievementItems = ref([]);
+
+onMounted(async () => {
+  profile.value = await getProfile();
+  educationItems.value = await getEducation();
+  experienceItems.value = await getExperience();
+  achievementItems.value = await getAchievements();
+  
+  const cleanup = initMatrix(matrix);
+  window.addEventListener("resize", () => {
+    if (matrix.value) {
+      matrix.value.width = window.innerWidth;
+      matrix.value.height = window.innerHeight;
+    }
+  });
+  onUnmounted(() => {
+    cleanup();
+    window.removeEventListener("resize", () => {});
+  });
+});
 
 useHead({
   title: "About Me - João Coelho",
@@ -163,90 +185,6 @@ useHead({
       })
     }
   ]
-});
-
-const matrix = ref(null);
-
-const educationItems = [
-  {
-    title: "Master's in Software Engineering",
-    organization: "University of Minho",
-    period: "Set. 2024 - Present",
-    location: "Braga, PT",
-  },
-  {
-    title: "Bachelor of Software Engineering",
-    organization: "University of Minho",
-    period: "Set. 2021 - Jul. 2024",
-    location: "Braga, PT",
-  },
-];
-
-const experienceItems = [
-  {
-    title: "CeSIUM",
-    organization: "CeSIUM",
-    link: "https://cesium.di.uminho.pt/",
-    location: "Braga, PT",
-    subItems: [
-      {
-        title: "Co-Director of CAOS (Department of Technology)",
-        period: "Oct. 2025 - Present",
-      },
-      {
-        title: "Collaborator of CAOS (Department of Technology)",
-        period: "Mar. 2024 - Oct. 2025",
-      },
-    ],
-  },
-  {
-    title: "Software Engineer Intern",
-    organization: "Yari Labs",
-    link: "https://www.yarilabs.com/",
-    period: "Jun. 2024 - Jul. 2024",
-    location: "Braga, PT",
-  },
-  {
-    title: "Python Mentor",
-    organization: "CoderDojo",
-    link: "https://coderdojobraga.org/",
-    period: "Mar. 2024 - Present",
-    location: "Braga, PT",
-  }
-];
-
-const achievementItems = [
-  {
-    title: "BugsByte Hackathon 2025",
-    organization: "BugsByte Hackathon 2025",
-    link: "https://bugsbyte.org/",
-    period: "Mar. 2025",
-    location: "Braga, PT",
-    subItems: [
-      {
-        title: "Overall Winner",
-        description: "First place overall in the hackathon competition",
-      },
-      {
-        title: "SingleStore Theme Prize Winner",
-        description: "Best project using SingleStore database technology",
-      },
-    ],
-  },
-];
-
-onMounted(() => {
-  const cleanup = initMatrix(matrix);
-  window.addEventListener("resize", () => {
-    if (matrix.value) {
-      matrix.value.width = window.innerWidth;
-      matrix.value.height = window.innerHeight;
-    }
-  });
-  onUnmounted(() => {
-    cleanup();
-    window.removeEventListener("resize", () => {});
-  });
 });
 </script>
 
