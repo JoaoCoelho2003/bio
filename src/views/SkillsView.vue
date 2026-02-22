@@ -20,6 +20,7 @@
         </div>
 
         <div
+          v-if="skills.length"
           class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-12"
         >
           <div
@@ -45,7 +46,7 @@
           </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8 mt-12">
+        <div v-if="categories.length" class="grid md:grid-cols-3 gap-8 mt-12">
           <div
             v-for="(category, index) in categories"
             :key="index"
@@ -81,6 +82,9 @@ import CyberFooter from "@/components/CyberFooter.vue";
 import EncryptingText from "@/components/EncryptingText.vue";
 import { useHead } from "@vueuse/head";
 import { initMatrix } from "@/lib/background";
+import { useContent } from "@/composables/useContent";
+
+const { getSkills } = useContent();
 
 useHead({
   title: "Skills - João Coelho",
@@ -104,49 +108,16 @@ useHead({
 });
 
 const matrix = ref(null);
+const skills = ref([]);
+const categories = ref([]);
 
-const skills = ref([
-  { name: "Python", icon: "devicon-python-plain colored", level: 95 },
-  { name: "JavaScript", icon: "devicon-javascript-plain colored", level: 90 },
-  { name: "TypeScript", icon: "devicon-typescript-plain colored", level: 90 },
-  { name: "Elixir", icon: "devicon-elixir-plain colored", level: 75 },
-  { name: "Phoenix", icon: "devicon-phoenix-plain colored", level: 75 },
-  { name: "Vue.js", icon: "devicon-vuejs-plain colored", level: 90 },
-  { name: "Git", icon: "devicon-git-plain colored", level: 90 },
-  { name: "Tailwindcss", icon: "devicon-tailwindcss-plain colored", level: 90 },
-  { name: "MongoDB", icon: "devicon-mongodb-plain colored", level: 85 },
-  { name: "PostgreSQL", icon: "devicon-postgresql-plain colored", level: 80 },
-  { name: "Docker", icon: "devicon-docker-plain colored", level: 75 },
-]);
-
-const categories = ref([
-  {
-    title: "Frontend Development",
-    description:
-      "Creating responsive and interactive user interfaces with modern frameworks and tools.",
-    technologies: [
-      "Vue.js",
-      "TypeScript",
-      "JavaScript",
-      "Tailwind CSS",
-      "Phoenix",
-    ],
-  },
-  {
-    title: "Backend Development",
-    description:
-      "Building robust server-side applications and APIs with various technologies.",
-    technologies: ["Elixir", "Python", "MongoDB", "PostgreSQL"],
-  },
-  {
-    title: "DevOps & Tools",
-    description:
-      "Implementing and maintaining development operations and tooling.",
-    technologies: ["Git", "Docker"],
-  },
-]);
-
-onMounted(() => {
+onMounted(async () => {
+  const skillsData = await getSkills();
+  if (skillsData) {
+    skills.value = skillsData.skills;
+    categories.value = skillsData.categories;
+  }
+  
   const cleanup = initMatrix(matrix);
   onUnmounted(cleanup);
 });

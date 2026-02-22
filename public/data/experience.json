@@ -1,0 +1,32 @@
+[
+  {
+    "title": "CeSIUM",
+    "organization": "CeSIUM",
+    "link": "https://cesium.di.uminho.pt/",
+    "location": "Braga, PT",
+    "subItems": [
+      {
+        "title": "Co-Director of CAOS (Department of Technology)",
+        "period": "Oct. 2025 - Present"
+      },
+      {
+        "title": "Collaborator of CAOS (Department of Technology)",
+        "period": "Mar. 2024 - Oct. 2025"
+      }
+    ]
+  },
+  {
+    "title": "Software Engineer Intern",
+    "organization": "Yari Labs",
+    "link": "https://www.yarilabs.com/",
+    "period": "Jun. 2024 - Jul. 2024",
+    "location": "Braga, PT"
+  },
+  {
+    "title": "Python Mentor",
+    "organization": "CoderDojo",
+    "link": "https://coderdojobraga.org/",
+    "period": "Mar. 2024 - Present",
+    "location": "Braga, PT"
+  }
+]

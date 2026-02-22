@@ -1,0 +1,38 @@
+{
+  "skills": [
+    { "name": "Python", "icon": "devicon-python-plain colored", "level": 95 },
+    { "name": "JavaScript", "icon": "devicon-javascript-plain colored", "level": 90 },
+    { "name": "TypeScript", "icon": "devicon-typescript-plain colored", "level": 90 },
+    { "name": "Elixir", "icon": "devicon-elixir-plain colored", "level": 75 },
+    { "name": "Phoenix", "icon": "devicon-phoenix-plain colored", "level": 75 },
+    { "name": "Vue.js", "icon": "devicon-vuejs-plain colored", "level": 90 },
+    { "name": "Git", "icon": "devicon-git-plain colored", "level": 90 },
+    { "name": "Tailwindcss", "icon": "devicon-tailwindcss-plain colored", "level": 90 },
+    { "name": "MongoDB", "icon": "devicon-mongodb-plain colored", "level": 85 },
+    { "name": "PostgreSQL", "icon": "devicon-postgresql-plain colored", "level": 80 },
+    { "name": "Docker", "icon": "devicon-docker-plain colored", "level": 75 }
+  ],
+  "categories": [
+    {
+      "title": "Frontend Development",
+      "description": "Creating responsive and interactive user interfaces with modern frameworks and tools.",
+      "technologies": [
+        "Vue.js",
+        "TypeScript",
+        "JavaScript",
+        "Tailwind CSS",
+        "Phoenix"
+      ]
+    },
+    {
+      "title": "Backend Development",
+      "description": "Building robust server-side applications and APIs with various technologies.",
+      "technologies": ["Elixir", "Python", "MongoDB", "PostgreSQL"]
+    },
+    {
+      "title": "DevOps & Tools",
+      "description": "Implementing and maintaining development operations and tooling.",
+      "technologies": ["Git", "Docker"]
+    }
+  ]
+}

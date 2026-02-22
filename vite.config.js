@@ -20,6 +20,15 @@ export default defineConfig({
       }
     }
   },
+  publicDir: 'public',
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    },
+    copyPublicDir: true
+  },
   ssgOptions: {
     script: 'async',
     formatting: 'minify',

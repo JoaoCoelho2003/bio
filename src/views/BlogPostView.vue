@@ -72,7 +72,7 @@
 
           <div
             class="prose prose-invert prose-sm sm:prose-base lg:prose-lg max-w-none mb-16"
-            v-html="md.render(post.body)"
+            v-html="parseMarkdown(post.content)"
           ></div>
 
           <div class="border-t border-green-500/30 py-8 mb-16">
@@ -117,11 +117,11 @@ import { useRoute, useRouter } from "vue-router";
 import CyberHeader from "@/components/CyberHeader.vue";
 import CyberFooter from "@/components/CyberFooter.vue";
 import dayjs from "dayjs";
-import MarkdownIt from "markdown-it";
 import { useHead } from "@vueuse/head";
 import { initMatrix } from "@/lib/background";
+import { useContent } from "@/composables/useContent";
 
-const md = new MarkdownIt();
+const { getBlogPost, parseMarkdown } = useContent();
 
 const route = useRoute();
 const router = useRouter();
@@ -136,9 +136,8 @@ const sharePlatforms = [
 
 const fetchPost = async () => {
   try {
-    const response = await fetch(`/api/post/${route.params.slug}`);
-    const data = await response.json();
-    if (data.error) {
+    const data = await getBlogPost(route.params.slug);
+    if (!data) {
       router.push("/blog");
       return;
     }
@@ -146,6 +145,7 @@ const fetchPost = async () => {
       ...data,
       tags: data.tags || [],
       category: data.category || "Uncategorized",
+      excerpt: data.content.slice(0, 150) + (data.content.length > 150 ? '...' : '')
     };
 
     const absoluteUrl = window.location.href;

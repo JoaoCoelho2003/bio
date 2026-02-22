@@ -65,9 +65,7 @@
             <i class="bi bi-chevron-right text-sm md:text-base"></i>
           </button>
         </div>
-        <p class="text-sm md:text-base text-gray-300 mb-4">
-          {{ project.description }}
-        </p>
+        <div v-html="descriptionHtml" class="text-sm md:text-base text-gray-300 mb-4 prose prose-invert max-w-none"></div>
         <div class="mb-4">
           <h3 class="text-lg md:text-xl font-semibold mb-2 text-green-400">
             Technologies Used
@@ -82,30 +80,20 @@
             </span>
           </div>
         </div>
-        <div class="mb-4">
-          <h3 class="text-lg md:text-xl font-semibold mb-2 text-green-400">
-            Key Features
-          </h3>
-          <ul class="list-disc list-inside text-sm md:text-base text-gray-300">
-            <li v-for="feature in project.features" :key="feature">
-              {{ feature }}
-            </li>
-          </ul>
-        </div>
         <div
           class="flex flex-col md:flex-row justify-between mt-4 md:mt-6 space-y-2 md:space-y-0 md:space-x-2"
         >
           <a
-            v-if="project.weburl"
-            :href="project.weburl"
+            v-if="project.liveUrl"
+            :href="project.liveUrl"
             target="_blank"
             class="inline-flex items-center justify-center px-4 py-2 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-black transition-all duration-300 text-sm md:text-base"
           >
             <i class="bi bi-globe2 mr-2"></i> Visit Site
           </a>
           <a
-            v-if="project.giturl"
-            :href="project.giturl"
+            v-if="project.repoUrl"
+            :href="project.repoUrl"
             target="_blank"
             class="inline-flex items-center justify-center px-4 py-2 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-black transition-all duration-300 text-sm md:text-base"
           >
@@ -118,7 +106,8 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from "vue";
+import { ref, watch, onMounted, onUnmounted, computed } from "vue";
+import { parseMarkdown } from "@/utils/contentLoader";
 
 const props = defineProps({
   show: Boolean,
@@ -126,6 +115,11 @@ const props = defineProps({
 });
 
 const currentImageIndex = ref(0);
+
+const descriptionHtml = computed(() => {
+  if (!props.project?.description) return '';
+  return parseMarkdown(props.project.description);
+});
 
 const nextImage = () => {
   currentImageIndex.value =

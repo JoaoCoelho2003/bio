@@ -1,0 +1,19 @@
+{
+  "name": "João Coelho",
+  "titles": ["Programmer", "Full Stack Developer"],
+  "image": "/profile.png",
+  "bio": "I am a first-year Master's student in Software Engineering at the University of Minho. My journey through computer science has equipped me with expertise in various domains, from Algorithms to AI. I'm also proud to contribute to CoderDojo, nurturing future programmers.",
+  "social": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/JoaoCoelho2003",
+      "icon": "bi bi-github"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/joaocoelho03/",
+      "icon": "bi bi-linkedin"
+    }
+  ],
+  "cvUrl": "/joaoCoelhoResume.pdf"
+}

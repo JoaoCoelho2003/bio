@@ -1,0 +1,19 @@
+[
+  {
+    "title": "BugsByte Hackathon 2025",
+    "organization": "BugsByte Hackathon 2025",
+    "link": "https://bugsbyte.org/",
+    "period": "Mar. 2025",
+    "location": "Braga, PT",
+    "subItems": [
+      {
+        "title": "Overall Winner",
+        "description": "First place overall in the hackathon competition"
+      },
+      {
+        "title": "SingleStore Theme Prize Winner",
+        "description": "Best project using SingleStore database technology"
+      }
+    ]
+  }
+]

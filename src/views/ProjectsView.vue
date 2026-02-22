@@ -51,11 +51,13 @@
               <h3 class="text-2xl font-bold text-green-500">
                 {{ project.title }}
               </h3>
-              <p class="text-gray-400">{{ project.description }}</p>
+              <p class="text-gray-400 line-clamp-3">
+                {{ project.description.replace(/[#*\[\]]/g, '').split('\n').filter(line => line.trim()).slice(0, 3).join(' ').substring(0, 200) }}{{ project.description.length > 200 ? '...' : '' }}
+              </p>
               <div class="flex space-x-4 mt-4">
                 <a
-                  v-if="project.weburl"
-                  :href="project.weburl"
+                  v-if="project.liveUrl"
+                  :href="project.liveUrl"
                   target="_blank"
                   class="inline-flex items-center space-x-2 px-4 py-2 border border-green-500/30 text-green-500 rounded hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                 >
@@ -64,8 +66,8 @@
                   </div>
                 </a>
                 <a
-                  v-if="project.giturl"
-                  :href="project.giturl"
+                  v-if="project.repoUrl"
+                  :href="project.repoUrl"
                   target="_blank"
                   class="inline-flex items-center space-x-2 px-4 py-2 border border-green-500/30 text-green-500 rounded hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                 >
@@ -98,6 +100,9 @@ import EncryptingText from "@/components/EncryptingText.vue";
 import ProjectModal from "@/components/ProjectModal.vue";
 import { useHead } from "@vueuse/head";
 import { initMatrix } from "@/lib/background";
+import { useContent } from "@/composables/useContent";
+
+const { getProjects, parseMarkdown } = useContent();
 
 useHead({
   title: "Projects - João Coelho",
@@ -123,119 +128,14 @@ useHead({
 const matrix = ref(null);
 const showModal = ref(false);
 const selectedProject = ref(null);
+const projects = ref([]);
 
-const projects = ref([
-  {
-    title: "Dharma Network - NFT Marketplace",
-    description:
-      "A decentralized NFT marketplace allowing users to buy, sell, and trade unique digital assets securely on the blockchain.",
-    technologies: ["Vue.js", "TypeScript", "Tailwind CSS", "Blockchain"],
-    images: ["/Dharma/dharmaLogo.png"],
-    weburl: "https://www.mydharma.network/",
-    giturl: null,
-    features: [
-      "Secure wallet integration",
-      "Real-time bidding system",
-      "Customizable user profiles",
-      "Advanced search and filtering options",
-      "Buying and selling NFTs",
-      "Trading NFTs",
-    ],
-  },
-  {
-    title: "3D Engine and Generator",
-    description:
-      "A powerful 3D engine and generator built with C++ and OpenGL, enabling real-time rendering and procedural content creation.",
-    technologies: ["C++", "OpenGL", "CMake"],
-    images: [
-      "/CG/CG1.png",
-      "/CG/CG2.png",
-      "/CG/CG3.png",
-      "/CG/CG4.png",
-      "/CG/CG5.png",
-    ],
-    weburl: null,
-    giturl: "https://github.com/JoaoCoelho2003/CG",
-    features: [
-      "Real-time 3D rendering",
-      "Procedural terrain generation",
-      "Advanced lighting and shadow systems",
-      "Physics simulation",
-    ],
-  },
-  {
-    title: "PictuRas",
-    description:
-      "A scalable image management and editing platform with advanced image tools, deployed using Kubernetes. The project features a Vue and TypeScript frontend, a JavaScript backend, and a microservices architecture.",
-    technologies: [
-      "Vue",
-      "TypeScript",
-      "JavaScript",
-      "Kubernetes",
-      "Helm",
-      "Minikube",
-      "Docker",
-      "Stripe",
-      "CSS",
-      "HTML",
-      "HCL",
-    ],
-    images: [
-      "/Picturas/Picturas1.png",
-      "/Picturas/Picturas2.png",
-      "/Picturas/Picturas3.png",
-      "/Picturas/Picturas4.png",
-      "/Picturas/Picturas5.png",
-      "/Picturas/Picturas6.png",
-      "/Picturas/Picturas7.png",
-      "/Picturas/Picturas8.png",
-      "/Picturas/Picturas9.png",
-      "/Picturas/Picturas10.png",
-    ],
-    weburl: null,
-    giturl: "https://github.com/JoaoCoelho2003/PictuRas",
-    features: [
-      "Image management and editing tools",
-      "Frontend built with Vue and TypeScript",
-      "Backend powered by JavaScript",
-      "Scalable Kubernetes deployment",
-      "Microservices architecture",
-      "Email management via Mailhog",
-      "RESTful API for backend operations",
-      "Stripe integration for subscriptions",
-    ],
-  },
-  {
-    title: "Stroll Braga - City Explorer",
-    description:
-      "An interactive web application providing detailed information about roads and points of interest in Braga, Portugal.",
-    technologies: ["Elixir", "Phoenix", "Docker", "Tailwind CSS", "JavaScript"],
-    images: ["/engweb/strollBraga.png"],
-    weburl: null,
-    giturl: "https://github.com/JoaoCoelho2003/EngwebProject",
-    features: [
-      "Create posts about roads of Braga",
-      "View historical data from city roads",
-      "Comment on posts",
-      "User interactions and discussions",
-    ],
-  },
-  {
-    title: "Atomic - Academic Social Network",
-    description:
-      "A social networking platform designed for academic nuclei, fostering collaboration and knowledge sharing among students.",
-    technologies: ["Elixir", "Phoenix", "Docker", "HTML5", "Tailwind CSS"],
-    images: ["/Atomic/atomic.png"],
-    weburl: null,
-    giturl: "https://github.com/cesium/atomic",
-    features: [
-      "User profiles with academic focus",
-      "Project collaboration tools",
-      "Event organization and management",
-      "Organizations management",
-    ],
-  },
-]);
+onMounted(async () => {
+  projects.value = await getProjects();
+  
+  const cleanup = initMatrix(matrix);
+  onUnmounted(cleanup);
+});
 
 const openModal = (project) => {
   selectedProject.value = project;
@@ -246,10 +146,6 @@ const closeModal = () => {
   showModal.value = false;
 };
 
-onMounted(() => {
-  const cleanup = initMatrix(matrix);
-  onUnmounted(cleanup);
-});
 </script>
 
 <style scoped>
