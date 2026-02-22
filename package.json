@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "overrides": {
+    "@exodus/bytes": "1.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite-ssg build",
